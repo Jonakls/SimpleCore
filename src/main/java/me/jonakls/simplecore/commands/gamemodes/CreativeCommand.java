@@ -1,8 +1,8 @@
-package jonakls.simplecore.commands.gamemodes;
+package me.jonakls.simplecore.commands.gamemodes;
 
-import jonakls.simplecore.SimpleCore;
-import jonakls.simplecore.files.MessagesFile;
-import jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.SimpleCore;
+import me.jonakls.simplecore.files.MessagesFile;
+import me.jonakls.simplecore.objects.ParseColors;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;

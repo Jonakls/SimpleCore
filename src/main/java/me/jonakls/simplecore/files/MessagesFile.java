@@ -1,6 +1,6 @@
-package jonakls.simplecore.files;
+package me.jonakls.simplecore.files;
 
-import jonakls.simplecore.SimpleCore;
+import me.jonakls.simplecore.SimpleCore;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

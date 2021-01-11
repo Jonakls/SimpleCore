@@ -1,8 +1,8 @@
-package jonakls.simplecore.commands.gamemodes;
+package me.jonakls.simplecore.commands.gamemodes;
 
-import jonakls.simplecore.SimpleCore;
-import jonakls.simplecore.files.MessagesFile;
-import jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.SimpleCore;
+import me.jonakls.simplecore.files.MessagesFile;
+import me.jonakls.simplecore.objects.ParseColors;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -12,23 +12,23 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class AdventureCommand implements CommandExecutor {
+
+public class SurvivalCommand implements CommandExecutor {
 
     private SimpleCore simpleCore;
     private ParseColors colors = new ParseColors();
 
-    public AdventureCommand(SimpleCore simpleCore){
+    public SurvivalCommand(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
     }
 
 
     ConsoleCommandSender console = Bukkit.getConsoleSender();
 
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
+
 
         String noPermissions = messages.getString("Messages.error.no-permissions");
         String noPlayer = messages.getString("Messages.error.no-player");
@@ -36,7 +36,7 @@ public class AdventureCommand implements CommandExecutor {
         String changeGamemode = messages.getString("Gamemode.change");
         String otherGamemode = messages.getString("Gamemode.change-other");
         String targetGamemode = messages.getString("Gamemode.target-change");
-        String typeGamemode = messages.getString("Gamemode.type.adventure");
+        String typeGamemode = messages.getString("Gamemode.type.survival");
 
         if (!(sender instanceof Player)){
             console.sendMessage(messages.getString("Messages.error.no-console"));
@@ -48,11 +48,11 @@ public class AdventureCommand implements CommandExecutor {
             return true;
         }
         if (!(args.length > 0)){
-            if (!(p.hasPermission("simplecore.command.gamemode.adventure"))){
+            if (!(p.hasPermission("simplecore.command.gamemode.survival"))){
                 p.sendMessage(colors.setColor(noPermissions));
                 return true;
             }
-            p.setGameMode(GameMode.ADVENTURE);
+            p.setGameMode(GameMode.SURVIVAL);
             p.sendMessage(colors.setColor(changeGamemode.replace("%type%", typeGamemode)));
             return true;
         }
@@ -64,7 +64,7 @@ public class AdventureCommand implements CommandExecutor {
         p.sendMessage(colors.setColor(otherGamemode.replace("%type%", typeGamemode).replace("%target%", target.getName())));
 
         target.sendMessage(colors.setColor(targetGamemode.replace("%type%", typeGamemode).replace("%player%", p.getName())));
-        target.setGameMode(GameMode.ADVENTURE);
+        target.setGameMode(GameMode.SURVIVAL);
         return true;
     }
 }

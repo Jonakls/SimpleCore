@@ -1,6 +1,6 @@
 name: SimpleCore
 version: ${project.version}
-main: jonakls.simplecore.SimpleCore
+main: me.jonakls.simplecore.SimpleCore
 authors: [Jonakls]
 softdepend:
   - PlaceholderAPI

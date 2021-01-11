@@ -1,15 +1,15 @@
-package jonakls.simplecore;
+package me.jonakls.simplecore;
 
-import jonakls.simplecore.commands.GeneralCommand;
-import jonakls.simplecore.commands.GeneralGamemodeCommand;
-import jonakls.simplecore.commands.gamemodes.AdventureCommand;
-import jonakls.simplecore.commands.gamemodes.CreativeCommand;
-import jonakls.simplecore.commands.gamemodes.SpectatorCommand;
-import jonakls.simplecore.commands.gamemodes.SurvivalCommand;
-import jonakls.simplecore.events.JoinEvent;
-import jonakls.simplecore.events.QuitEvent;
-import jonakls.simplecore.events.ServerListEvent;
-import jonakls.simplecore.files.MessagesFile;
+import me.jonakls.simplecore.commands.GeneralCommand;
+import me.jonakls.simplecore.commands.GeneralGamemodeCommand;
+import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
+import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
+import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
+import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
+import me.jonakls.simplecore.events.JoinEvent;
+import me.jonakls.simplecore.events.QuitEvent;
+import me.jonakls.simplecore.events.ServerListEvent;
+import me.jonakls.simplecore.files.MessagesFile;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;

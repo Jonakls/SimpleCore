@@ -1,4 +1,4 @@
-package jonakls.simplecore.objects;
+package me.jonakls.simplecore.objects;
 
 import org.bukkit.ChatColor;
 

@@ -1,8 +1,8 @@
-package jonakls.simplecore.events;
+package me.jonakls.simplecore.events;
 
-import jonakls.simplecore.SimpleCore;
-import jonakls.simplecore.files.MessagesFile;
-import jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.SimpleCore;
+import me.jonakls.simplecore.files.MessagesFile;
+import me.jonakls.simplecore.objects.ParseColors;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

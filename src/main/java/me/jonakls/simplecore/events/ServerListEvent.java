@@ -1,7 +1,7 @@
-package jonakls.simplecore.events;
+package me.jonakls.simplecore.events;
 
-import jonakls.simplecore.SimpleCore;
-import jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.SimpleCore;
+import me.jonakls.simplecore.objects.ParseColors;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

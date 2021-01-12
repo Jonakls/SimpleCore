@@ -14,8 +14,8 @@ import org.bukkit.entity.Player;
 
 public class CreativeCommand implements CommandExecutor {
 
-    private SimpleCore simpleCore;
-    private ParseColors colors = new ParseColors();
+    private final SimpleCore simpleCore;
+    private final ParseColors colors = new ParseColors();
 
     public CreativeCommand(SimpleCore simpleCore){
         this.simpleCore = simpleCore;

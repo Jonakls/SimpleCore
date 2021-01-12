@@ -1,5 +1,6 @@
 package me.jonakls.simplecore;
 
+import me.jonakls.simplecore.commands.FlyCommand;
 import me.jonakls.simplecore.commands.GeneralCommand;
 import me.jonakls.simplecore.commands.GeneralGamemodeCommand;
 import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public final class SimpleCore extends JavaPlugin {
 
-    private MessagesFile messagesFile;
+    private final MessagesFile messagesFile = new MessagesFile(this);
 
     public String configFile;
 
@@ -41,7 +42,7 @@ public final class SimpleCore extends JavaPlugin {
         setupEvents();
         console.sendMessage("[SimpleCore] Installing files of configuration...");
         setupConfig();
-        messagesFile = new MessagesFile(this).setupMessages();
+        messagesFile.setupMessages();
         console.sendMessage("[SimpleCore] Load all files, events and commands!");
     }
 
@@ -59,6 +60,7 @@ public final class SimpleCore extends JavaPlugin {
         getCommand("gms").setExecutor(new SurvivalCommand(this));
         getCommand("gmc").setExecutor(new CreativeCommand(this));
         getCommand("gma").setExecutor(new AdventureCommand(this));
+        getCommand("flymode").setExecutor(new FlyCommand(this));
     }
 
     public void setupEvents(){

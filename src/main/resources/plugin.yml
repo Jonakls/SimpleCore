@@ -24,3 +24,6 @@ commands:
   gms:
     description: Change gamemode to survival mode
     aliases: [ survival, games, modes ]
+  flymode:
+    description: Enable or disable flight in game
+    aliases: [ fly, flight ]

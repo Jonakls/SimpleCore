@@ -1,5 +1,6 @@
 package me.jonakls.simplecore.events;
 
+import com.connorlinfoot.titleapi.TitleAPI;
 import me.jonakls.simplecore.SimpleCore;
 import me.jonakls.simplecore.files.MessagesFile;
 import me.jonakls.simplecore.objects.ParseColors;
@@ -30,6 +31,9 @@ public class JoinEvent implements Listener {
 
         String joinTitle = messages.getString("Events.join-player.title");
         String joinSubTitle = messages.getString("Events.join-player.sub-title");
+        int fadeIn = configFile.getInt("Titles.join-title.fade-in");
+        int stay = configFile.getInt("Titles.join-title.stay");
+        int fadeOut = configFile.getInt("Titles.join-title.fade-out");
 
 
 
@@ -41,7 +45,9 @@ public class JoinEvent implements Listener {
         joinEvent.setJoinMessage(colors.setColor(PlaceholderAPI.setPlaceholders(p, joinMessage.replace("%player%", p.getName()))));
 
         if (configFile.getBoolean("Titles.join-title.enable")){
-            p.sendTitle(colors.setColor(joinTitle), colors.setColor(joinSubTitle));
+            TitleAPI.sendTitle(p, fadeIn, stay, fadeOut,
+                    colors.setColor(PlaceholderAPI.setPlaceholders(p, joinTitle)),
+                    colors.setColor(PlaceholderAPI.setPlaceholders(p, joinSubTitle)));
         }
     }
 }

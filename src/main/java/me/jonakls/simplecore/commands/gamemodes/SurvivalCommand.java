@@ -15,8 +15,8 @@ import org.bukkit.entity.Player;
 
 public class SurvivalCommand implements CommandExecutor {
 
-    private SimpleCore simpleCore;
-    private ParseColors colors = new ParseColors();
+    private final SimpleCore simpleCore;
+    private final ParseColors colors = new ParseColors();
 
     public SurvivalCommand(SimpleCore simpleCore){
         this.simpleCore = simpleCore;

@@ -19,12 +19,16 @@ Messages:
     no-permissions: '&cNo tienes permiso para hacer esto.'
     no-yourself: '&cNo puedes hacer esta accion contigo mismo.'
     no-console: 'No puedes hacer esto desde la consola.'
-########################
-# New comment for this #
-########################
+    flaying: '&cTu ya tienes ti modo de vuelo activado'
 Usages:
   general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
-#asdasdasdasdad#
+Flymode:
+  message: '&7Tu modo de vuelo a sido %type%'
+  other-message: '&7El modo de vuelo de &b%target% &7a sido %type%'
+  target-message: '&b%player% &7a %type% &7tu modo de vuelo'
+  type:
+    enable: '&aActivado'
+    disable: '&cDesactivado'
 Events:
   join-player:
     message: '&8[&a+&8] &f%player% &7acaba de entrar al servidor.'
@@ -32,7 +36,6 @@ Events:
     sub-title: '&7Recuerda usar &c/help &7para informarte'
   quit-player:
     message: '&8[&c-&8] &f%player% &7acaba de salir del servidor.'
-#asdaaasdasd#
 Gamemode:
   change: '&7Tu modo de juego a cambiado a %type%'
   change-other: '&7Cambiaste el modo de juego de &f%target% &7a %type%'
@@ -42,4 +45,3 @@ Gamemode:
     survival: '&cSurvival'
     adventure: '&eAventura'
     spectator: '&dEspectador'
-#asdasddddddasd#

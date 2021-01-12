@@ -6,13 +6,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class MessagesFile{
 
     private FileConfiguration messages = null;
     private File messagesFile = null;
 
-    private SimpleCore simpleCore;
+    private final SimpleCore simpleCore;
 
     public MessagesFile(SimpleCore simpleCore){
         this.simpleCore =  simpleCore;
@@ -31,14 +32,10 @@ public class MessagesFile{
         }
         messages = YamlConfiguration.loadConfiguration(messagesFile);
         Reader defConfigStream;
-        try{
-            defConfigStream = new InputStreamReader(this.simpleCore.getResource("messages.yml"), "Utf8");
-            if(defConfigStream != null){
-                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-                messages.setDefaults(defConfig);
-            }
-        }catch(UnsupportedEncodingException e){
-            e.printStackTrace();
+        defConfigStream = new InputStreamReader(this.simpleCore.getResource("messages.yml"), StandardCharsets.UTF_8);
+        if(defConfigStream != null){
+            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+            messages.setDefaults(defConfig);
         }
     }
 

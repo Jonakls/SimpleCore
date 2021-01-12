@@ -12,8 +12,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class QuitEvent implements Listener {
 
-    private SimpleCore simpleCore;
-    private ParseColors colors = new ParseColors();
+    private final SimpleCore simpleCore;
+    private final ParseColors colors = new ParseColors();
 
     public QuitEvent(SimpleCore simpleCore){
         this.simpleCore = simpleCore;

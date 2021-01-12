@@ -15,8 +15,8 @@ import java.util.List;
 
 public class GeneralCommand implements CommandExecutor {
 
-    private SimpleCore simpleCore;
-    private ParseColors colors = new ParseColors();
+    private final SimpleCore simpleCore;
+    private final ParseColors colors = new ParseColors();
 
     public GeneralCommand(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
@@ -28,7 +28,6 @@ public class GeneralCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
-        colors = new ParseColors();
 
         List<String> helpConsole = messages.getStringList("Messages.console.help");
         List<String> helpPlayer = messages.getStringList("Messages.player.help");

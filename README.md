@@ -11,3 +11,9 @@ This is a simple plugin that contains simple functions that will allow you to us
 * /flymode | Enable or disable flight in game.
 
 * /vanish | Enable or disable player disappearance mode.
+
+### **Dependencies**
+
+* `PlaceholderAPI` 
+
+* `TitleAPI` 

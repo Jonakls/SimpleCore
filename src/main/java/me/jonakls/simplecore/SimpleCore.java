@@ -3,7 +3,7 @@ package me.jonakls.simplecore;
 import me.jonakls.simplecore.commands.FlyCommand;
 import me.jonakls.simplecore.commands.GeneralCommand;
 import me.jonakls.simplecore.commands.GeneralGamemodeCommand;
-import me.jonakls.simplecore.commands.IncognitMode;
+import me.jonakls.simplecore.commands.VanishMode;
 import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
@@ -62,7 +62,7 @@ public final class SimpleCore extends JavaPlugin {
         getCommand("gmc").setExecutor(new CreativeCommand(this));
         getCommand("gma").setExecutor(new AdventureCommand(this));
         getCommand("flymode").setExecutor(new FlyCommand(this));
-        getCommand("incognit").setExecutor(new IncognitMode(this));
+        getCommand("vanish").setExecutor(new VanishMode(this));
     }
 
     public void setupEvents(){

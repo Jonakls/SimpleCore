@@ -11,12 +11,12 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class IncognitMode implements CommandExecutor {
+public class VanishMode implements CommandExecutor {
 
     private final SimpleCore simpleCore;
     private final ParseColors colors = new ParseColors();
 
-    public IncognitMode(SimpleCore simpleCore){
+    public VanishMode(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
     }
 

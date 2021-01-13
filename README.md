@@ -12,7 +12,7 @@ This is a simple plugin that contains simple functions that will allow you to us
 
 * /vanish | Enable or disable player disappearance mode.
 
-### **Dependencies**
+### **Dependencies:**
 
 * `PlaceholderAPI` 
 

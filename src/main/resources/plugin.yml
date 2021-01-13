@@ -27,3 +27,6 @@ commands:
   flymode:
     description: Enable or disable flight in game
     aliases: [ fly, flight ]
+  incognit:
+    description: Enable or disable incognit mode of player
+    aliases: [ inc, in, v, vanish ]

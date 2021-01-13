@@ -23,20 +23,17 @@ Messages:
 Usages:
   general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
   vanish: '&7Usa: &e/incognit <enable/disable> [player]'
+Type:
+  enable: '&aActivado'
+  disable: '&cDesactivado'
 Flymode:
   message: '&7Tu modo de vuelo a sido %type%'
   other-message: '&7El modo de vuelo de &b%target% &7a sido %type%'
   target-message: '&b%player% &7a %type% &7tu modo de vuelo'
-  type:
-    enable: '&aActivado'
-    disable: '&cDesactivado'
 Vanish:
-  message: '&7Tu modo incognito a sido %value%'
-  other-message: '&7El modo incognito de &b%target% &7a sido %value%'
-  target-message: '&b%player% &7a %value% &7tu modo incognito'
-  type:
-    enable: '&aActivado'
-    disable: '&cDesactivado'
+  message: '&7Tu modo incognito a sido %type%'
+  other-message: '&7El modo incognito de &b%target% &7a sido %type%'
+  target-message: '&b%player% &7a %type% &7tu modo incognito'
 Events:
   join-player:
     message: '&8[&a+&8] &f%player% &7acaba de entrar al servidor.'

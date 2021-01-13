@@ -43,8 +43,8 @@ public class VanishMode implements CommandExecutor {
         }
         if (args[0].equalsIgnoreCase("enable") || args[0].equalsIgnoreCase("on")){
             if (!(args.length > 1)){
-                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message"
-                        .replace("%value%", messagesFile.getString("Vanish.type.enable")))));
+                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
+                        .replace("%type%", messagesFile.getString("Type.enable"))));
 
                 Bukkit.getOnlinePlayers().forEach(online -> {
                         online.hidePlayer(p);
@@ -53,24 +53,24 @@ public class VanishMode implements CommandExecutor {
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-player".replace("%player%", args[1]))));
+                p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-player").replace("%player%", args[1])));
                 return true;
             }
+            p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
+                    .replace("%type%", messagesFile.getString("Type.enable")
+                    .replace("%target%", target.getName()))));
+            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
+                    .replace("%type%", messagesFile.getString("Type.enable")
+                    .replace("%player%", p.getName()))));
             Bukkit.getOnlinePlayers().forEach(online -> {
                     online.hidePlayer(target);
-                    p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message"
-                            .replace("%value%", messagesFile.getString("Vanish.type.enable")
-                            .replace("%target%", args[1])))));
-                    target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message"
-                            .replace("%value%", messagesFile.getString("Vanish.type.enable")
-                            .replace("%player%", p.getName())))));
             });
             return true;
         }
         if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("off")){
             if (!(args.length > 1)){
-                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message"
-                        .replace("%value%", messagesFile.getString("Vanish.type.disable")))));
+                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
+                    .replace("%type%", messagesFile.getString("Type.disable"))));
 
                 Bukkit.getOnlinePlayers().forEach(online -> {
                         online.showPlayer(p);
@@ -82,13 +82,13 @@ public class VanishMode implements CommandExecutor {
                 p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-player")));
                 return true;
             }
+            p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
+                    .replace("%type%", messagesFile.getString("Type.disable")
+                    .replace("%target%", target.getName()))));
+            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
+                    .replace("%type%", messagesFile.getString("Type.disable")
+                    .replace("%player%", p.getName()))));
             Bukkit.getOnlinePlayers().forEach(online -> {
-                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message"
-                        .replace("%value%", messagesFile.getString("Vanish.type.disable")
-                        .replace("%target%", args[1])))));
-                target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message"
-                        .replace("%value%", messagesFile.getString("Vanish.type.disable")
-                        .replace("%player%", p.getName())))));
                 online.showPlayer(target);
             });
         }

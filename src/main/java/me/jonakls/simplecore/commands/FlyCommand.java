@@ -26,7 +26,6 @@ public class FlyCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        FileConfiguration configFile = simpleCore.getConfig();
         FileConfiguration messagesFile = new MessagesFile(simpleCore).getMessages();
 
         if (!(sender instanceof Player)){
@@ -42,14 +41,14 @@ public class FlyCommand implements CommandExecutor {
             if (!(p.getAllowFlight() || p.isFlying())){
                 p.setAllowFlight(true);
                 p.setFlying(true);
-                p.sendMessage(colors.setColor(messagesFile.getString("Flymode.message"
-                        .replace("%type%", messagesFile.getString("Flymode.type.enable")))));
+                p.sendMessage(colors.setColor(messagesFile.getString("Flymode.message")
+                        .replace("%type%", messagesFile.getString("Type.enable"))));
                 return true;
             }
             p.setAllowFlight(false);
             p.setFlying(false);
-            p.sendMessage(colors.setColor(messagesFile.getString("Flymode.message"
-                    .replace("%type%", messagesFile.getString("Flymode.type.disable")))));
+            p.sendMessage(colors.setColor(messagesFile.getString("Flymode.message")
+                    .replace("%type%", messagesFile.getString("Type.disable"))));
             return true;
         }
         Player target = Bukkit.getPlayerExact(args[0]);
@@ -60,25 +59,26 @@ public class FlyCommand implements CommandExecutor {
         if (!(target.getAllowFlight() || target.isFlying())){
             target.setAllowFlight(true);
             target.setFlying(true);
-            target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message"
+            target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message")
             .replace("%type%", messagesFile.getString("Flymode.type.enable")
-            .replace("%player%", p.getName())))));
+            .replace("%player%", p.getName()))));
 
-            p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message"
-            .replace("%type%", messagesFile.getString("Flymode.type.enable")
-            .replace("%target%", target.getName())))));
+            p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message")
+            .replace("%type%", messagesFile.getString("Type.enable")
+            .replace("%target%", target.getName()))));
 
             return true;
         }
         target.setAllowFlight(false);
         target.setFlying(false);
-        target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message"
-                .replace("%type%", messagesFile.getString("Flymode.type.disable")
-                .replace("%player%", p.getName())))));
 
-        p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message"
-                .replace("%type%", messagesFile.getString("Flymode.type.disable")
-                .replace("%target%", target.getName())))));
+        target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message")
+                .replace("%type%", messagesFile.getString("Type.disable")
+                .replace("%player%", p.getName()))));
+
+        p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message")
+                .replace("%type%", messagesFile.getString("Type.disable")
+                .replace("%target%", target.getName()))));
         return true;
     }
 }

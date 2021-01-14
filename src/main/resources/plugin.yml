@@ -30,3 +30,6 @@ commands:
   vanish:
     description: Enable or disable incognit mode of player
     aliases: [ v, vanish ]
+  menu:
+    description: Menu of options
+    aliases: [server, help]

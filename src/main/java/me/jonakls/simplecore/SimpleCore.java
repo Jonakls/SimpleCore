@@ -1,9 +1,6 @@
 package me.jonakls.simplecore;
 
-import me.jonakls.simplecore.commands.FlyCommand;
-import me.jonakls.simplecore.commands.GeneralCommand;
-import me.jonakls.simplecore.commands.GeneralGamemodeCommand;
-import me.jonakls.simplecore.commands.VanishMode;
+import me.jonakls.simplecore.commands.*;
 import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
@@ -11,7 +8,9 @@ import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
 import me.jonakls.simplecore.events.JoinEvent;
 import me.jonakls.simplecore.events.QuitEvent;
 import me.jonakls.simplecore.events.ServerListEvent;
+import me.jonakls.simplecore.files.MenuFile;
 import me.jonakls.simplecore.files.MessagesFile;
+import me.jonakls.simplecore.objects.InventoryCreate;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -24,6 +23,7 @@ import java.util.List;
 public final class SimpleCore extends JavaPlugin {
 
     private final MessagesFile messagesFile = new MessagesFile(this);
+    private final MenuFile menuFile = new MenuFile(this);
 
     public String configFile;
 
@@ -44,6 +44,7 @@ public final class SimpleCore extends JavaPlugin {
         console.sendMessage("[SimpleCore] Installing files of configuration...");
         setupConfig();
         messagesFile.setupMessages();
+        menuFile.setupMenus();
         console.sendMessage("[SimpleCore] Load all files, events and commands!");
     }
 
@@ -63,6 +64,7 @@ public final class SimpleCore extends JavaPlugin {
         getCommand("gma").setExecutor(new AdventureCommand(this));
         getCommand("flymode").setExecutor(new FlyCommand(this));
         getCommand("vanish").setExecutor(new VanishMode(this));
+        getCommand("menu").setExecutor(new MenuCommand(this));
     }
 
     public void setupEvents(){
@@ -70,6 +72,7 @@ public final class SimpleCore extends JavaPlugin {
         pm.registerEvents(new JoinEvent(this), this);
         pm.registerEvents(new QuitEvent(this), this);
         pm.registerEvents(new ServerListEvent(this), this);
+        pm.registerEvents(new InventoryCreate(), this);
     }
 
     public void setupConfig(){

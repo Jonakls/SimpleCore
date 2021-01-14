@@ -22,7 +22,7 @@ Messages:
     flaying: '&cTu ya tienes ti modo de vuelo activado'
 Usages:
   general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
-  vanish: '&7Usa: &e/incognit <enable/disable> [player]'
+  vanish: '&7Usa: &e/vanish <enable/disable> [player]'
 Type:
   enable: '&aActivado'
   disable: '&cDesactivado'

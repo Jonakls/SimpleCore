@@ -57,11 +57,11 @@ public class VanishMode implements CommandExecutor {
                 return true;
             }
             p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.enable")
-                    .replace("%target%", target.getName()))));
-            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.enable")
-                    .replace("%player%", p.getName()))));
+                    .replace("%type%", messagesFile.getString("Type.enable"))
+                    .replace("%target%", target.getName())));
+            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
+                    .replace("%type%", messagesFile.getString("Type.enable"))
+                    .replace("%player%", p.getName())));
             Bukkit.getOnlinePlayers().forEach(online -> {
                     online.hidePlayer(target);
             });
@@ -83,15 +83,16 @@ public class VanishMode implements CommandExecutor {
                 return true;
             }
             p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.disable")
-                    .replace("%target%", target.getName()))));
-            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.disable")
-                    .replace("%player%", p.getName()))));
+                    .replace("%type%", messagesFile.getString("Type.disable"))
+                    .replace("%target%", target.getName())));
+            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
+                    .replace("%type%", messagesFile.getString("Type.disable"))
+                    .replace("%player%", p.getName())));
             Bukkit.getOnlinePlayers().forEach(online -> {
                 online.showPlayer(target);
             });
         }
+        p.sendMessage(colors.setColor(messagesFile.getString("Usages.vanish")));
         return true;
     }
 }

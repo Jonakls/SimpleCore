@@ -60,12 +60,12 @@ public class FlyCommand implements CommandExecutor {
             target.setAllowFlight(true);
             target.setFlying(true);
             target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message")
-            .replace("%type%", messagesFile.getString("Flymode.type.enable")
-            .replace("%player%", p.getName()))));
+                    .replace("%type%", messagesFile.getString("Type.enable"))
+                    .replace("%player%", p.getName())));
 
             p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message")
-            .replace("%type%", messagesFile.getString("Type.enable")
-            .replace("%target%", target.getName()))));
+                    .replace("%type%", messagesFile.getString("Type.enable"))
+                    .replace("%target%", target.getName())));
 
             return true;
         }
@@ -73,12 +73,12 @@ public class FlyCommand implements CommandExecutor {
         target.setFlying(false);
 
         target.sendMessage(colors.setColor(messagesFile.getString("Flymode.target-message")
-                .replace("%type%", messagesFile.getString("Type.disable")
-                .replace("%player%", p.getName()))));
+                .replace("%type%", messagesFile.getString("Type.disable"))
+                .replace("%player%", p.getName())));
 
         p.sendMessage(colors.setColor(messagesFile.getString("Flymode.other-message")
-                .replace("%type%", messagesFile.getString("Type.disable")
-                .replace("%target%", target.getName()))));
+                .replace("%type%", messagesFile.getString("Type.disable"))
+                .replace("%target%", target.getName())));
         return true;
     }
 }

@@ -14,6 +14,6 @@ This is a simple plugin that contains simple functions that will allow you to us
 
 ### **Dependencies:**
 
-* `PlaceholderAPI` 
+* `PlaceholderAPI`
 
 * `TitleAPI` 

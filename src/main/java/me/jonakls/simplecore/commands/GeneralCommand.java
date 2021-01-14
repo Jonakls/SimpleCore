@@ -57,7 +57,7 @@ public class GeneralCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(args.length > 0)){
-            p.sendMessage("Unknown command, use /simplecore help");
+            p.sendMessage(unknownCommand);
             return true;
         }
         switch (args[0]) {

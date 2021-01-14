@@ -1,4 +1,4 @@
-package me.jonakls.simplecore.menus.item;
+package me.jonakls.simplecore.menus.generators;
 
 
 import me.jonakls.simplecore.objects.ParseColors;
@@ -15,8 +15,9 @@ public class ItemGenerator {
     private final ParseColors colors = new ParseColors();
     private ItemStack item;
 
-    public void newItem(Player player, String name, Material material, Short metaData, int amount, String displayname,String lore){
-        item = new ItemStack(material, amount, metaData);
+    public void newItem(Player player, String name, Material material, int amount, String displayname,String lore){
+
+        item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(colors.setColor(displayname));

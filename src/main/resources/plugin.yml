@@ -32,4 +32,4 @@ commands:
     aliases: [ v, vanish ]
   menu:
     description: Menu of options
-    aliases: [server, help]
+    aliases: [ server ]

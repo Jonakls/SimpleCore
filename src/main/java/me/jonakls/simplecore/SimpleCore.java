@@ -10,7 +10,7 @@ import me.jonakls.simplecore.events.QuitEvent;
 import me.jonakls.simplecore.events.ServerListEvent;
 import me.jonakls.simplecore.files.MenuFile;
 import me.jonakls.simplecore.files.MessagesFile;
-import me.jonakls.simplecore.objects.InventoryCreate;
+import me.jonakls.simplecore.menus.events.InventoryCreate;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;

@@ -2,7 +2,7 @@ package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.SimpleCore;
 import me.jonakls.simplecore.files.MessagesFile;
-import me.jonakls.simplecore.objects.InventoryCreate;
+import me.jonakls.simplecore.menus.generators.MenuGenerator;
 import me.jonakls.simplecore.objects.ParseColors;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -29,9 +29,14 @@ public class MenuCommand implements CommandExecutor {
             return true;
         }
         Player p = (Player) sender;
-
+        /*
         InventoryCreate inv = new InventoryCreate();
         inv.newInventory(p);
+
+         */
+
+        MenuGenerator gen = new MenuGenerator();
+        gen.newMenu(p);
 
         return true;
     }

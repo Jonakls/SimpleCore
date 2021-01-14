@@ -1,4 +1,4 @@
-package me.jonakls.simplecore.menus.inventory;
+package me.jonakls.simplecore.menus.generators;
 
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
@@ -8,11 +8,9 @@ public class InventoryGenerator {
 
     private Inventory inventory;
 
-    public void newInventory(int size){
-         Bukkit.createInventory(null, size);
-    }
-    public void setItem(int slot, ItemStack item){
-        inventory.setItem(slot, item);
+    public void newInventory(int size, int slot, ItemStack item){
+         inventory = Bukkit.createInventory(null, size);
+         inventory.setItem(slot, item);
     }
 
     public Inventory getInventory(){

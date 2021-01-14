@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -21,15 +20,13 @@ public class VanishMode implements CommandExecutor {
     }
 
 
-    ConsoleCommandSender console = Bukkit.getConsoleSender();
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         FileConfiguration messagesFile = new MessagesFile(simpleCore).getMessages();
 
         if (!(sender instanceof Player)){
-            console.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-console")));
+            sender.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-console")));
             return true;
         }
         Player p = (Player) sender;
@@ -46,9 +43,7 @@ public class VanishMode implements CommandExecutor {
                 p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
                         .replace("%type%", messagesFile.getString("Type.enable"))));
 
-                Bukkit.getOnlinePlayers().forEach(online -> {
-                        online.hidePlayer(p);
-                });
+                for (Player online : Bukkit.getOnlinePlayers()) online.hidePlayer(p);
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -62,9 +57,7 @@ public class VanishMode implements CommandExecutor {
             target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
                     .replace("%type%", messagesFile.getString("Type.enable"))
                     .replace("%player%", p.getName())));
-            Bukkit.getOnlinePlayers().forEach(online -> {
-                    online.hidePlayer(target);
-            });
+            Bukkit.getOnlinePlayers().forEach(online -> online.hidePlayer(target));
             return true;
         }
         if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("off")){
@@ -72,9 +65,7 @@ public class VanishMode implements CommandExecutor {
                 p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
                     .replace("%type%", messagesFile.getString("Type.disable"))));
 
-                Bukkit.getOnlinePlayers().forEach(online -> {
-                        online.showPlayer(p);
-                });
+                Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(p));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -88,9 +79,7 @@ public class VanishMode implements CommandExecutor {
             target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
                     .replace("%type%", messagesFile.getString("Type.disable"))
                     .replace("%player%", p.getName())));
-            Bukkit.getOnlinePlayers().forEach(online -> {
-                online.showPlayer(target);
-            });
+            Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(target));
         }
         p.sendMessage(colors.setColor(messagesFile.getString("Usages.vanish")));
         return true;

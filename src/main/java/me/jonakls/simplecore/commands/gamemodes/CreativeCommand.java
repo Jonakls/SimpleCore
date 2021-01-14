@@ -8,7 +8,6 @@ import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -20,9 +19,6 @@ public class CreativeCommand implements CommandExecutor {
     public CreativeCommand(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
     }
-
-
-    ConsoleCommandSender console = Bukkit.getConsoleSender();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -38,7 +34,7 @@ public class CreativeCommand implements CommandExecutor {
         String typeGamemode = messages.getString("Gamemode.type.creative");
 
         if (!(sender instanceof Player)){
-            console.sendMessage(messages.getString("Messages.error.no-console"));
+            sender.sendMessage(messages.getString("Messages.error.no-console"));
             return true;
         }
         Player p = (Player) sender;

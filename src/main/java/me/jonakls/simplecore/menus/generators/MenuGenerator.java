@@ -21,16 +21,15 @@ public class MenuGenerator {
     public void newMenu(Player player){
         FileConfiguration menuFile = new MenuFile(simpleCore).getMenus();
 
-        item.newItem(Material.getMaterial(menuFile.getString("Menus.general.items.centralized-item.material"))
-                , menuFile.getInt("Menus.general.items.centralized-item.amount")
-                , menuFile.getString("Menus.general.items.centralized-item.displayname")
-                , menuFile.getString("Menus.general.items.centralized-item.lore"));
+        item.newItem(Material.getMaterial(menuFile.getString("General.items.centralized-item.material")),
+                menuFile.getInt("General.items.centralized-item.amount"),
+                menuFile.getString("General.items.centralized-item.displayname"),
+                menuFile.getString("General.items.centralized-item.lore"));
 
-
-        inventory.newInventory( menuFile.getInt("Menus.general.size"),
-                menuFile.getInt("Menus.general.items.centralized-item.slot"),
+        inventory.newInventory( menuFile.getInt("General.size"),
+                menuFile.getInt("General.items.centralized-item.slot"),
                 item.getItem(),
-                colors.setColor(menuFile.getString("Menus.general.name")));
+                colors.setColor(menuFile.getString("General.name")));
 
         player.openInventory(inventory.getInventory());
     }

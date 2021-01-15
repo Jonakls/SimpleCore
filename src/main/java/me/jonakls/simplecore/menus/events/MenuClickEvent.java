@@ -23,7 +23,7 @@ public class MenuClickEvent implements Listener {
 
         FileConfiguration menuFile = new MenuFile(simpleCore).getMenus();
 
-        String menuName = menuFile.getString("Menus.general.name");
+        String menuName = menuFile.getString("General.name");
         String name = colors.setColor(menuName);
         String simpleName = colors.removeColors(name);
 

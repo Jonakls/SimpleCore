@@ -1,12 +1,11 @@
-Menus:
-  general:
-    name: '&aMenu'
-    size: 54
-    items:
-      centralized-item:
-        displayname: '&cItem prueba'
-        material: GRASS
-        slot: 22
-        amount: 1
-        lore: '&7Test lore'
+General:
+  name: '&aMenu'
+  size: 54
+  items:
+    centralized-item:
+      displayname: '&cItem prueba'
+      material: GRASS
+      slot: 22
+      amount: 1
+      lore: '&7Test lore'
 

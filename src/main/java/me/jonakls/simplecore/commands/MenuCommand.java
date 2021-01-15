@@ -35,8 +35,8 @@ public class MenuCommand implements CommandExecutor {
 
          */
 
-        MenuGenerator gen = new MenuGenerator();
-        gen.newMenu(p);
+        MenuGenerator menu = new MenuGenerator(simpleCore);
+        menu.newMenu(p);
 
         return true;
     }

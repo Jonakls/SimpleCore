@@ -10,7 +10,7 @@ import me.jonakls.simplecore.events.QuitEvent;
 import me.jonakls.simplecore.events.ServerListEvent;
 import me.jonakls.simplecore.files.MenuFile;
 import me.jonakls.simplecore.files.MessagesFile;
-import me.jonakls.simplecore.menus.events.InventoryCreate;
+import me.jonakls.simplecore.menus.events.MenuClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -72,7 +72,7 @@ public final class SimpleCore extends JavaPlugin {
         pm.registerEvents(new JoinEvent(this), this);
         pm.registerEvents(new QuitEvent(this), this);
         pm.registerEvents(new ServerListEvent(this), this);
-        pm.registerEvents(new InventoryCreate(), this);
+        pm.registerEvents(new MenuClickEvent(this), this);
     }
 
     public void setupConfig(){

@@ -3,7 +3,6 @@ package me.jonakls.simplecore.menus.generators;
 
 import me.jonakls.simplecore.objects.ParseColors;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -15,14 +14,14 @@ public class ItemGenerator {
     private final ParseColors colors = new ParseColors();
     private ItemStack item;
 
-    public void newItem(Player player, String name, Material material, int amount, String displayname,String lore){
+    public void newItem(Material material, int amount, String displayName,String lore){
 
         item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(colors.setColor(displayname));
+        meta.setDisplayName(""+colors.setColor(displayName));
         List<String> loreItem = new ArrayList<>();
-        loreItem.add(colors.setColor(lore));
+        loreItem.add(colors.setColor(""+lore));
         meta.setLore(loreItem);
     }
 

@@ -8,12 +8,13 @@ public class InventoryGenerator {
 
     private Inventory inventory;
 
-    public void newInventory(int size, int slot, ItemStack item, String nameInventory){
+    public void newInventory(int size, String nameInventory){
 
          inventory = Bukkit.createInventory(null, size, ""+nameInventory);
+    }
 
-         inventory.setItem(slot, item);
-
+    public void newItem(int slot ,ItemStack item ){
+        inventory.setItem(slot, item);
     }
 
     public Inventory getInventory(){

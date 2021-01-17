@@ -26,20 +26,20 @@ public class GeneralGamemodeCommand implements CommandExecutor {
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
 
 
-        String noPermissions = messages.getString("Messages.error.no-permissions");
-        String correctUsage = messages.getString("Usages.general-gamemode");
-        String noPlayer = messages.getString("Messages.error.no-player");
+        String noPermissions = messages.getString("messages.error.no-permissions");
+        String correctUsage = messages.getString("usages.general-gamemode");
+        String noPlayer = messages.getString("messages.error.no-player");
 
-        String changeGamemode = messages.getString("Gamemode.change");
-        String otherGamemode = messages.getString("Gamemode.change-other");
-        String targetGamemode = messages.getString("Gamemode.target-change");
-        String typeCreative = messages.getString("Gamemode.type.creative");
-        String typeSurvival = messages.getString("Gamemode.type.survival");
-        String typeSpectator = messages.getString("Gamemode.type.spectator");
-        String typeAdventure = messages.getString("Gamemode.type.adventure");
+        String changeGamemode = messages.getString("gamemode.change");
+        String otherGamemode = messages.getString("gamemode.change-other");
+        String targetGamemode = messages.getString("gamemode.target-change");
+        String typeCreative = messages.getString("gamemode.type.creative");
+        String typeSurvival = messages.getString("gamemode.type.survival");
+        String typeSpectator = messages.getString("gamemode.type.spectator");
+        String typeAdventure = messages.getString("gamemode.type.adventure");
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(messages.getString("Messages.error.no-console"));
+            sender.sendMessage(messages.getString("messages.error.no-console"));
             return true;
         }
         Player p = (Player) sender;

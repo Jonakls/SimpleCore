@@ -25,18 +25,13 @@ public class MenuCommand implements CommandExecutor {
         FileConfiguration messagesFile = new MessagesFile(simpleCore).getMessages();
 
         if(!(sender instanceof Player)){
-            sender.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-console")));
+            sender.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-console")));
             return true;
         }
         Player p = (Player) sender;
-        /*
-        InventoryCreate inv = new InventoryCreate();
-        inv.newInventory(p);
-
-         */
 
         MenuGenerator menu = new MenuGenerator(simpleCore);
-        menu.newMenu(p);
+        menu.generalMenu(p);
 
         return true;
     }

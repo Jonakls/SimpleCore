@@ -21,15 +21,15 @@ public class ServerListEvent implements Listener {
 
         FileConfiguration configFile = simpleCore.getConfig();
 
-        String lineOne = configFile.getString("Server-List.line1");
-        String lineTwo = configFile.getString("Server-List.line2");
-        int maxPlayers = configFile.getInt("Server-List.max-players");
+        String lineOne = configFile.getString("server-List.line1");
+        String lineTwo = configFile.getString("server-List.line2");
+        int maxPlayers = configFile.getInt("server-List.max-players");
 
-        if (configFile.getBoolean("Server-List.enable")){
+        if (configFile.getBoolean("server-List.enable")){
             serverListPingEvent.setMotd(colors.setColor(lineOne+"\n"+lineTwo));
         }
 
-        if (!(configFile.getBoolean("Server-List.respective-mode"))){
+        if (!(configFile.getBoolean("server-List.respective-mode"))){
             serverListPingEvent.setMaxPlayers(maxPlayers);
             return;
         }

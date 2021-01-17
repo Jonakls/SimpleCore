@@ -25,9 +25,9 @@ public class GeneralCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
 
-        List<String> helpConsole = messages.getStringList("Messages.console.help");
-        List<String> helpPlayer = messages.getStringList("Messages.player.help");
-        String unknownCommand = messages.getString("Messages.error.unknown-command");
+        List<String> helpConsole = messages.getStringList("messages.console.help");
+        List<String> helpPlayer = messages.getStringList("messages.player.help");
+        String unknownCommand = messages.getString("messages.error.unknown-command");
 
 
         if(!(sender instanceof Player)){

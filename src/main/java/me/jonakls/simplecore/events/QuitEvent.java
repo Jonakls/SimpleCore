@@ -25,8 +25,8 @@ public class QuitEvent implements Listener {
         FileConfiguration configFile = simpleCore.getConfig();
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
 
-        String joinMessage = messages.getString("Events.quit-player.message");
-        String quitOption = "Config.quit-message";
+        String joinMessage = messages.getString("events.quit-player.message");
+        String quitOption = "config.quit-message";
 
 
         Player p = quitEvent.getPlayer();

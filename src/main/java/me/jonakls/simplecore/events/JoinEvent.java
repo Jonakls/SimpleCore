@@ -27,24 +27,24 @@ public class JoinEvent implements Listener {
         FileConfiguration configFile = simpleCore.getConfig();
         FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
 
-        String joinMessage = messages.getString("Events.join-player.message");
+        String joinMessage = messages.getString("events.join-player.message");
 
-        String joinTitle = messages.getString("Events.join-player.title");
-        String joinSubTitle = messages.getString("Events.join-player.sub-title");
-        int fadeIn = configFile.getInt("Titles.join-title.fade-in");
-        int stay = configFile.getInt("Titles.join-title.stay");
-        int fadeOut = configFile.getInt("Titles.join-title.fade-out");
+        String joinTitle = messages.getString("events.join-player.title");
+        String joinSubTitle = messages.getString("events.join-player.sub-title");
+        int fadeIn = configFile.getInt("titles.join-title.fade-in");
+        int stay = configFile.getInt("titles.join-title.stay");
+        int fadeOut = configFile.getInt("titles.join-title.fade-out");
 
 
 
         Player p = joinEvent.getPlayer();
-        if (!(configFile.getBoolean("Config.join-message"))){
+        if (!(configFile.getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
             return;
         }
         joinEvent.setJoinMessage(colors.setColor(PlaceholderAPI.setPlaceholders(p, joinMessage.replace("%player%", p.getName()))));
 
-        if (configFile.getBoolean("Titles.join-title.enable")){
+        if (configFile.getBoolean("titles.join-title.enable")){
             TitleAPI.sendTitle(p, fadeIn, stay, fadeOut,
                     colors.setColor(PlaceholderAPI.setPlaceholders(p, joinTitle)),
                     colors.setColor(PlaceholderAPI.setPlaceholders(p, joinSubTitle)));

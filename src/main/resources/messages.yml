@@ -1,4 +1,4 @@
-Messages:
+messages:
   console:
     help:
       - 'Commands of plugin (SimpleCore) %version%'
@@ -20,28 +20,28 @@ Messages:
     no-yourself: '&cNo puedes hacer esta accion contigo mismo.'
     no-console: 'No puedes hacer esto desde la consola.'
     flaying: '&cTu ya tienes ti modo de vuelo activado'
-Usages:
+usages:
   general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
   vanish: '&7Usa: &e/vanish <enable/disable> [player]'
-Type:
+type:
   enable: '&aActivado'
   disable: '&cDesactivado'
-Flymode:
+flymode:
   message: '&7Tu modo de vuelo a sido %type%'
   other-message: '&7El modo de vuelo de &b%target% &7a sido %type%'
   target-message: '&b%player% &7a %type% &7tu modo de vuelo'
-Vanish:
+vanish:
   message: '&7Tu modo incognito a sido %type%'
   other-message: '&7El modo incognito de &b%target% &7a sido %type%'
   target-message: '&b%player% &7a %type% &7tu modo incognito'
-Events:
+events:
   join-player:
     message: '&8[&a+&8] &f%player% &7acaba de entrar al servidor.'
     title: '&7Bienvenido &f%player_name% &7a &a%server_name%'
     sub-title: '&7Recuerda usar &c/help &7para informarte'
   quit-player:
     message: '&8[&c-&8] &f%player% &7acaba de salir del servidor.'
-Gamemode:
+gamemode:
   change: '&7Tu modo de juego a cambiado a %type%'
   change-other: '&7Cambiaste el modo de juego de &f%target% &7a %type%'
   target-change: '&7El jugador &f%player% &7cambio tu modo de juego a %type%'

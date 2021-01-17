@@ -1,4 +1,4 @@
-General:
+general:
   name: '&aMenu'
   size: 54
   items:
@@ -7,5 +7,16 @@ General:
       material: GRASS
       slot: 22
       amount: 1
-      lore: '&7Test lore'
+      lore:
+        - '&r'
+        - '&7Este lore puede ser modificado en'
+        - '&7el archivo "menu.yml"'
+    close-item:
+      displayname: '&cItem prueba'
+      material: BARRIER
+      slot: 53
+      amount: 1
+      lore:
+        - '&r'
+        - '&7¡Click para cerrar!'
 

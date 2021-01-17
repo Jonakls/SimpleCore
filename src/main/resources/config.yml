@@ -1,13 +1,13 @@
-Config:
+config:
   join-message: true
   quit-message: true
-Server-List:
+server-List:
   enable: true
   respective-mode: true
   max-players: 0
   line1: '&aMinecraft Server &8| &cTexto editable'
   line2: '&7En la config podras habilitar o deshabilitar'
-Titles:
+titles:
   join-title:
     enable: true
     fade-in: 5

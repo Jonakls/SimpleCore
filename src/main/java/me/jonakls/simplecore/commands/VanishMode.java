@@ -26,62 +26,62 @@ public class VanishMode implements CommandExecutor {
         FileConfiguration messagesFile = new MessagesFile(simpleCore).getMessages();
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-console")));
+            sender.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-console")));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.vanish"))){
-            p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-permissions")));
+            p.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-permissions")));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(colors.setColor(messagesFile.getString("Usages.vanish")));
+            p.sendMessage(colors.setColor(messagesFile.getString("usages.vanish")));
             return true;
         }
         if (args[0].equalsIgnoreCase("enable") || args[0].equalsIgnoreCase("on")){
             if (!(args.length > 1)){
-                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
-                        .replace("%type%", messagesFile.getString("Type.enable"))));
+                p.sendMessage(colors.setColor(messagesFile.getString("vanish.message")
+                        .replace("%type%", messagesFile.getString("type.enable"))));
 
                 for (Player online : Bukkit.getOnlinePlayers()) online.hidePlayer(p);
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-player").replace("%player%", args[1])));
+                p.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-player").replace("%player%", args[1])));
                 return true;
             }
-            p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.enable"))
+            p.sendMessage(colors.setColor(messagesFile.getString("vanish.other-message")
+                    .replace("%type%", messagesFile.getString("type.enable"))
                     .replace("%target%", target.getName())));
-            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
-                    .replace("%type%", messagesFile.getString("Type.enable"))
+            target.sendMessage(colors.setColor(messagesFile.getString("vanish.target-message")
+                    .replace("%type%", messagesFile.getString("type.enable"))
                     .replace("%player%", p.getName())));
             Bukkit.getOnlinePlayers().forEach(online -> online.hidePlayer(target));
             return true;
         }
         if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("off")){
             if (!(args.length > 1)){
-                p.sendMessage(colors.setColor(messagesFile.getString("Vanish.message")
-                    .replace("%type%", messagesFile.getString("Type.disable"))));
+                p.sendMessage(colors.setColor(messagesFile.getString("vanish.message")
+                    .replace("%type%", messagesFile.getString("type.disable"))));
 
                 Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(p));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(colors.setColor(messagesFile.getString("Messages.error.no-player")));
+                p.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-player")));
                 return true;
             }
-            p.sendMessage(colors.setColor(messagesFile.getString("Vanish.other-message")
-                    .replace("%type%", messagesFile.getString("Type.disable"))
+            p.sendMessage(colors.setColor(messagesFile.getString("vanish.other-message")
+                    .replace("%type%", messagesFile.getString("type.disable"))
                     .replace("%target%", target.getName())));
-            target.sendMessage(colors.setColor(messagesFile.getString("Vanish.target-message")
-                    .replace("%type%", messagesFile.getString("Type.disable"))
+            target.sendMessage(colors.setColor(messagesFile.getString("vanish.target-message")
+                    .replace("%type%", messagesFile.getString("type.disable"))
                     .replace("%player%", p.getName())));
             Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(target));
         }
-        p.sendMessage(colors.setColor(messagesFile.getString("Usages.vanish")));
+        p.sendMessage(colors.setColor(messagesFile.getString("usages.vanish")));
         return true;
     }
 }

@@ -14,7 +14,7 @@ public class ItemGenerator {
 
     public void newItem(Material material, int amount, String displayName,List<String> lore){
 
-        ItemStack item = new ItemStack(material, amount);
+        item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(colors.setColor(displayName));
         meta.setLore(lore);

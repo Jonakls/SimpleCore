@@ -1,22 +1,21 @@
 general:
   name: '&aMenu'
-  size: 54
+  size: 18
   items:
     centralized-item:
       displayname: '&cItem prueba'
       material: GRASS
-      slot: 22
+      slot: 0
       amount: 1
       lore:
         - '&r'
         - '&7Este lore puede ser modificado en'
         - '&7el archivo "menu.yml"'
     close-item:
-      displayname: '&cItem prueba'
+      displayname: '&cCerrar menu'
       material: BARRIER
-      slot: 53
+      slot: 17
       amount: 1
       lore:
         - '&r'
         - '&7¡Click para cerrar!'
-

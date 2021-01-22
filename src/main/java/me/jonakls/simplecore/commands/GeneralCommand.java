@@ -57,7 +57,11 @@ public class GeneralCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(args.length > 0)){
-            p.sendMessage(unknownCommand);
+            p.sendMessage(colors.setColor(unknownCommand));
+            return true;
+        }
+        if (!(p.hasPermission("simplecore.command.admin"))){
+            p.sendMessage(colors.setColor(messages.getString("messages.error.no-permissions")));
             return true;
         }
         switch (args[0]) {

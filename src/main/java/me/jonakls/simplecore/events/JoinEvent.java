@@ -45,7 +45,10 @@ public class JoinEvent implements Listener {
         joinEvent.setJoinMessage(colors.setColor(PlaceholderAPI.setPlaceholders(p, joinMessage.replace("%player%", p.getName()))));
 
         if (configFile.getBoolean("titles.join-title.enable")){
-            TitleAPI.sendTitle(p, fadeIn, stay, fadeOut,
+            TitleAPI.sendTitle(p,
+                    fadeIn,
+                    stay,
+                    fadeOut,
                     colors.setColor(PlaceholderAPI.setPlaceholders(p, joinTitle)),
                     colors.setColor(PlaceholderAPI.setPlaceholders(p, joinSubTitle)));
         }

@@ -30,7 +30,7 @@ public class FlyCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.fly"))){
-            p.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-permission")));
+            p.sendMessage(colors.setColor(messagesFile.getString("messages.error.no-permissions")));
             return true;
         }
         if (!(args.length > 0)){

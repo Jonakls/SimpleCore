@@ -10,6 +10,6 @@ server-List:
 titles:
   join-title:
     enable: true
-    fade-in: 5
-    stay: 10
-    fade-out: 5
+    fade-in: 10
+    stay: 15
+    fade-out: 10

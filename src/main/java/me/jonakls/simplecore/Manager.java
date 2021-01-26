@@ -5,11 +5,11 @@ import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
 import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
-import me.jonakls.simplecore.listeners.JoinEvent;
-import me.jonakls.simplecore.listeners.QuitEvent;
-import me.jonakls.simplecore.listeners.ServerListEvent;
+import me.jonakls.simplecore.listeners.PlayerJoinListener;
+import me.jonakls.simplecore.listeners.PlayerQuitListener;
+import me.jonakls.simplecore.listeners.ServerListListener;
 import me.jonakls.simplecore.files.FileManager;
-import me.jonakls.simplecore.menus.listener.MenuClickEvent;
+import me.jonakls.simplecore.menus.listener.MenuClickListener;
 import org.bukkit.plugin.PluginManager;
 
 public class Manager {
@@ -41,10 +41,10 @@ public class Manager {
 
     public void setupEvents(){
         PluginManager pm = simpleCore.getServer().getPluginManager();
-        pm.registerEvents(new JoinEvent(this), simpleCore);
-        pm.registerEvents(new QuitEvent(this), simpleCore);
-        pm.registerEvents(new ServerListEvent(this), simpleCore);
-        pm.registerEvents(new MenuClickEvent(this), simpleCore);
+        pm.registerEvents(new PlayerJoinListener(this), simpleCore);
+        pm.registerEvents(new PlayerQuitListener(this), simpleCore);
+        pm.registerEvents(new ServerListListener(this), simpleCore);
+        pm.registerEvents(new MenuClickListener(this), simpleCore);
     }
 
 

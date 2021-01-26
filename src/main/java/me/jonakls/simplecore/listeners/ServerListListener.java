@@ -5,27 +5,23 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
 
-public class ServerListEvent implements Listener {
+public class ServerListListener implements Listener {
 
     private final Manager manager;
 
-    public ServerListEvent(Manager manager){
+    public ServerListListener(Manager manager){
         this.manager = manager;
     }
 
     @EventHandler
     public void customServerList(ServerListPingEvent serverListPingEvent){
 
-        String lineOne = manager.getFiles().getConfig().getString("server-List.line1");
-        String lineTwo = manager.getFiles().getConfig().getString("server-List.line2");
-        int maxPlayers = manager.getFiles().getConfig().getInt("server-List.max-players");
-
         if (manager.getFiles().getConfig().getBoolean("server-List.enable")){
-            serverListPingEvent.setMotd(lineOne+"\n"+lineTwo);
+            serverListPingEvent.setMotd(manager.getFiles().getConfig().getString("server-List.line1")+ "\n"+manager.getFiles().getConfig().getString("server-List.line2"));
         }
 
         if (!(manager.getFiles().getConfig().getBoolean("server-List.respective-mode"))){
-            serverListPingEvent.setMaxPlayers(maxPlayers);
+            serverListPingEvent.setMaxPlayers(manager.getFiles().getConfig().getInt("server-List.max-players"));
             return;
         }
         int online = serverListPingEvent.getNumPlayers();

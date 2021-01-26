@@ -7,11 +7,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public class MenuClickEvent implements Listener {
+public class MenuClickListener implements Listener {
 
     private final Manager manager;
 
-    public MenuClickEvent(Manager manager){
+    public MenuClickListener(Manager manager){
         this.manager = manager;
     }
 

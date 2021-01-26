@@ -22,12 +22,11 @@ public class GeneralCommand implements CommandExecutor {
 
         List<String> helpConsole = manager.getFiles().getLang().getStringList("messages.console.help");
         List<String> helpPlayer = manager.getFiles().getLang().getStringList("messages.player.help");
-        String unknownCommand = manager.getFiles().getLang().getString("messages.error.unknown-command");
 
 
         if(!(sender instanceof Player)){
             if (!(args.length > 0)){
-                sender.sendMessage(unknownCommand);
+                sender.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
                 return true;
             }
             switch (args[0]) {
@@ -52,7 +51,7 @@ public class GeneralCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(args.length > 0)){
-            p.sendMessage(unknownCommand);
+            p.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
             return true;
         }
         if (!(p.hasPermission("simplecore.command.admin"))){
@@ -70,14 +69,14 @@ public class GeneralCommand implements CommandExecutor {
                 manager.getFiles().getConfig().reload();
                 manager.getFiles().getMenus().reload();
                 p.sendMessage("&aConfig has been reload!");
-                Bukkit.getConsoleSender().sendMessage("Config has been reload by: "+p.getName());
+                Bukkit.getConsoleSender().sendMessage("Config has been reloaded by: "+p.getName());
                 return true;
             case "about":
                 p.sendMessage("&7You run &b"+manager.getSimpleCore().namePlugin+" &7in a version: &f"+manager.getSimpleCore().versionPlugin);
                 p.sendMessage("&7Made by: &a"+manager.getSimpleCore().authorPlugin);
                 return true;
             default:
-                p.sendMessage(unknownCommand);
+                p.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
                 return true;
         }
     }

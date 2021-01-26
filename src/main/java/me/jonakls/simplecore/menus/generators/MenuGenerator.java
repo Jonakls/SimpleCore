@@ -1,11 +1,7 @@
 package me.jonakls.simplecore.menus.generators;
 
-import me.jonakls.simplecore.SimpleCore;
-import me.jonakls.simplecore.files.MenuFile;
-import me.jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.Manager;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -14,43 +10,36 @@ public class MenuGenerator{
 
     private final ItemGenerator item = new ItemGenerator();
     private final InventoryGenerator inventory = new InventoryGenerator();
-    private final SimpleCore simpleCore;
-    private final ParseColors colors = new ParseColors();
+    private final Manager manager;
 
-    public MenuGenerator(SimpleCore simpleCore){
-        this.simpleCore = simpleCore;
+    public MenuGenerator(Manager manager){
+        this.manager = manager;
     }
 
     public void generalMenu(Player player){
 
-        FileConfiguration menuFile = new MenuFile(simpleCore).getMenus();
+        List<String> lore = manager.getFiles().getMenus().getStringList("general.items.centralized-item.lore");
 
-        List<String> lore = menuFile.getStringList("general.items.centralized-item.lore");
-
-        lore.replaceAll(colors::setColor);
-
-        item.newItem(Material.getMaterial(menuFile.getString("general.items.centralized-item.material")),
-                menuFile.getInt("general.items.centralized-item.amount"),
-                menuFile.getString("general.items.centralized-item.displayname"),
+        item.newItem(Material.getMaterial(manager.getFiles().getMenus().getString("general.items.centralized-item.material")),
+                manager.getFiles().getMenus().getInt("general.items.centralized-item.amount"),
+                manager.getFiles().getMenus().getString("general.items.centralized-item.displayname"),
                 lore);
 
-        inventory.newInventory( menuFile.getInt("general.size"),
-                colors.setColor(menuFile.getString("general.name")));
-        inventory.newItem(menuFile.getInt("general.items.centralized-item.slot"),
+        inventory.newInventory( manager.getFiles().getMenus().getInt("general.size"),
+                manager.getFiles().getMenus().getString("general.name"));
+        inventory.newItem(manager.getFiles().getMenus().getInt("general.items.centralized-item.slot"),
                 item.getItem());
 
 
         // Other item
-        lore = menuFile.getStringList("general.items.close-item.lore");
+        lore = manager.getFiles().getMenus().getStringList("general.items.close-item.lore");
 
-        lore.replaceAll(colors::setColor);
-
-        item.newItem(Material.getMaterial(menuFile.getString("general.items.close-item.material")),
-                menuFile.getInt("general.items.close-item.amount"),
-                menuFile.getString("general.items.close-item.displayname"),
+        item.newItem(Material.getMaterial(manager.getFiles().getMenus().getString("general.items.close-item.material")),
+                manager.getFiles().getMenus().getInt("general.items.close-item.amount"),
+                manager.getFiles().getMenus().getString("general.items.close-item.displayname"),
                 lore);
 
-        inventory.newItem(menuFile.getInt("general.items.close-item.slot"),
+        inventory.newItem(manager.getFiles().getMenus().getInt("general.items.close-item.slot"),
                 item.getItem());
 
 

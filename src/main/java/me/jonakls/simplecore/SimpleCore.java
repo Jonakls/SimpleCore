@@ -1,31 +1,14 @@
 package me.jonakls.simplecore;
 
-import me.jonakls.simplecore.commands.*;
-import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
-import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
-import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
-import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
-import me.jonakls.simplecore.events.JoinEvent;
-import me.jonakls.simplecore.events.QuitEvent;
-import me.jonakls.simplecore.events.ServerListEvent;
-import me.jonakls.simplecore.files.MenuFile;
-import me.jonakls.simplecore.files.MessagesFile;
-import me.jonakls.simplecore.menus.events.MenuClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.List;
 
 public final class SimpleCore extends JavaPlugin {
 
-    private final MessagesFile messagesFile = new MessagesFile(this);
-    private final MenuFile menuFile = new MenuFile(this);
-
-    public String configFile;
 
     PluginDescriptionFile pluginFile = getDescription();
 
@@ -37,14 +20,15 @@ public final class SimpleCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        Manager manager = new Manager(this);
+        manager.setupFiles();
+        manager.setupCommands();
+        manager.setupEvents();
+
+
         console.sendMessage("[SimpleCore] Installing commands and executors...");
-        setupCommands();
         console.sendMessage("[SimpleCore] Installing events and executors...");
-        setupEvents();
         console.sendMessage("[SimpleCore] Installing files of configuration...");
-        setupConfig();
-        messagesFile.setupMessages();
-        menuFile.setupMenus();
         console.sendMessage("[SimpleCore] Load all files, events and commands!");
     }
 
@@ -54,34 +38,4 @@ public final class SimpleCore extends JavaPlugin {
 
     }
 
-
-    public void setupCommands(){
-        getCommand("simplecore").setExecutor(new GeneralCommand(this));
-        getCommand("gamemode").setExecutor(new GeneralGamemodeCommand(this));
-        getCommand("gmsp").setExecutor(new SpectatorCommand(this));
-        getCommand("gms").setExecutor(new SurvivalCommand(this));
-        getCommand("gmc").setExecutor(new CreativeCommand(this));
-        getCommand("gma").setExecutor(new AdventureCommand(this));
-        getCommand("flymode").setExecutor(new FlyCommand(this));
-        getCommand("vanish").setExecutor(new VanishMode(this));
-        getCommand("menu").setExecutor(new MenuCommand(this));
-    }
-
-    public void setupEvents(){
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new JoinEvent(this), this);
-        pm.registerEvents(new QuitEvent(this), this);
-        pm.registerEvents(new ServerListEvent(this), this);
-        pm.registerEvents(new MenuClickEvent(this), this);
-    }
-
-    public void setupConfig(){
-        File config = new File(this.getDataFolder(), "config.yml");
-        configFile = config.getPath();
-
-        if(!config.exists()){
-            this.getConfig().options().copyDefaults(true);
-            saveConfig();
-        }
-    }
 }

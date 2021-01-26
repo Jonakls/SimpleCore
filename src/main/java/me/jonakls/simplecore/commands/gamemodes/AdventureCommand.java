@@ -1,64 +1,58 @@
 package me.jonakls.simplecore.commands.gamemodes;
 
-import me.jonakls.simplecore.SimpleCore;
-import me.jonakls.simplecore.files.MessagesFile;
-import me.jonakls.simplecore.objects.ParseColors;
+import me.jonakls.simplecore.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class AdventureCommand implements CommandExecutor {
 
-    private final SimpleCore simpleCore;
-    private final ParseColors colors = new ParseColors();
+    private final Manager manager;
 
-    public AdventureCommand(SimpleCore simpleCore){
-        this.simpleCore = simpleCore;
+    public AdventureCommand(Manager manager){
+        this.manager = manager;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        FileConfiguration messages = new MessagesFile(simpleCore).getMessages();
+        String noPermissions = manager.getFiles().getLang().getString("messages.error.no-permissions");
+        String noPlayer = manager.getFiles().getLang().getString("messages.error.no-player");
 
-        String noPermissions = messages.getString("messages.error.no-permissions");
-        String noPlayer = messages.getString("messages.error.no-player");
-
-        String changeGamemode = messages.getString("gamemode.change");
-        String otherGamemode = messages.getString("gamemode.change-other");
-        String targetGamemode = messages.getString("gamemode.target-change");
-        String typeGamemode = messages.getString("gamemode.type.adventure");
+        String changeGamemode = manager.getFiles().getLang().getString("gamemode.change");
+        String otherGamemode = manager.getFiles().getLang().getString("gamemode.change-other");
+        String targetGamemode = manager.getFiles().getLang().getString("gamemode.target-change");
+        String typeGamemode = manager.getFiles().getLang().getString("gamemode.type.adventure");
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(messages.getString("messages.error.no-console"));
+            sender.sendMessage(manager.getFiles().getLang().getString("messages.error.no-console"));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.gamemode"))){
-            p.sendMessage(colors.setColor(noPermissions));
+            p.sendMessage(noPermissions);
             return true;
         }
         if (!(args.length > 0)){
             if (!(p.hasPermission("simplecore.command.gamemode.adventure"))){
-                p.sendMessage(colors.setColor(noPermissions));
+                p.sendMessage(noPermissions);
                 return true;
             }
             p.setGameMode(GameMode.ADVENTURE);
-            p.sendMessage(colors.setColor(changeGamemode.replace("%type%", typeGamemode)));
+            p.sendMessage(changeGamemode.replace("%type%", typeGamemode));
             return true;
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
-            p.sendMessage(colors.setColor(noPlayer.replace("%player%", args[0])));
+            p.sendMessage(noPlayer.replace("%player%", args[0]));
             return true;
         }
-        p.sendMessage(colors.setColor(otherGamemode.replace("%type%", typeGamemode).replace("%target%", target.getName())));
+        p.sendMessage(otherGamemode.replace("%type%", typeGamemode).replace("%target%", target.getName()));
 
-        target.sendMessage(colors.setColor(targetGamemode.replace("%type%", typeGamemode).replace("%player%", p.getName())));
+        target.sendMessage(targetGamemode.replace("%type%", typeGamemode).replace("%player%", p.getName()));
         target.setGameMode(GameMode.ADVENTURE);
         return true;
     }

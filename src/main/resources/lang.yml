@@ -23,6 +23,10 @@ messages:
 usages:
   general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
   vanish: '&7Usa: &e/vanish <enable/disable> [player]'
+  fake-messages: '&7Usa: &e/fake <message/join/leave> [player/message]'
+  broadcast-message: '&7Usa: &e/broadcast <message>'
+broadcast:
+  prefix: '&8(&cAnuncios&8) &e'
 type:
   enable: '&aActivado'
   disable: '&cDesactivado'

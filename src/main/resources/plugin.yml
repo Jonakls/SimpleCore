@@ -33,3 +33,9 @@ commands:
   menu:
     description: Menu of options
     aliases: [ server ]
+  fake:
+    description: Send false messages of join, leave or custom
+    aliases: [ fk, false ]
+  broadcast:
+    description: Send global message
+    aliases: [ bc, announce ]

@@ -31,6 +31,8 @@ public class Manager {
         simpleCore.getCommand("flymode").setExecutor(new FlyCommand(this));
         simpleCore.getCommand("vanish").setExecutor(new VanishMode(this));
         simpleCore.getCommand("menu").setExecutor(new MenuCommand(this));
+        simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
+        simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
 
     }
 

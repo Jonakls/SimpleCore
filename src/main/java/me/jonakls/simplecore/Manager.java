@@ -9,7 +9,6 @@ import me.jonakls.simplecore.listeners.PlayerJoinListener;
 import me.jonakls.simplecore.listeners.PlayerQuitListener;
 import me.jonakls.simplecore.listeners.ServerListListener;
 import me.jonakls.simplecore.files.FileManager;
-import me.jonakls.simplecore.menus.listener.MenuClickListener;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
@@ -37,7 +36,6 @@ public class Manager {
         simpleCore.getCommand("gma").setExecutor(new AdventureCommand(this));
         simpleCore.getCommand("flymode").setExecutor(new FlyCommand(this));
         simpleCore.getCommand("vanish").setExecutor(new VanishMode(this));
-        simpleCore.getCommand("menu").setExecutor(new MenuCommand(this));
         simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
         simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
 
@@ -59,7 +57,6 @@ public class Manager {
         pm.registerEvents(new PlayerJoinListener(this), simpleCore);
         pm.registerEvents(new PlayerQuitListener(this), simpleCore);
         pm.registerEvents(new ServerListListener(this), simpleCore);
-        pm.registerEvents(new MenuClickListener(this), simpleCore);
     }
 
 

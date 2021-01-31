@@ -9,7 +9,6 @@ public class FileManager {
 
     private FileCreator lang;
     private FileCreator config;
-    private FileCreator menus;
 
     public FileManager(SimpleCore plugin){
         this.plugin = plugin;
@@ -18,7 +17,6 @@ public class FileManager {
     public void setupFiles(){
         lang = this.setFile("lang");
         config = this.setFile("config");
-        menus = this.setFile("menus");
     }
 
     public FileCreator setFile(String string){
@@ -31,10 +29,6 @@ public class FileManager {
 
     public FileCreator getConfig(){
         return config;
-    }
-
-    public FileCreator getMenus(){
-        return menus;
     }
 
 }

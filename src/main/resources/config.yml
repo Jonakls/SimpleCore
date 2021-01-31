@@ -40,9 +40,9 @@ sounds:
     enable: true
     sound: ENDERDRAGON_GROWL
     vol: 10
-    pitch: 10
+    pitch: 1
   broadcast-sound:
     enable: true
     sound: ORB_PICKUP
     vol: 10
-    pitch: 10
+    pitch: 1

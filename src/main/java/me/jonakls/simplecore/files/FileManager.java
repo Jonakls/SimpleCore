@@ -15,11 +15,11 @@ public class FileManager {
     }
 
     public void setupFiles(){
-        lang = this.setFile("lang");
-        config = this.setFile("config");
+        lang = this.fileCreator("lang");
+        config = this.fileCreator("config");
     }
 
-    public FileCreator setFile(String string){
+    public FileCreator fileCreator(String string){
         return new FileCreator(plugin, string);
     }
 

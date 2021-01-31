@@ -26,6 +26,14 @@ public final class SimpleCore extends JavaPlugin {
         manager.setupEvents();
 
         console.sendMessage("[SimpleCore] Load all files, events and commands!");
+
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null || Bukkit.getPluginManager().getPlugin("TitleAPI") == null){
+            Bukkit.getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }else{
+            Bukkit.getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
+        }
+
     }
 
     @Override

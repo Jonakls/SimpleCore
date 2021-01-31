@@ -39,7 +39,6 @@ public class GeneralCommand implements CommandExecutor {
                 case "reload":
                     manager.getFiles().getLang().reload();
                     manager.getFiles().getConfig().reload();
-                    manager.getFiles().getMenus().reload();
                     return true;
                 case "about":
                     sender.sendMessage("You run "+manager.getSimpleCore().namePlugin+" in a version: "+manager.getSimpleCore().versionPlugin);
@@ -68,7 +67,6 @@ public class GeneralCommand implements CommandExecutor {
             case "reload":
                 manager.getFiles().getLang().reload();
                 manager.getFiles().getConfig().reload();
-                manager.getFiles().getMenus().reload();
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aConfig has been reload!"));
                 Bukkit.getConsoleSender().sendMessage("Config has been reloaded by: "+p.getName());
                 return true;

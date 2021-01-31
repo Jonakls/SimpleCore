@@ -14,6 +14,6 @@ This is a simple plugin that contains simple functions that will allow you to us
 
 ### **Dependencies:**
 
-* `PlaceholderAPI`
+* [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
-* `TitleAPI` 
+* [TitleAPI](https://www.spigotmc.org/resources/titleapi-1-8-1-14-2.1325/)

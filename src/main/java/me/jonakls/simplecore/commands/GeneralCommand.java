@@ -2,6 +2,7 @@ package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.Manager;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -68,12 +69,15 @@ public class GeneralCommand implements CommandExecutor {
                 manager.getFiles().getLang().reload();
                 manager.getFiles().getConfig().reload();
                 manager.getFiles().getMenus().reload();
-                p.sendMessage("&aConfig has been reload!");
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aConfig has been reload!"));
                 Bukkit.getConsoleSender().sendMessage("Config has been reloaded by: "+p.getName());
                 return true;
             case "about":
-                p.sendMessage("&7You run &b"+manager.getSimpleCore().namePlugin+" &7in a version: &f"+manager.getSimpleCore().versionPlugin);
-                p.sendMessage("&7Made by: &a"+manager.getSimpleCore().authorPlugin);
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                        "&7You run &b"+manager.getSimpleCore().namePlugin+" &7in a version: &f"+manager.getSimpleCore().versionPlugin));
+
+
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Made by: &a"+manager.getSimpleCore().authorPlugin));
                 return true;
             default:
                 p.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));

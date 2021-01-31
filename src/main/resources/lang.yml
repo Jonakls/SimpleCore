@@ -1,3 +1,7 @@
+#
+# Lang of SimpleCore
+# Version: 0.1
+#
 messages:
   console:
     help:
@@ -38,6 +42,9 @@ vanish:
   message: '&7Tu modo incognito a sido %type%'
   other-message: '&7El modo incognito de &b%target% &7a sido %type%'
   target-message: '&b%player% &7a %type% &7tu modo incognito'
+#
+# You can use Placeholders in these messages.
+#
 events:
   join-player:
     message: '&8[&a+&8] &f%player% &7acaba de entrar al servidor.'

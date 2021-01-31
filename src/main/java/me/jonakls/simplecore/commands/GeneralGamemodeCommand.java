@@ -39,7 +39,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
         if (args[0].equalsIgnoreCase("creative") || args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("c")){
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.CREATIVE);
-                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%", manager.getFiles().getLang().getString("gamemode.type.creative")));
+                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%",
+                        manager.getFiles().getLang().getString("gamemode.type.creative")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -62,7 +63,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
         if (args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("s")){
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.SURVIVAL);
-                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%", manager.getFiles().getLang().getString("gamemode.type.survival")));
+                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%",
+                        manager.getFiles().getLang().getString("gamemode.type.survival")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -85,7 +87,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
         if (args[0].equalsIgnoreCase("adventure") || args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("a")){
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.ADVENTURE);
-                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%", manager.getFiles().getLang().getString("gamemode.type.adventure")));
+                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%",
+                        manager.getFiles().getLang().getString("gamemode.type.adventure")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -108,7 +111,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
         if (args[0].equalsIgnoreCase("spectator") || args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("sp")){
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.SPECTATOR);
-                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%", manager.getFiles().getLang().getString("gamemode.type.spectator")));
+                p.sendMessage(manager.getFiles().getLang().getString("gamemode.change").replace("%type%",
+                        manager.getFiles().getLang().getString("gamemode.type.spectator")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);

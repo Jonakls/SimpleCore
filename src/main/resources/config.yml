@@ -1,15 +1,48 @@
+#
+# Config of SimpleCore
+# Version: 0.1
+#
 config:
+  # Enable or disable join or left messages
   join-message: true
   quit-message: true
+#
+# Enable or disable option of
+# server list and edit messages.
+# You can use Placeholders in these messages.
+#
 server-List:
   enable: true
   respective-mode: true
   max-players: 0
   line1: '&aMinecraft Server &8| &cTexto editable'
   line2: '&7En la config podras habilitar o deshabilitar'
+#
+# Enable or disable titles on player
+# join to the server.
+#
+# You can use Placeholders in these messages.
+#
 titles:
   join-title:
     enable: true
     fade-in: 10
     stay: 15
     fade-out: 10
+#
+# Enable or disable sounds events.
+#
+# Please use sounds of this page:
+# https://helpch.at/docs/1.8.8/org/bukkit/Sound.html
+#
+sounds:
+  join-sound:
+    enable: true
+    sound: ENDERDRAGON_GROWL
+    vol: 10
+    pitch: 10
+  broadcast-sound:
+    enable: true
+    sound: ORB_PICKUP
+    vol: 10
+    pitch: 10

@@ -10,6 +10,8 @@ import me.jonakls.simplecore.listeners.PlayerQuitListener;
 import me.jonakls.simplecore.listeners.ServerListListener;
 import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.menus.listener.MenuClickListener;
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 
 public class Manager {
@@ -21,7 +23,12 @@ public class Manager {
         this.simpleCore = simpleCore;
     }
 
+    ConsoleCommandSender console = Bukkit.getConsoleSender();
+
     public void setupCommands(){
+
+        console.sendMessage("[SimpleCore] Installing commands and executors...");
+
         simpleCore.getCommand("simplecore").setExecutor(new GeneralCommand(this));
         simpleCore.getCommand("gamemode").setExecutor(new GeneralGamemodeCommand(this));
         simpleCore.getCommand("gmsp").setExecutor(new SpectatorCommand(this));
@@ -37,11 +44,17 @@ public class Manager {
     }
 
     public void setupFiles(){
+
+        console.sendMessage("[SimpleCore] Installing files of configuration...");
+
         fileManager = new FileManager(simpleCore);
         fileManager.setupFiles();
     }
 
     public void setupEvents(){
+
+        console.sendMessage("[SimpleCore] Installing events and executors...");
+
         PluginManager pm = simpleCore.getServer().getPluginManager();
         pm.registerEvents(new PlayerJoinListener(this), simpleCore);
         pm.registerEvents(new PlayerQuitListener(this), simpleCore);

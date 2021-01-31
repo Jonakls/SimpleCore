@@ -3,6 +3,7 @@ package me.jonakls.simplecore.listeners;
 import com.connorlinfoot.titleapi.TitleAPI;
 import me.jonakls.simplecore.Manager;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,9 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent joinEvent){
 
+        float vol = (float) manager.getFiles().getConfig().getDouble("sounds.join-sound.vol");
+        float pitch = (float) manager.getFiles().getConfig().getDouble("sounds.join-sound.pitch");
+
         Player p = joinEvent.getPlayer();
         if (!(manager.getFiles().getConfig().getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
@@ -33,6 +37,14 @@ public class PlayerJoinListener implements Listener {
                     manager.getFiles().getConfig().getInt("titles.join-title.fade-out"),
                     PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.join-player.title")),
                     PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.join-player.sub-title")));
+        }
+
+
+        if (manager.getFiles().getConfig().getBoolean("sounds.join-sound.enable")){
+           p.playSound(p.getLocation(),
+                   Sound.valueOf(manager.getFiles().getConfig().getString("sounds.join-sound.sound")),
+                   vol,
+                   pitch);
         }
     }
 }

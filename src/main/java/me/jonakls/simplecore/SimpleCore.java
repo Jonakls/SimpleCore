@@ -25,10 +25,6 @@ public final class SimpleCore extends JavaPlugin {
         manager.setupCommands();
         manager.setupEvents();
 
-
-        console.sendMessage("[SimpleCore] Installing commands and executors...");
-        console.sendMessage("[SimpleCore] Installing events and executors...");
-        console.sendMessage("[SimpleCore] Installing files of configuration...");
         console.sendMessage("[SimpleCore] Load all files, events and commands!");
     }
 

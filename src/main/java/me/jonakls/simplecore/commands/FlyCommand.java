@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands;
 
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -10,10 +10,10 @@ import org.bukkit.entity.Player;
 
 public class FlyCommand implements CommandExecutor {
 
-    private final Manager manager;
+    private final Service service;
 
-    public FlyCommand(Manager manager){
-        this.manager = manager;
+    public FlyCommand(Service service){
+        this.service = service;
     }
 
     @Override
@@ -21,12 +21,12 @@ public class FlyCommand implements CommandExecutor {
 
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(manager.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.fly"))){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
             return true;
         }
         if (!(args.length > 0)){
@@ -35,49 +35,58 @@ public class FlyCommand implements CommandExecutor {
                 if (!(p.getAllowFlight() || p.isFlying())){
                     p.setAllowFlight(true);
                     p.setFlying(true);
-                    p.sendMessage(manager.getFiles().getLang().getString("flymode.message")
-                            .replace("%type%", manager.getFiles().getLang().getString("type.enable")));
+                    p.sendMessage(service.getFiles().getLang().getString("flymode.message")
+                            .replace("%type%", service.getFiles().getLang().getString("type.enable")));
                     return true;
                 }
                 p.setAllowFlight(false);
                 p.setFlying(false);
-                p.sendMessage(manager.getFiles().getLang().getString("flymode.message")
-                        .replace("%type%", manager.getFiles().getLang().getString("Type.disable")));
+                p.sendMessage(service.getFiles().getLang().getString("flymode.message")
+                        .replace("%type%", service.getFiles().getLang().getString("Type.disable")));
                 return true;
             }
 
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-flymode-gamemode"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode"));
             return true;
 
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-player"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player".replace("%player%", args[0])));
             return  true;
         }
-        if (!(target.getAllowFlight() || target.isFlying())){
-            target.setAllowFlight(true);
-            target.setFlying(true);
-            target.sendMessage(manager.getFiles().getLang().getString("flymode.target-message")
-                    .replace("%type%", manager.getFiles().getLang().getString("type.enable"))
-                    .replace("%player%", p.getName()));
+        if (!(target.getName().equals(p.getName()))){
+            if (!(target.getGameMode().equals(GameMode.CREATIVE) || target.getGameMode().equals(GameMode.SPECTATOR))){
+                if (!(target.getAllowFlight() || target.isFlying())){
+                    target.setAllowFlight(true);
+                    target.setFlying(true);
+                    target.sendMessage(service.getFiles().getLang().getString("flymode.target-message")
+                            .replace("%type%", service.getFiles().getLang().getString("type.enable"))
+                            .replace("%player%", p.getName()));
 
-            p.sendMessage(manager.getFiles().getLang().getString("flymode.other-message")
-                    .replace("%type%", manager.getFiles().getLang().getString("type.enable"))
-                    .replace("%target%", target.getName()));
+                    p.sendMessage(service.getFiles().getLang().getString("flymode.other-message")
+                            .replace("%type%", service.getFiles().getLang().getString("type.enable"))
+                            .replace("%target%", target.getName()));
 
+                    return true;
+                }
+                target.setAllowFlight(false);
+                target.setFlying(false);
+
+                target.sendMessage(service.getFiles().getLang().getString("flymode.target-message")
+                        .replace("%type%", service.getFiles().getLang().getString("type.disable"))
+                        .replace("%player%", p.getName()));
+
+                p.sendMessage(service.getFiles().getLang().getString("flymode.other-message")
+                        .replace("%type%", service.getFiles().getLang().getString("Type.disable"))
+                        .replace("%target%", target.getName()));
+                return true;
+            }
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode"));
             return true;
         }
-        target.setAllowFlight(false);
-        target.setFlying(false);
 
-        target.sendMessage(manager.getFiles().getLang().getString("flymode.target-message")
-                .replace("%type%", manager.getFiles().getLang().getString("type.disable"))
-                .replace("%player%", p.getName()));
-
-        p.sendMessage(manager.getFiles().getLang().getString("flymode.other-message")
-                .replace("%type%", manager.getFiles().getLang().getString("Type.disable"))
-                .replace("%target%", target.getName()));
+        p.sendMessage(service.getFiles().getLang().getString("messages.error.no-yourself"));
         return true;
     }
 }

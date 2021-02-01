@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands;
 
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -12,37 +12,37 @@ import java.util.List;
 
 public class GeneralCommand implements CommandExecutor {
 
-    private final Manager manager;
+    private final Service service;
 
-    public GeneralCommand(Manager manager){
-        this.manager = manager;
+    public GeneralCommand(Service service){
+        this.service = service;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        List<String> helpConsole = manager.getFiles().getLang().getStringList("messages.console.help");
-        List<String> helpPlayer = manager.getFiles().getLang().getStringList("messages.player.help");
+        List<String> helpConsole = service.getFiles().getLang().getStringList("messages.console.help");
+        List<String> helpPlayer = service.getFiles().getLang().getStringList("messages.player.help");
 
 
         if(!(sender instanceof Player)){
             if (!(args.length > 0)){
-                sender.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
+                sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"));
                 return true;
             }
             switch (args[0]) {
                 case "help":
                     for (String help : helpConsole) {
-                        sender.sendMessage(help.replace("%version%", manager.getSimpleCore().versionPlugin));
+                        sender.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
                     }
                     return true;
                 case "reload":
-                    manager.getFiles().getLang().reload();
-                    manager.getFiles().getConfig().reload();
+                    service.getFiles().getLang().reload();
+                    service.getFiles().getConfig().reload();
                     return true;
                 case "about":
-                    sender.sendMessage("You run "+manager.getSimpleCore().namePlugin+" in a version: "+manager.getSimpleCore().versionPlugin);
-                    sender.sendMessage("made by: "+manager.getSimpleCore().authorPlugin);
+                    sender.sendMessage("You run "+ service.getSimpleCore().namePlugin+" in a version: "+ service.getSimpleCore().versionPlugin);
+                    sender.sendMessage("made by: "+ service.getSimpleCore().authorPlugin);
                     return true;
                 default:
                     sender.sendMessage("Unknown command, use /simplecore help");
@@ -51,34 +51,34 @@ public class GeneralCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(args.length > 0)){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"));
             return true;
         }
         if (!(p.hasPermission("simplecore.command.admin"))){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
             return true;
         }
         switch (args[0]) {
             case "help":
                 for (String help : helpPlayer) {
-                    p.sendMessage(help.replace("%version%", manager.getSimpleCore().versionPlugin));
+                    p.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
                 }
                 return true;
             case "reload":
-                manager.getFiles().getLang().reload();
-                manager.getFiles().getConfig().reload();
+                service.getFiles().getLang().reload();
+                service.getFiles().getConfig().reload();
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aConfig has been reload!"));
                 Bukkit.getConsoleSender().sendMessage("Config has been reloaded by: "+p.getName());
                 return true;
             case "about":
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                        "&7You run &b"+manager.getSimpleCore().namePlugin+" &7in a version: &f"+manager.getSimpleCore().versionPlugin));
+                        "&7You run &b"+ service.getSimpleCore().namePlugin+" &7in a version: &f"+ service.getSimpleCore().versionPlugin));
 
 
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Made by: &a"+manager.getSimpleCore().authorPlugin));
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Made by: &a"+ service.getSimpleCore().authorPlugin));
                 return true;
             default:
-                p.sendMessage(manager.getFiles().getLang().getString("messages.error.unknown-command"));
+                p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"));
                 return true;
         }
     }

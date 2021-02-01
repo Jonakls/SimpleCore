@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands;
 
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
@@ -11,32 +11,32 @@ import org.bukkit.entity.Player;
 
 public class BroadcastCommand implements CommandExecutor {
 
-    private final Manager manager;
+    private final Service service;
 
-    public BroadcastCommand(Manager manager){
-        this.manager = manager;
+    public BroadcastCommand(Service service){
+        this.service = service;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         StringBuilder stringBuilder = new StringBuilder();
-        float vol = (float) manager.getFiles().getConfig().getDouble("sounds.broadcast-sound.vol");
-        float pitch = (float) manager.getFiles().getConfig().getDouble("sounds.broadcast-sound.pitch");
+        float vol = (float) service.getFiles().getConfig().getDouble("sounds.broadcast-sound.vol");
+        float pitch = (float) service.getFiles().getConfig().getDouble("sounds.broadcast-sound.pitch");
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(manager.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
             return true;
         }
 
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.broadcast"))){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(manager.getFiles().getLang().getString("usages.broadcast-message"));
+            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message"));
             return true;
         }
 
@@ -47,10 +47,10 @@ public class BroadcastCommand implements CommandExecutor {
         }
         String message = stringBuilder.toString();
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
-                manager.getFiles().getLang().getString("broadcast.prefix")+message));
+                service.getFiles().getLang().getString("broadcast.prefix")+message));
 
         Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(),
-                Sound.valueOf(manager.getFiles().getConfig().getString("sounds.broadcast-sound.sound")),
+                Sound.valueOf(service.getFiles().getConfig().getString("sounds.broadcast-sound.sound")),
                 vol,
                 pitch));
 

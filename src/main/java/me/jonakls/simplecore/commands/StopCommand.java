@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands;
 
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 
 public class StopCommand implements CommandExecutor {
 
-    private Manager manager;
+    private final Service service;
 
-    public StopCommand(Manager manager){
-        this.manager = manager;
+    public StopCommand(Service service){
+        this.service = service;
     }
 
     @Override
@@ -22,18 +22,59 @@ public class StopCommand implements CommandExecutor {
         StringBuilder stringBuilder1 = new StringBuilder();
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(manager.getFiles().getLang().getString("messages.error.no-console"));
+            if (!(args.length > 0)){
+
+                for (String line: service.getFiles().getLang().getStringList("stop.message")){
+                    stringBuilder1.append(line).append('\n');
+                }
+                String message = stringBuilder1.toString();
+
+                Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
+                        .replace("%player%", service.getFiles().getLang().getString("stop.console-name"))
+                        .replace("%reason%", service.getFiles().getLang().getString("stop.no-reason"))
+                        .replace("%serverName%", service.getFiles().getLang().getString("stop.prefix"))));
+                Bukkit.shutdown();
+            }
+            int i = 0;
+            while (i < args.length) {
+                stringBuilder.append(args[i]).append(' ');
+                ++i;
+            }
+            String reason = stringBuilder.toString();
+
+            for (String line: service.getFiles().getLang().getStringList("stop.message")){
+                stringBuilder1.append(line).append('\n');
+            }
+            String message = stringBuilder1.toString();
+
+            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
+                    .replace("%player%", service.getFiles().getLang().getString("stop.console-name"))
+                    .replace("%reason%", reason)
+                    .replace("%serverName%", service.getFiles().getLang().getString("stop.prefix"))));
+            Bukkit.shutdown();
+
             return true;
         }
 
         Player p = (Player) sender;
 
         if (!(p.hasPermission("simplecore.command.stop"))){
-            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(manager.getFiles().getLang().getString("usages.stop-message"));
+
+            for (String line: service.getFiles().getLang().getStringList("stop.message")){
+                stringBuilder1.append(line).append('\n');
+            }
+            String message = stringBuilder1.toString();
+
+            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
+                    .replace("%player%", p.getName())
+                    .replace("%reason%", service.getFiles().getLang().getString("stop.no-reason"))
+                    .replace("%serverName%", service.getFiles().getLang().getString("stop.prefix"))));
+            Bukkit.shutdown();
+
             return true;
         }
 
@@ -44,7 +85,7 @@ public class StopCommand implements CommandExecutor {
         }
         String reason = stringBuilder.toString();
 
-        for (String line: manager.getFiles().getLang().getStringList("stop.message")){
+        for (String line: service.getFiles().getLang().getStringList("stop.message")){
             stringBuilder1.append(line).append('\n');
         }
         String message = stringBuilder1.toString();
@@ -52,7 +93,7 @@ public class StopCommand implements CommandExecutor {
         Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
                 .replace("%player%", p.getName())
                 .replace("%reason%", reason)
-                .replace("%serverName%", manager.getFiles().getLang().getString("stop.prefix"))));
+                .replace("%serverName%", service.getFiles().getLang().getString("stop.prefix"))));
         Bukkit.shutdown();
         return true;
     }

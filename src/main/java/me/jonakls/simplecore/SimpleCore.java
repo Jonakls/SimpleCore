@@ -20,19 +20,20 @@ public final class SimpleCore extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        Manager manager = new Manager(this);
-        manager.setupFiles();
-        manager.setupCommands();
-        manager.setupEvents();
 
-        console.sendMessage("[SimpleCore] Load all files, events and commands!");
-
-        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null || Bukkit.getPluginManager().getPlugin("TitleAPI") == null){
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null){
             Bukkit.getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
             Bukkit.getPluginManager().disablePlugin(this);
-        }else{
+        } else {
             Bukkit.getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
         }
+
+        Service service = new Service(this);
+        service.setupFiles();
+        service.setupCommands();
+        service.setupEvents();
+
+        console.sendMessage("[SimpleCore] Load all files, events and commands!");
 
     }
 

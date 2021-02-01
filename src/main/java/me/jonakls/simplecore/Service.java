@@ -13,12 +13,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 
-public class Manager {
+public class Service {
 
     private final SimpleCore simpleCore;
     private FileManager fileManager;
 
-    public Manager(SimpleCore simpleCore){
+    public Service(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
     }
 

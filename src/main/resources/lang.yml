@@ -5,7 +5,7 @@
 messages:
   console:
     help:
-      - '--------------[ SimpleCore ]--------------'
+      - '----------------[ SimpleCore ]----------------'
       - 'Commands of plugin (SimpleCore) %version%'
       - ' '
       - 'Use: /simplecore help | View this list.'
@@ -13,7 +13,7 @@ messages:
       - 'Use: /simplecore about | View info of this plugin.'
   player:
     help:
-      - '&7&m--------------[ &bSimpleCore &7&m]--------------'
+      - '&7&m----------------[&b SimpleCore &7&m]----------------'
       - '&eCommands of plugin &b(SimpleCore) &f%version%'
       - ' '
       - '&7Use: &b/simplecore help &8| &7View this list.'
@@ -42,6 +42,8 @@ stop:
     - '&r'
     - '&cReason: &a%reason%'
   prefix: "&aYourServer"
+  console-name: '&cConsole'
+  no-reason: '&aNo reason'
 broadcast:
   prefix: '&8(&cNotices&8) &e'
 type:

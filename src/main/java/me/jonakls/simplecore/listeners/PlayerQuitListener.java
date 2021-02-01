@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.listeners;
 
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,20 +9,20 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerQuitListener implements Listener {
 
-    private final Manager manager;
+    private final Service service;
 
-    public PlayerQuitListener(Manager manager){
-        this.manager = manager;
+    public PlayerQuitListener(Service service){
+        this.service = service;
     }
 
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent quitEvent){
 
         Player p = quitEvent.getPlayer();
-        if (!(manager.getFiles().getConfig().getBoolean("config.quit-message"))){
+        if (!(service.getFiles().getConfig().getBoolean("config.quit-message"))){
             quitEvent.setQuitMessage(null);
             return;
         }
-        quitEvent.setQuitMessage(PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.quit-player.message").replace("%player%", p.getName())));
+        quitEvent.setQuitMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.quit-player.message").replace("%player%", p.getName())));
     }
 }

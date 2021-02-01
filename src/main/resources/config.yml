@@ -18,18 +18,6 @@ server-list:
   line1: '&aMinecraft Server &8| &cEditable text'
   line2: '&7You can edit this in the config'
 #
-# Enable or disable titles on player
-# join to the server.
-#
-# You can use Placeholders in these messages.
-#
-titles:
-  join-title:
-    enable: true
-    fade-in: 10
-    stay: 15
-    fade-out: 10
-#
 # Enable or disable sounds events.
 #
 # Please use sounds of this page:

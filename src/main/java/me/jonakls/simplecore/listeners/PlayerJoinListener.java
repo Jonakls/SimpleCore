@@ -1,7 +1,6 @@
 package me.jonakls.simplecore.listeners;
 
-import com.connorlinfoot.titleapi.TitleAPI;
-import me.jonakls.simplecore.Manager;
+import me.jonakls.simplecore.Service;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,38 +10,28 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoinListener implements Listener {
 
-    private final Manager manager;
+    private final Service service;
 
-    public PlayerJoinListener(Manager manager){
-        this.manager = manager;
+    public PlayerJoinListener(Service service){
+        this.service = service;
     }
 
     @EventHandler
     public void onJoin(PlayerJoinEvent joinEvent){
 
-        float vol = (float) manager.getFiles().getConfig().getDouble("sounds.join-sound.vol");
-        float pitch = (float) manager.getFiles().getConfig().getDouble("sounds.join-sound.pitch");
+        float vol = (float) service.getFiles().getConfig().getDouble("sounds.join-sound.vol");
+        float pitch = (float) service.getFiles().getConfig().getDouble("sounds.join-sound.pitch");
 
         Player p = joinEvent.getPlayer();
-        if (!(manager.getFiles().getConfig().getBoolean("config.join-message"))){
+        if (!(service.getFiles().getConfig().getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
             return;
         }
-        joinEvent.setJoinMessage(PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.join-player.message").replace("%player%", p.getName())));
+        joinEvent.setJoinMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.join-player.message").replace("%player%", p.getName())));
 
-        if (manager.getFiles().getConfig().getBoolean("titles.join-title.enable")){
-            TitleAPI.sendTitle(p,
-                    manager.getFiles().getConfig().getInt("titles.join-title.fade-in"),
-                    manager.getFiles().getConfig().getInt("titles.join-title.stay"),
-                    manager.getFiles().getConfig().getInt("titles.join-title.fade-out"),
-                    PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.join-player.title")),
-                    PlaceholderAPI.setPlaceholders(p, manager.getFiles().getLang().getString("events.join-player.sub-title")));
-        }
-
-
-        if (manager.getFiles().getConfig().getBoolean("sounds.join-sound.enable")){
+        if (service.getFiles().getConfig().getBoolean("sounds.join-sound.enable")){
            p.playSound(p.getLocation(),
-                   Sound.valueOf(manager.getFiles().getConfig().getString("sounds.join-sound.sound")),
+                   Sound.valueOf(service.getFiles().getConfig().getString("sounds.join-sound.sound")),
                    vol,
                    pitch);
         }

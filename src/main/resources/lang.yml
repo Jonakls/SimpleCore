@@ -63,8 +63,6 @@ vanish:
 events:
   join-player:
     message: '&8[&a+&8] &f%player% &7has been joined.'
-    title: '&7Welcome &f%player_name% &7of &a%server_name%'
-    sub-title: '&7You can modify this text'
   quit-player:
     message: '&8[&c-&8] &f%player% &7just left the server.'
 gamemode:

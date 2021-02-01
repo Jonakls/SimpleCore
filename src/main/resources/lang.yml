@@ -26,6 +26,7 @@ messages:
     no-yourself: '&cYou cannot do this action with yourself.'
     no-console: 'You cannot do this from the console.'
     flaying: '&cYou already have your flight mode activated'
+    no-flymode-gamemode: '&cYou can''t disable fly mode on this gamemode'
 usages:
   general-gamemode: '&7Please use: &e/gamemode <creative/survival/spectator/adventure> [player]'
   vanish: '&7Please use: &e/vanish <enable/disable> [player]'
@@ -37,9 +38,9 @@ stop:
     - '%serverName%'
     - '&r'
     - '&c¡Server has been closed!'
-    - '&cStaff: %player%'
+    - '&cClosed by: &b%player%'
     - '&r'
-    - '&7Reason: %reason%'
+    - '&cReason: &a%reason%'
   prefix: "&aYourServer"
 broadcast:
   prefix: '&8(&cNotices&8) &e'
@@ -65,7 +66,7 @@ events:
   quit-player:
     message: '&8[&c-&8] &f%player% &7just left the server.'
 gamemode:
-  change: '&7Your game mode has been %type%'
+  change: '&7Your game mode has been changed to %type%'
   change-other: '&7The game mode of &f%target% &7has been changed to %type%'
   target-change: '&7The player &f%player% &7has been changed your gamemode to %type%'
   type:

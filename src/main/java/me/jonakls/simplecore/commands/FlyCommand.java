@@ -2,6 +2,7 @@ package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.Manager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,18 +30,25 @@ public class FlyCommand implements CommandExecutor {
             return true;
         }
         if (!(args.length > 0)){
-            if (!(p.getAllowFlight() || p.isFlying())){
-                p.setAllowFlight(true);
-                p.setFlying(true);
+
+            if (!(p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR))){
+                if (!(p.getAllowFlight() || p.isFlying())){
+                    p.setAllowFlight(true);
+                    p.setFlying(true);
+                    p.sendMessage(manager.getFiles().getLang().getString("flymode.message")
+                            .replace("%type%", manager.getFiles().getLang().getString("type.enable")));
+                    return true;
+                }
+                p.setAllowFlight(false);
+                p.setFlying(false);
                 p.sendMessage(manager.getFiles().getLang().getString("flymode.message")
-                        .replace("%type%", manager.getFiles().getLang().getString("type.enable")));
+                        .replace("%type%", manager.getFiles().getLang().getString("Type.disable")));
                 return true;
             }
-            p.setAllowFlight(false);
-            p.setFlying(false);
-            p.sendMessage(manager.getFiles().getLang().getString("flymode.message")
-                    .replace("%type%", manager.getFiles().getLang().getString("Type.disable")));
+
+            p.sendMessage(manager.getFiles().getLang().getString("messages.error.no-flymode-gamemode"));
             return true;
+
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){

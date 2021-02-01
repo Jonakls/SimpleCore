@@ -16,12 +16,14 @@ public class ServerListListener implements Listener {
     @EventHandler
     public void customServerList(ServerListPingEvent serverListPingEvent){
 
-        if (manager.getFiles().getConfig().getBoolean("server-List.enable")){
-            serverListPingEvent.setMotd(manager.getFiles().getConfig().getString("server-List.line1")+ "\n"+manager.getFiles().getConfig().getString("server-List.line2"));
+        if (manager.getFiles().getConfig().getBoolean("server-list.enable")){
+            serverListPingEvent.setMotd(manager.getFiles().getConfig().getString("server-list.line1")
+                    +"\n"+
+                    manager.getFiles().getConfig().getString("server-list.line2"));
         }
 
-        if (!(manager.getFiles().getConfig().getBoolean("server-List.respective-mode"))){
-            serverListPingEvent.setMaxPlayers(manager.getFiles().getConfig().getInt("server-List.max-players"));
+        if (!(manager.getFiles().getConfig().getBoolean("server-list.respective-mode"))){
+            serverListPingEvent.setMaxPlayers(manager.getFiles().getConfig().getInt("server-list.max-players"));
             return;
         }
         int online = serverListPingEvent.getNumPlayers();

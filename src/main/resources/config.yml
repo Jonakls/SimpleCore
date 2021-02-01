@@ -11,7 +11,7 @@ config:
 # server list and edit messages.
 # You can use Placeholders in these messages.
 #
-server-List:
+server-list:
   enable: true
   respective-mode: true
   max-players: 0

@@ -38,6 +38,7 @@ public class Manager {
         simpleCore.getCommand("vanish").setExecutor(new VanishMode(this));
         simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
         simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
+        simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
 
     }
 

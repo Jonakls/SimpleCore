@@ -5,6 +5,7 @@
 messages:
   console:
     help:
+      - '--------------[ SimpleCore ]--------------'
       - 'Commands of plugin (SimpleCore) %version%'
       - ' '
       - 'Use: /simplecore help | View this list.'
@@ -12,52 +13,63 @@ messages:
       - 'Use: /simplecore about | View info of this plugin.'
   player:
     help:
+      - '&7&m--------------[ &bSimpleCore &7&m]--------------'
       - '&eCommands of plugin &b(SimpleCore) &f%version%'
       - ' '
-      - '&7Usa: &b/simplecore help &8| &7Observar esta lista'
-      - '&7Usa: &b/simplecore reload &8| &7Recargar todas las configuraciones.'
-      - '&7Usa: &b/simplecore about &8| &7Ver informacion del plugin'
+      - '&7Use: &b/simplecore help &8| &7View this list.'
+      - '&7Use: &b/simplecore reload &8| &7Reload all files of plugin.'
+      - '&7Use: &b/simplecore about &8| &7View info of this plugin.'
   error:
-    no-player: '&cEl jugador &f%player% &cno se encuentra en linea o no existe.'
-    unknown-command: '&cEste comando no existe, usa /simplecore help'
-    no-permissions: '&cNo tienes permiso para hacer esto.'
-    no-yourself: '&cNo puedes hacer esta accion contigo mismo.'
-    no-console: 'No puedes hacer esto desde la consola.'
-    flaying: '&cTu ya tienes ti modo de vuelo activado'
+    no-player: '&cThe player &b%player% is not connected or does not exist.'
+    unknown-command: '&cUnknown command, please use /simplecore help'
+    no-permissions: '&cNo permissions.'
+    no-yourself: '&cYou cannot do this action with yourself.'
+    no-console: 'You cannot do this from the console.'
+    flaying: '&cYou already have your flight mode activated'
 usages:
-  general-gamemode: '&7Usa: &e/gamemode <creative/survival/spectator/adventure> [player]'
-  vanish: '&7Usa: &e/vanish <enable/disable> [player]'
-  fake-messages: '&7Usa: &e/fake <message/join/leave> [player/message]'
-  broadcast-message: '&7Usa: &e/broadcast <message>'
+  general-gamemode: '&7Please use: &e/gamemode <creative/survival/spectator/adventure> [player]'
+  vanish: '&7Please use: &e/vanish <enable/disable> [player]'
+  fake-messages: '&7Please use: &e/fake <message/join/leave> [player/message]'
+  broadcast-message: '&7Please use: &e/broadcast <message>'
+  stop-message: '&7Please use: &e/stop <reason>'
+stop:
+  message:
+    - '%serverName%'
+    - '&r'
+    - '&c¡Server has been closed!'
+    - '&cStaff: %player%'
+    - '&r'
+    - '&7Reason: %reason%'
+  prefix: "&aYourServer"
 broadcast:
-  prefix: '&8(&cAnuncios&8) &e'
+  prefix: '&8(&cNotices&8) &e'
 type:
-  enable: '&aActivado'
-  disable: '&cDesactivado'
+  enable: '&aEnable'
+  disable: '&cDisable'
 flymode:
-  message: '&7Tu modo de vuelo a sido %type%'
-  other-message: '&7El modo de vuelo de &b%target% &7a sido %type%'
-  target-message: '&b%player% &7a %type% &7tu modo de vuelo'
+  message: '&7Your flight mode has been %type%'
+  other-message: '&7The flight mode of &b%target% &7has been %type%'
+  target-message: '&b%player% &7has been %type% &7your flight mode.'
 vanish:
-  message: '&7Tu modo incognito a sido %type%'
-  other-message: '&7El modo incognito de &b%target% &7a sido %type%'
-  target-message: '&b%player% &7a %type% &7tu modo incognito'
+  message: '&7You vanish mode has been %type%'
+  other-message: '&7The vanish mode of &b%target% &7has been %type%'
+  target-message: '&b%player% &7has been %type% &7your vanish mode.'
 #
 # You can use Placeholders in these messages.
 #
 events:
   join-player:
-    message: '&8[&a+&8] &f%player% &7acaba de entrar al servidor.'
-    title: '&7Bienvenido &f%player_name% &7a &a%server_name%'
-    sub-title: '&7Recuerda usar &c/help &7para informarte'
+    message: '&8[&a+&8] &f%player% &7has been joined.'
+    title: '&7Welcome &f%player_name% &7of &a%server_name%'
+    sub-title: '&7You can modify this text'
   quit-player:
-    message: '&8[&c-&8] &f%player% &7acaba de salir del servidor.'
+    message: '&8[&c-&8] &f%player% &7just left the server.'
 gamemode:
-  change: '&7Tu modo de juego a cambiado a %type%'
-  change-other: '&7Cambiaste el modo de juego de &f%target% &7a %type%'
-  target-change: '&7El jugador &f%player% &7cambio tu modo de juego a %type%'
+  change: '&7Your game mode has been %type%'
+  change-other: '&7The game mode of &f%target% &7has been changed to %type%'
+  target-change: '&7The player &f%player% &7has been changed your gamemode to %type%'
   type:
-    creative: '&aCreativo'
+    creative: '&aCreative'
     survival: '&cSurvival'
-    adventure: '&eAventura'
-    spectator: '&dEspectador'
+    adventure: '&eAdventure'
+    spectator: '&dSpectator'

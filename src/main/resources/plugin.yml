@@ -39,3 +39,6 @@ commands:
   broadcast:
     description: Send global message
     aliases: [ bc, announce ]
+  stop:
+    description: Command for stop the server with reason
+    aliases: [ stp, reload, rl]

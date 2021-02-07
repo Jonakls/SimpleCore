@@ -4,7 +4,6 @@ main: me.jonakls.simplecore.SimpleCore
 authors: [Jonakls]
 softdepend:
   - PlaceholderAPI
-  - TitleAPI
 commands:
   simplecore:
     description: General command of plugin

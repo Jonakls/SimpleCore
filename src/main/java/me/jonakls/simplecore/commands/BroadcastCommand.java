@@ -32,11 +32,13 @@ public class BroadcastCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.broadcast"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message"));
+            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
 

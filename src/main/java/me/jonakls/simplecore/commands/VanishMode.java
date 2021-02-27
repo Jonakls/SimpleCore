@@ -20,12 +20,14 @@ public class VanishMode implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"
+            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.vanish"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         if (!(args.length > 0)){

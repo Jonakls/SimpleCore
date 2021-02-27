@@ -3,6 +3,7 @@
 # Version: 0.1
 #
 messages:
+  prefix: '&8[&cSimpleCore&8]'
   console:
     help:
       - '----------------[ SimpleCore ]----------------'
@@ -20,19 +21,19 @@ messages:
       - '&7Use: &b/simplecore reload &8| &7Reload all files of plugin.'
       - '&7Use: &b/simplecore about &8| &7View info of this plugin.'
   error:
-    no-player: '&cThe player &b%player% is not connected or does not exist.'
-    unknown-command: '&cUnknown command, please use /simplecore help'
-    no-permissions: '&cNo permissions.'
-    no-yourself: '&cYou cannot do this action with yourself.'
-    no-console: 'You cannot do this from the console.'
-    flaying: '&cYou already have your flight mode activated'
+    no-player: '%prefix% &cThe player &b%player% is not connected or does not exist.'
+    unknown-command: '%prefix% &cUnknown command, please use /simplecore help'
+    no-permissions: '%prefix% &cNo permissions.'
+    no-yourself: '%prefix% &cYou cannot do this action with yourself.'
+    no-console: '%prefix% You cannot do this from the console.'
+    flaying: '%prefix% &cYou already have your flight mode activated'
     no-flymode-gamemode: '&cYou can''t disable fly mode on this gamemode'
 usages:
-  general-gamemode: '&7Please use: &e/gamemode <creative/survival/spectator/adventure> [player]'
-  vanish: '&7Please use: &e/vanish <enable/disable> [player]'
-  fake-messages: '&7Please use: &e/fake <message/join/leave> [player/message]'
-  broadcast-message: '&7Please use: &e/broadcast <message>'
-  stop-message: '&7Please use: &e/stop <reason>'
+  general-gamemode: '%prefix% &7Please use: &e/gamemode <creative/survival/spectator/adventure> [player]'
+  vanish: '%prefix% &7Please use: &e/vanish <enable/disable> [player]'
+  fake-messages: '%prefix% &7Please use: &e/fake <message/join/leave> [player/message]'
+  broadcast-message: '%prefix% &7Please use: &e/broadcast <message>'
+  stop-message: '%prefix% &7Please use: &e/stop <reason>'
 stop:
   message:
     - '%serverName%'

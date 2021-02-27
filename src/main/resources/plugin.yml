@@ -7,7 +7,7 @@ softdepend:
 commands:
   simplecore:
     description: General command of plugin
-    aliases: [sc, simplec, score]
+    aliases: [sc, simplec]
   gamemode:
     description: Gamemode generalized command option change
     aliases: [gm, game, mode]

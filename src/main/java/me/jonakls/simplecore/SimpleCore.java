@@ -21,12 +21,12 @@ public final class SimpleCore extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null){
-            Bukkit.getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
-            Bukkit.getPluginManager().disablePlugin(this);
-        } else {
+        if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)){
             Bukkit.getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
+            return;
         }
+        Bukkit.getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
+        Bukkit.getPluginManager().disablePlugin(this);
 
         Service service = new Service(this);
         service.setupFiles();

@@ -59,7 +59,8 @@ public class StopCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if (!(p.hasPermission("simplecore.command.stop"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         if (!(args.length > 0)){

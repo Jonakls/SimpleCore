@@ -30,18 +30,21 @@ public class FakeMessages implements CommandExecutor {
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.fake"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"));
+            p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
         switch (args[0]){
             case "message":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"));
+                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
+                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
                     return true;
                 }
                 for (int i = 1; i < args.length; ++i) {
@@ -54,7 +57,8 @@ public class FakeMessages implements CommandExecutor {
             case "join":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"));
+                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
+                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
                     return true;
                 }
                 Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.join-player.message").replace("%player%", args[1])));
@@ -63,13 +67,15 @@ public class FakeMessages implements CommandExecutor {
             case "leave" :
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"));
+                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
+                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
                     return true;
                 }
                 Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.quit-player.message").replace("%player%", args[1])));
                 return true;
             default:
-                p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"));
+                p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
                 return true;
         }
     }

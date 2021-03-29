@@ -20,20 +20,20 @@ public class AdventureCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.gamemode"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
             if (!(p.hasPermission("simplecore.command.gamemode.adventure"))){
-                p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
                 return true;
             }
             p.setGameMode(GameMode.ADVENTURE);

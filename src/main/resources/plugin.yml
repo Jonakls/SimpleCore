@@ -41,3 +41,6 @@ commands:
   stop:
     description: Command for stop the server with reason
     aliases: [ stp, reload, rl]
+  message:
+    description: Command for stop the server with reason
+    aliases: [ msg, me, tell ]

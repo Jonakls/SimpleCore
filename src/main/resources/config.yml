@@ -26,11 +26,16 @@ server-list:
 sounds:
   join-sound:
     enable: true
-    sound: ENDERDRAGON_GROWL
+    sound: LEVEL_UP
     vol: 10
     pitch: 1
   broadcast-sound:
     enable: true
     sound: ORB_PICKUP
+    vol: 10
+    pitch: 1
+  message-sound:
+    enable: true
+    sound: LEVEL_UP
     vol: 10
     pitch: 1

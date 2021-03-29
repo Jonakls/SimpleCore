@@ -21,7 +21,7 @@ messages:
       - '&7Use: &b/simplecore reload &8| &7Reload all files of plugin.'
       - '&7Use: &b/simplecore about &8| &7View info of this plugin.'
   error:
-    no-player: '%prefix% &cThe player &b%player% is not connected or does not exist.'
+    no-player: '%prefix% &cThe player &a(%player%) &cis not connected or does not exist.'
     unknown-command: '%prefix% &cUnknown command, please use /simplecore help'
     no-permissions: '%prefix% &cNo permissions.'
     no-yourself: '%prefix% &cYou cannot do this action with yourself.'
@@ -34,6 +34,7 @@ usages:
   fake-messages: '%prefix% &7Please use: &e/fake <message/join/leave> [player/message]'
   broadcast-message: '%prefix% &7Please use: &e/broadcast <message>'
   stop-message: '%prefix% &7Please use: &e/stop <reason>'
+  private-usages: '%prefix% &7Please use: &e/msg <player> <message>'
 stop:
   message:
     - '%serverName%'
@@ -75,3 +76,16 @@ gamemode:
     survival: '&cSurvival'
     adventure: '&eAdventure'
     spectator: '&dSpectator'
+private-messages:
+  sender:
+    format:
+      chat-message: '&8[&e*&8] &aYou to &c%target% &b» &f%message%'
+      hover: '&eClick to send other message.'
+      click-event: SUGGEST_COMMAND
+      action: '/msg %target% '
+  target:
+    format:
+      chat-message: '&8[&e*&8] &c%sender% &ato You &b» &f%message%'
+      hover: '&eClick to send other message.'
+      click-event: SUGGEST_COMMAND
+      action: '/msg %sender% '

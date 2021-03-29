@@ -39,6 +39,7 @@ public class Service {
         simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
         simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
         simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
+        simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand(this));
 
     }
 

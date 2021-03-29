@@ -27,8 +27,8 @@ public class GeneralCommand implements CommandExecutor {
 
         if(!(sender instanceof Player)){
             if (!(args.length > 0)){
-                sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
                 return true;
             }
             switch (args[0]) {
@@ -53,13 +53,13 @@ public class GeneralCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         if (!(p.hasPermission("simplecore.command.admin"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         switch (args[0]) {
@@ -81,8 +81,8 @@ public class GeneralCommand implements CommandExecutor {
                 p.sendMessage(ColorApply.apply("&7Made by: &a"+ service.getSimpleCore().authorPlugin));
                 return true;
             default:
-                p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
                 return true;
         }
     }

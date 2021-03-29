@@ -20,20 +20,20 @@ public class SpectatorCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.gamemode"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
             if (!(p.hasPermission("simplecore.command.gamemode.spectator"))){
-                p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
                 return true;
             }
             p.setGameMode(GameMode.SPECTATOR);
@@ -42,8 +42,8 @@ public class SpectatorCommand implements CommandExecutor {
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))).replace("%player%", args[0]));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")).replace("%player%", args[0]));
             return true;
         }
         p.sendMessage(service.getFiles().getLang().getString("gamemode.change-other").replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator")).replace("%target%", target.getName()));

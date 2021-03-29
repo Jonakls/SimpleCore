@@ -2,6 +2,7 @@ package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.Service;
 import me.jonakls.simplecore.modules.MessageModule;
+import me.jonakls.simplecore.utils.ColorApply;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -26,22 +27,22 @@ public class PrivateMessagesCommand implements CommandExecutor {
 
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"
-            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console")
+            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
 
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.messages"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         //prefix arg0 arg1
         if (!(args.length > 1)){
 
-            p.sendMessage(service.getFiles().getLang().getString("usages.private-usages"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("usages.private-usages")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
 
         }
@@ -65,12 +66,12 @@ public class PrivateMessagesCommand implements CommandExecutor {
 
         MessageModule module = new MessageModule(service);
 
-        module.setFormatSender(target, stringBuilder.toString());
+        module.setFormatSender(target, ColorApply.apply(stringBuilder.toString()));
         p.spigot().sendMessage(module.getFormatSender());
         p.playSound(p.getLocation(),Sound.valueOf(service.getFiles().getConfig().getString("sounds.message-sound.sound")),vol,pitch);
 
 
-        module.setFormatTarget(p, stringBuilder.toString());
+        module.setFormatTarget(p, ColorApply.apply(stringBuilder.toString()));
         target.spigot().sendMessage(module.getFormatTarget());
         target.playSound(target.getLocation(),Sound.valueOf(service.getFiles().getConfig().getString("sounds.message-sound.sound")),vol,pitch);
 

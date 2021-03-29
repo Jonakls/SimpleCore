@@ -42,8 +42,7 @@ public class AdventureCommand implements CommandExecutor {
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))).replace("%player%", args[0]));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player").replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")).replace("%player%", args[0]));
             return true;
         }
         p.sendMessage(service.getFiles().getLang().getString("gamemode.change-other").replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure")).replace("%target%", target.getName()));

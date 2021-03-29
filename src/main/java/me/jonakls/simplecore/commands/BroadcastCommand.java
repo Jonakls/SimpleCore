@@ -1,8 +1,8 @@
 package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.utils.ColorApply;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,13 +32,13 @@ public class BroadcastCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.broadcast"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
 
@@ -48,8 +48,7 @@ public class BroadcastCommand implements CommandExecutor {
             ++i;
         }
         String message = stringBuilder.toString();
-        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
-                service.getFiles().getLang().getString("broadcast.prefix")+message));
+        Bukkit.broadcastMessage(ColorApply.apply("broadcast.prefix"+message));
 
         Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(),
                 Sound.valueOf(service.getFiles().getConfig().getString("sounds.broadcast-sound.sound")),

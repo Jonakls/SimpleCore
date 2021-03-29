@@ -26,8 +26,8 @@ public class FlyCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.fly"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
@@ -43,20 +43,20 @@ public class FlyCommand implements CommandExecutor {
                 p.setAllowFlight(false);
                 p.setFlying(false);
                 p.sendMessage(service.getFiles().getLang().getString("flymode.message")
-                        .replace("%type%", service.getFiles().getLang().getString("Type.disable")));
+                        .replace("%type%", service.getFiles().getLang().getString("type.disable")));
                 return true;
             }
 
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
 
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player"
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player")
                     .replace("%player%", args[0])
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return  true;
         }
         if (!(target.getName().equals(p.getName()))){
@@ -82,17 +82,17 @@ public class FlyCommand implements CommandExecutor {
                         .replace("%player%", p.getName()));
 
                 p.sendMessage(service.getFiles().getLang().getString("flymode.other-message")
-                        .replace("%type%", service.getFiles().getLang().getString("Type.disable"))
+                        .replace("%type%", service.getFiles().getLang().getString("type.disable"))
                         .replace("%target%", target.getName()));
                 return true;
             }
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode"
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-flymode-gamemode")
+                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
 
-        p.sendMessage(service.getFiles().getLang().getString("messages.error.no-yourself"
-                .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+        p.sendMessage(service.getFiles().getLang().getString("messages.error.no-yourself")
+                .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
         return true;
     }
 }

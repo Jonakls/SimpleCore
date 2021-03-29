@@ -24,6 +24,6 @@ If the command has "[ ]", they are not required. On the other hand, the "< >" ar
 * /v or /vanish | <on|off> [player]
 * /fly or /flight | [player]
 * /fake or /fk or /false | <join|quit|message> [<player>|<message>]
-* /gammemode or /gm | <0|1|2|3|c|s|sp|a> [player]
+* /gamemode or /gm | <0|1|2|3|c|s|sp|a> [player]
 * /gmc or /gms or /gmsp or /gma | [player] 
 * /stop or /stp or /reload or /rl | [reason]

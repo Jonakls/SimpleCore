@@ -6,27 +6,28 @@ config:
   # Enable or disable join or left messages
   join-message: true
   quit-message: true
+  #
+  # Basic format of chat with hover
+  # and command action.
+  # You can use placeholders of this plugin:
+  # 1. "%displayName%" | Returns the modified name of the player.
+  # 2. "%playerName%" | Returns alone default name of the player.
+  #
   chat-format:
-    prefix:
-      chat-message: '&8[&e*&8] &aYou to &c%target% &b» &f%message%'
-      hover: '&eClick to send other message.'
+    enable: true
+    # Enable or disable return display name with prefix of permissions plugins or directly vault plugin.
+    displayname-with-prefix: true
+    # Enable or disable return player name with prefix of permissions plugins or directly vault plugin.
+    playername-with-prefix: true
+    format:
+      # You can use placeholders of the PlaceholderAPI plugin.
+      chat-message: '%displayName% &b» &f'
+      hover: '&eBasic hover to the format.'
       click-event: SUGGEST_COMMAND
-      action: '/msg %target% '
-    player:
-      chat-message: '&8[&e*&8] &aYou to &c%target% &b» &f%message%'
-      hover: '&eClick to send other message.'
-      click-event: SUGGEST_COMMAND
-      action: '/msg %target% '
-    suffix:
-      chat-message: '&8[&e*&8] &aYou to &c%target% &b» &f%message%'
-      hover: '&eClick to send other message.'
-      click-event: SUGGEST_COMMAND
-      action: '/msg %target% '
-
+      action: '/msg %player% '
 #
 # Enable or disable option of
 # server list and edit messages.
-# You can use Placeholders in these messages.
 #
 server-list:
   enable: true

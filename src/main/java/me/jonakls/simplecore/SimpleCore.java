@@ -1,5 +1,6 @@
 package me.jonakls.simplecore;
 
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -21,13 +22,16 @@ public final class SimpleCore extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)){
+        if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
+            || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
+
             Bukkit.getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
 
             Service service = new Service(this);
             service.setupFiles();
             service.setupCommands();
             service.setupEvents();
+            service.setupDependencies();
 
             console.sendMessage("[SimpleCore] Load all files, events and commands!");
             return;

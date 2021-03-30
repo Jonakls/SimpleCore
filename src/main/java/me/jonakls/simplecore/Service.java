@@ -5,18 +5,22 @@ import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
 import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
+import me.jonakls.simplecore.listeners.ChatListener;
 import me.jonakls.simplecore.listeners.PlayerJoinListener;
 import me.jonakls.simplecore.listeners.PlayerQuitListener;
 import me.jonakls.simplecore.listeners.ServerListListener;
 import me.jonakls.simplecore.files.FileManager;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class Service {
 
     private final SimpleCore simpleCore;
     private FileManager fileManager;
+    private static Chat chat = null;
 
     public Service(SimpleCore simpleCore){
         this.simpleCore = simpleCore;
@@ -52,6 +56,10 @@ public class Service {
         fileManager.setupFiles();
     }
 
+    public void setupDependencies(){
+        setupVaultChat();
+    }
+
     public void setupEvents(){
 
         console.sendMessage("[SimpleCore] Installing events and executors...");
@@ -60,6 +68,16 @@ public class Service {
         pm.registerEvents(new PlayerJoinListener(this), simpleCore);
         pm.registerEvents(new PlayerQuitListener(this), simpleCore);
         pm.registerEvents(new ServerListListener(this), simpleCore);
+        pm.registerEvents(new ChatListener(this), simpleCore);
+    }
+
+    private void setupVaultChat() {
+        RegisteredServiceProvider<Chat> rsp = simpleCore.getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+    }
+
+    public static Chat getVaultChat(){
+        return chat;
     }
 
 

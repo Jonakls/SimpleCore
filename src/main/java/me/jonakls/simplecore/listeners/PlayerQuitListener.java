@@ -23,6 +23,6 @@ public class PlayerQuitListener implements Listener {
             quitEvent.setQuitMessage(null);
             return;
         }
-        quitEvent.setQuitMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.quit-player.message".replace("%player%", p.getName()))));
+        quitEvent.setQuitMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.quit-player.message").replace("%player%", p.getName())));
     }
 }

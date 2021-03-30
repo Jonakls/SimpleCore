@@ -41,14 +41,12 @@ public class BroadcastCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
-
         int i = 0;
         while (i < args.length) {
             stringBuilder.append(' ').append(args[i]);
             ++i;
         }
-        String message = stringBuilder.toString();
-        Bukkit.broadcastMessage(ColorApply.apply("broadcast.prefix"+message));
+        Bukkit.broadcastMessage(ColorApply.apply(service.getFiles().getLang().getString("broadcast.prefix")+stringBuilder.toString()));
 
         Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(),
                 Sound.valueOf(service.getFiles().getConfig().getString("sounds.broadcast-sound.sound")),

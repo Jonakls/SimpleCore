@@ -29,9 +29,6 @@ commands:
   vanish:
     description: Enable or disable incognit mode of player
     aliases: [ v, vanish ]
-  menu:
-    description: Menu of options
-    aliases: [ server ]
   fake:
     description: Send false messages of join, leave or custom
     aliases: [ fk, false ]
@@ -42,5 +39,8 @@ commands:
     description: Command for stop the server with reason
     aliases: [ stp, reload, rl]
   message:
-    description: Command for stop the server with reason
+    description: Send a private messages to players.
     aliases: [ msg, me, tell ]
+  lag:
+    description: Observe the performance of your server.
+    aliases: [gc]

@@ -40,6 +40,7 @@ public class Service {
         simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
         simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
         simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand(this));
+        simpleCore.getCommand("lag").setExecutor(new LagCommand(this));
 
     }
 

@@ -39,7 +39,10 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
-        if (args[0].equalsIgnoreCase("creative") || args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("c")){
+        if (args[0].equalsIgnoreCase("creative")
+                || args[0].equalsIgnoreCase("1")
+                || args[0].equalsIgnoreCase("c")){
+
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.CREATIVE);
                 p.sendMessage(service.getFiles().getLang().getString("gamemode.change").replace("%type%",
@@ -59,7 +62,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                     .replace("%target%", target.getName()));
 
             target.sendMessage(service.getFiles().getLang().getString("gamemode.target-change")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.creative")).replace("%player%", p.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.creative"))
+                    .replace("%player%", p.getName()));
             target.setGameMode(GameMode.CREATIVE);
             return true;
         }
@@ -68,11 +72,15 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
-        if (args[0].equalsIgnoreCase("survival") || args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("s")){
+        if (args[0].equalsIgnoreCase("survival")
+                || args[0].equalsIgnoreCase("0")
+                || args[0].equalsIgnoreCase("s")){
+
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.SURVIVAL);
                 p.sendMessage(service.getFiles().getLang().getString("gamemode.change")
-                        .replace("%type%", service.getFiles().getLang().getString("gamemode.type.survival")));
+                        .replace("%type%",
+                                service.getFiles().getLang().getString("gamemode.type.survival")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
@@ -83,10 +91,12 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                 return true;
             }
             p.sendMessage(service.getFiles().getLang().getString("gamemode.change-other")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.survival")).replace("%target%", target.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.survival"))
+                    .replace("%target%", target.getName()));
 
             target.sendMessage(service.getFiles().getLang().getString("gamemode.target-change")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.survival")).replace("%player%", p.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.survival"))
+                    .replace("%player%", p.getName()));
             target.setGameMode(GameMode.SURVIVAL);
             return true;
         }
@@ -95,24 +105,31 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
             return true;
         }
-        if (args[0].equalsIgnoreCase("adventure") || args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("a")){
+        if (args[0].equalsIgnoreCase("adventure")
+                || args[0].equalsIgnoreCase("2")
+                || args[0].equalsIgnoreCase("a")){
+
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.ADVENTURE);
                 p.sendMessage(service.getFiles().getLang().getString("gamemode.change")
-                        .replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure")));
+                        .replace("%type%",
+                                service.getFiles().getLang().getString("gamemode.type.adventure")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
                 p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")).replace("%player%", args[1]));
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))
+                        .replace("%player%", args[1]));
                 return true;
             }
             p.sendMessage(service.getFiles().getLang().getString("gamemode.change-other")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure")).replace("%target%", target.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure"))
+                    .replace("%target%", target.getName()));
 
             target.sendMessage(service.getFiles().getLang().getString("gamemode.target-change")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure")).replace("%player%", p.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.adventure"))
+                    .replace("%player%", p.getName()));
             target.setGameMode(GameMode.ADVENTURE);
             return true;
         }
@@ -121,24 +138,31 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
-        if (args[0].equalsIgnoreCase("spectator") || args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("sp")){
+        if (args[0].equalsIgnoreCase("spectator")
+                || args[0].equalsIgnoreCase("3")
+                || args[0].equalsIgnoreCase("sp")){
+
             if(!(args.length > 1)){
                 p.setGameMode(GameMode.SPECTATOR);
                 p.sendMessage(service.getFiles().getLang().getString("gamemode.change")
-                        .replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator")));
+                        .replace("%type%",
+                                service.getFiles().getLang().getString("gamemode.type.spectator")));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
                 p.sendMessage(service.getFiles().getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")).replace("%player%", args[1]));
+                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))
+                        .replace("%player%", args[1]));
                 return true;
             }
             p.sendMessage(service.getFiles().getLang().getString("gamemode.change-other")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator")).replace("%target%", target.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator"))
+                    .replace("%target%", target.getName()));
 
             target.sendMessage(service.getFiles().getLang().getString("gamemode.target-change")
-                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator")).replace("%player%", p.getName()));
+                    .replace("%type%", service.getFiles().getLang().getString("gamemode.type.spectator"))
+                    .replace("%player%", p.getName()));
             target.setGameMode(GameMode.SPECTATOR);
             return true;
         }

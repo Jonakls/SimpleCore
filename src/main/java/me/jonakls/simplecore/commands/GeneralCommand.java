@@ -8,8 +8,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.List;
-
 public class GeneralCommand implements CommandExecutor {
 
     private final Service service;
@@ -21,10 +19,6 @@ public class GeneralCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        List<String> helpConsole = service.getFiles().getLang().getStringList("messages.console.help");
-        List<String> helpPlayer = service.getFiles().getLang().getStringList("messages.player.help");
-
-
         if(!(sender instanceof Player)){
             if (!(args.length > 0)){
                 sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
@@ -33,7 +27,7 @@ public class GeneralCommand implements CommandExecutor {
             }
             switch (args[0]) {
                 case "help":
-                    for (String help : helpConsole) {
+                    for (String help : service.getFiles().getLang().getStringList("messages.console.help")) {
                         sender.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
                     }
                     return true;
@@ -42,12 +36,14 @@ public class GeneralCommand implements CommandExecutor {
                     service.getFiles().getConfig().reload();
                     return true;
                 case "about":
-                    sender.sendMessage("You run "+ service.getSimpleCore().namePlugin+" in a version: "+ service.getSimpleCore().versionPlugin);
+                    sender.sendMessage("You run "+ service.getSimpleCore().namePlugin+
+                            " in a version: "+ service.getSimpleCore().versionPlugin);
                     sender.sendMessage("made by: "+ service.getSimpleCore().authorPlugin);
                     return true;
                 default:
-                    sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command"
-                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                    sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
+                            .replace("%prefix%"
+                                    ,service.getFiles().getLang().getString("messages.prefix")));
                     return true;
             }
         }
@@ -64,21 +60,27 @@ public class GeneralCommand implements CommandExecutor {
         }
         switch (args[0]) {
             case "help":
-                for (String help : helpPlayer) {
+                for (String help : service.getFiles().getLang().getStringList("messages.player.help")) {
                     p.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
+                }
+                return true;
+            case "commands":
+                for (String commands : service.getFiles().getLang().getStringList("messages.commands")) {
+                    p.sendMessage(commands.replace("%version%", service.getSimpleCore().versionPlugin));
                 }
                 return true;
             case "reload":
                 service.getFiles().getLang().reload();
                 service.getFiles().getConfig().reload();
-                p.sendMessage(ColorApply.apply("Config has been reloaded!"));
-                Bukkit.getConsoleSender().sendMessage(ColorApply.apply("Config has been reloaded by: "+p.getName()));
+                p.sendMessage(ColorApply.apply("&8[&bSimpleCore&8] &aConfig has been reloaded!"));
+
+                Bukkit.getConsoleSender().sendMessage(ColorApply.apply(
+                        "&8[&bSimpleCore&8] Config has been reloaded by: "+p.getName()));
                 return true;
             case "about":
-                p.sendMessage(ColorApply.apply("&7You run &b"+ service.getSimpleCore().namePlugin+" &7in a version: &f"+ service.getSimpleCore().versionPlugin));
-
-
-                p.sendMessage(ColorApply.apply("&7Made by: &a"+ service.getSimpleCore().authorPlugin));
+                p.sendMessage(ColorApply.apply("&aYou run &b"+ service.getSimpleCore().namePlugin+
+                        " &ain a version: &f"+ service.getSimpleCore().versionPlugin));
+                p.sendMessage(ColorApply.apply("&aMade by: &b"+ service.getSimpleCore().authorPlugin));
                 return true;
             default:
                 p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")

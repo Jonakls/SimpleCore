@@ -3,10 +3,9 @@
 # Version: 0.1
 #
 messages:
-  prefix: '&8[&cSimpleCore&8]'
+  prefix: '&8[&bSimpleCore&8]'
   console:
     help:
-      - '----------------[ SimpleCore ]----------------'
       - 'Commands of plugin (SimpleCore) %version%'
       - ' '
       - 'Use: /simplecore help | View this list.'
@@ -14,14 +13,27 @@ messages:
       - 'Use: /simplecore about | View info of this plugin.'
   player:
     help:
-      - '&7&m----------------[&b SimpleCore &7&m]----------------'
-      - '&eCommands of plugin &b(SimpleCore) &f%version%'
+      - '&eCommands of plugin &b(SimpleCore) %version%'
       - ' '
       - '&7Use: &b/simplecore help &8| &7View this list.'
       - '&7Use: &b/simplecore reload &8| &7Reload all files of plugin.'
       - '&7Use: &b/simplecore about &8| &7View info of this plugin.'
+      - '&7Use: &b/simplecore commands &8| &7View other commands of this plugin.'
+  commands:
+    - '&eCommands of plugin &b(SimpleCore) %version%'
+    - ' '
+    - '&7Use: &b/simplecore help &8| &7View help list.'
+    - '&7Use: &b/gamemode &8| &7Gamemode generalized command option change.'
+    - '&7Use: &b/gma|gmc|gms|gmsp &8| &7Change gamemode to spectator mode, creative, survival or adventure.'
+    - '&7Use: &b/flymode &8| &7Enable or disable flight in game.'
+    - '&7Use: &b/vanish &8| &7Enable or disable incognit mode of player.'
+    - '&7Use: &b/fake &8| &7Send false messages of join, leave or custom.'
+    - '&7Use: &b/broadcast &8| &7Send global message.'
+    - '&7Use: &b/stop &8| &7Command for stop the server with reason.'
+    - '&7Use: &b/message &8| &7Send a private messages to players.'
+    - '&7Use: &b/lag &8| &7Observe the performance of your server.'
   error:
-    no-player: '%prefix% &cThe player &a(%player%) &cis not connected or does not exist.'
+    no-player: '%prefix% &cThe player &b(%player%) &cis not connected or does not exist.'
     unknown-command: '%prefix% &cUnknown command, please use /simplecore help'
     no-permissions: '%prefix% &cNo permissions.'
     no-yourself: '%prefix% &cYou cannot do this action with yourself.'
@@ -29,12 +41,12 @@ messages:
     flaying: '%prefix% &cYou already have your flight mode activated'
     no-flymode-gamemode: '&cYou can''t disable fly mode on this gamemode'
 usages:
-  general-gamemode: '%prefix% &7Please use: &e/gamemode <creative/survival/spectator/adventure> [player]'
-  vanish: '%prefix% &7Please use: &e/vanish <enable/disable> [player]'
-  fake-messages: '%prefix% &7Please use: &e/fake <message/join/leave> [player/message]'
-  broadcast-message: '%prefix% &7Please use: &e/broadcast <message>'
-  stop-message: '%prefix% &7Please use: &e/stop <reason>'
-  private-usages: '%prefix% &7Please use: &e/msg <player> <message>'
+  general-gamemode: '%prefix% &7Please use: &b/gamemode <creative/survival/spectator/adventure> [player]'
+  vanish: '%prefix% &7Please use: &b/vanish <enable/disable> [player]'
+  fake-messages: '%prefix% &7Please use: &b/fake <message/join/leave> [player/message]'
+  broadcast-message: '%prefix% &7Please use: &b/broadcast <message>'
+  stop-message: '%prefix% &7Please use: &b/stop <reason>'
+  private-usages: '%prefix% &7Please use: &b/msg <player> <message>'
 stop:
   message:
     - '%serverName%'
@@ -43,11 +55,13 @@ stop:
     - '&cClosed by: &b%player%'
     - '&r'
     - '&cReason: &a%reason%'
-  prefix: "&aYourServer"
+    - '&r'
+    - '&7More info in: &bYourDiscord'
+  prefix: '&bNoxus Team'
   console-name: '&cConsole'
   no-reason: '&aNo reason'
 broadcast:
-  prefix: '&8(&cNotices&8) &e'
+  prefix: '&8(&bNotices&8) &a'
 type:
   enable: '&aEnable'
   disable: '&cDisable'
@@ -64,9 +78,23 @@ vanish:
 #
 events:
   join-player:
-    message: '&8[&a+&8] &f%player% &7has been joined.'
+    message: '&8[&a+&8] &b%player% &7has been joined.'
   quit-player:
-    message: '&8[&c-&8] &f%player% &7just left the server.'
+    message: '&8[&c-&8] &b%player% &7just left the server.'
+lag-command:
+  message:
+    - '&r'
+    - '&e» &bMemory: &c%usedMemory%mb &7/ &a%totalMemory%mb'
+    - '&r'
+    - '&e» &bFree memory: &c%freeRam%mb'
+    - '&e» &bMax memory: &a%maxMemory%mb'
+    - '&r'
+    - '&e» &bTicks: &cAnimals: &a%ticksAnimals% &7| &cMonsters: &a%ticksMonsters%'
+    - '&r'
+    - '&r'
+    - '&e» &bWorld: &a%worldName% &7| &bType: &a%worldType%'
+    - '&e» &bBiome: &a%worldBiome% &7 &bPlayers: &a%worldPlayers%'
+    - '&r'
 gamemode:
   change: '&7Your game mode has been changed to %type%'
   change-other: '&7The game mode of &f%target% &7has been changed to %type%'

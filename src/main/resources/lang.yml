@@ -50,6 +50,13 @@ usages:
   private-usages: '%prefix% &7Please use: &b/msg <player> <message>'
   nick-usages: '%prefix% &7Please use: &b/nickname <off|displayname|player>'
   nick-other-usages: '%prefix% &7Please use: &b/nickname <player> <displayname>'
+  set-warp: '%prefix% &7Please use: &b/setwarp <namewarp>'
+warps:
+  warp-exist: '&7The warp &c%warp% &7already exist.'
+  no-exist: '&7The warp &c%warp% &7no exist.'
+  teleport-warp: '&7You teleported to warp: &c%warp%'
+  set-warp: '&7You have created a new warp with name: &c%warp%'
+  delete-warp: '&7The warp &c%warp% &7has been deleted.'
 nick-command:
   change: '&7Your display name has been changed to: %displayName%'
   no-change: '&cA player already has the display name with that value.'

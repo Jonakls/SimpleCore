@@ -10,6 +10,7 @@ public class FileManager {
     private FileCreator lang;
     private FileCreator config;
     private FileCreator data;
+    private FileCreator warps;
 
     public FileManager(SimpleCore plugin){
         this.plugin = plugin;
@@ -19,6 +20,8 @@ public class FileManager {
         lang = this.fileCreator("lang");
         config = this.fileCreator("config");
         data = this.fileCreator("data");
+        warps = this.fileCreator("warps");
+
 
     }
 
@@ -36,6 +39,10 @@ public class FileManager {
 
     public FileCreator getData(){
         return data;
+    }
+
+    public FileCreator getWarps(){
+        return warps;
     }
 
 }

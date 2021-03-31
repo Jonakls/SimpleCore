@@ -36,10 +36,14 @@ public class NicknameCommand implements CommandExecutor {
                     .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
             return true;
         }
-
         if (args[0].equalsIgnoreCase("off")){
 
-            p.setDisplayName(p.getName());
+            NicknameHandler newNick = new NicknameHandler(service);
+            newNick.unsetNickname(p);
+            if(!(newNick.getOption())){
+                p.sendMessage(service.getFiles().getLang().getString("nick-command.no-change"));
+                return true;
+            }
             p.sendMessage(service.getFiles().getLang().getString("nick-command.default"));
             return true;
         }

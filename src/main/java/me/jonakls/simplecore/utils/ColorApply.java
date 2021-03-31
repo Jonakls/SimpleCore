@@ -8,4 +8,8 @@ public class ColorApply {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
+    public static String withdraw(String string){
+        return ChatColor.stripColor(string);
+    }
+
 }

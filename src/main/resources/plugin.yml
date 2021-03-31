@@ -48,3 +48,9 @@ commands:
   nickname:
     description: Change you display name with custom colors.
     aliases: [nick]
+  setwarp:
+    description: Create a new warp ubication.
+  warp:
+    description: Go to a warp selected.
+  delwarp:
+    description: Delete the warp selected.

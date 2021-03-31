@@ -5,6 +5,9 @@ import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
 import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
+import me.jonakls.simplecore.commands.warps.DeleteWarpCommand;
+import me.jonakls.simplecore.commands.warps.SetWarpCommand;
+import me.jonakls.simplecore.commands.warps.WarpCommand;
 import me.jonakls.simplecore.listeners.ChatListener;
 import me.jonakls.simplecore.listeners.PlayerJoinListener;
 import me.jonakls.simplecore.listeners.PlayerQuitListener;
@@ -46,6 +49,9 @@ public class Service {
         simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand(this));
         simpleCore.getCommand("lag").setExecutor(new LagCommand(this));
         simpleCore.getCommand("nickname").setExecutor(new NicknameCommand(this));
+        simpleCore.getCommand("setwarp").setExecutor(new SetWarpCommand(this));
+        simpleCore.getCommand("warp").setExecutor(new WarpCommand(this));
+        simpleCore.getCommand("delwarp").setExecutor(new DeleteWarpCommand(this));
 
     }
 

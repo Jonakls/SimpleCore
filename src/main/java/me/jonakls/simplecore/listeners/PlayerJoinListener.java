@@ -23,11 +23,6 @@ public class PlayerJoinListener implements Listener {
         float pitch = (float) service.getFiles().getConfig().getDouble("sounds.join-sound.pitch");
 
         Player p = joinEvent.getPlayer();
-        if (service.getFiles().getData().contains("data." + p.getName())) {
-            p.setDisplayName(service.getFiles().getData().getString("data."+p.getName()+".nick-name"));
-            return;
-        }
-
         if (!(service.getFiles().getConfig().getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
             return;

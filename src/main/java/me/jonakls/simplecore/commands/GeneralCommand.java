@@ -35,6 +35,7 @@ public class GeneralCommand implements CommandExecutor {
                     service.getFiles().getLang().reload();
                     service.getFiles().getConfig().reload();
                     service.getFiles().getData().reload();
+                    service.getFiles().getWarps().reload();
                     return true;
                 case "about":
                     sender.sendMessage("You run "+ service.getSimpleCore().namePlugin+
@@ -74,6 +75,7 @@ public class GeneralCommand implements CommandExecutor {
                 service.getFiles().getLang().reload();
                 service.getFiles().getConfig().reload();
                 service.getFiles().getData().reload();
+                service.getFiles().getWarps().reload();
                 p.sendMessage(ColorApply.apply("&8[&bSimpleCore&8] &aConfig has been reloaded!"));
 
                 Bukkit.getConsoleSender().sendMessage(ColorApply.apply(

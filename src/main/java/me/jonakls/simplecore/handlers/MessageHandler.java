@@ -1,4 +1,4 @@
-package me.jonakls.simplecore.modules;
+package me.jonakls.simplecore.handlers;
 
 import me.jonakls.simplecore.Service;
 import net.md_5.bungee.api.chat.ClickEvent;
@@ -7,13 +7,13 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
-public class MessageModule {
+public class MessageHandler {
 
     final private Service service;
     private TextComponent senderMessage;
     private TextComponent targetMessage;
 
-    public MessageModule(Service service){
+    public MessageHandler(Service service){
         this.service = service;
     }
 

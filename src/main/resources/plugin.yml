@@ -45,3 +45,6 @@ commands:
   lag:
     description: Observe the performance of your server.
     aliases: [gc]
+  nickname:
+    description: Change you display name with custom colors.
+    aliases: [nick]

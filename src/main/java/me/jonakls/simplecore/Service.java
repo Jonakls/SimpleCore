@@ -45,6 +45,7 @@ public class Service {
         simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
         simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand(this));
         simpleCore.getCommand("lag").setExecutor(new LagCommand(this));
+        simpleCore.getCommand("nickname").setExecutor(new NicknameCommand(this));
 
     }
 

@@ -1,7 +1,7 @@
 package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.Service;
-import me.jonakls.simplecore.modules.MessageModule;
+import me.jonakls.simplecore.handlers.MessageHandler;
 import me.jonakls.simplecore.utils.ColorApply;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -64,7 +64,7 @@ public class PrivateMessagesCommand implements CommandExecutor {
         }
 
 
-        MessageModule module = new MessageModule(service);
+        MessageHandler module = new MessageHandler(service);
 
         module.setFormatSender(target, ColorApply.apply(stringBuilder.toString()));
         p.spigot().sendMessage(module.getFormatSender());

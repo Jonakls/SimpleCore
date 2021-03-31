@@ -32,6 +32,7 @@ messages:
     - '&7Use: &b/stop &8| &7Command for stop the server with reason.'
     - '&7Use: &b/message &8| &7Send a private messages to players.'
     - '&7Use: &b/lag &8| &7Observe the performance of your server.'
+    - '&7Use: &b/nickname &8| &7Change your display name.'
   error:
     no-player: '%prefix% &cThe player &b(%player%) &cis not connected or does not exist.'
     unknown-command: '%prefix% &cUnknown command, please use /simplecore help'
@@ -47,6 +48,14 @@ usages:
   broadcast-message: '%prefix% &7Please use: &b/broadcast <message>'
   stop-message: '%prefix% &7Please use: &b/stop <reason>'
   private-usages: '%prefix% &7Please use: &b/msg <player> <message>'
+  nick-usages: '%prefix% &7Please use: &b/nickname <off|displayname|player>'
+  nick-other-usages: '%prefix% &7Please use: &b/nickname <player> <displayname>'
+nick-command:
+  change: '&7Your display name has been changed to: %displayName%'
+  no-change: '&cA player already has the display name with that value.'
+  default: '&aYour display name was successfully restored.'
+  change-other: '&7You changed the display name to &b%target% &7for: %displayName%'
+  target-change: '&7Your display name has been changed by %player%. Display Name: %displayName%'
 stop:
   message:
     - '%serverName%'

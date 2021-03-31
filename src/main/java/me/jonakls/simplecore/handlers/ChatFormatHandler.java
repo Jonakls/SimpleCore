@@ -1,4 +1,4 @@
-package me.jonakls.simplecore.modules;
+package me.jonakls.simplecore.handlers;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.jonakls.simplecore.Service;
@@ -9,13 +9,13 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
-public class ChatFormatModule {
+public class ChatFormatHandler {
 
     final private Service service;
     private TextComponent chatFormat;
 
 
-    public ChatFormatModule(Service service){
+    public ChatFormatHandler(Service service){
         this.service = service;
     }
 

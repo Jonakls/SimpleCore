@@ -25,6 +25,8 @@ config:
       hover: '&eBasic hover to the format.'
       click-event: SUGGEST_COMMAND
       action: '/msg %player% '
+  teleports:
+    warp-time: 6
 #
 # Enable or disable option of
 # server list and edit messages.

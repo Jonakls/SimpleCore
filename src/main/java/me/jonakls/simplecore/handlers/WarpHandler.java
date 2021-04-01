@@ -4,12 +4,16 @@ import me.jonakls.simplecore.Service;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.ArrayList;
 
 public class WarpHandler {
 
     private final Service service;
     private boolean operation;
     private Location warpLocation;
+    private ArrayList<String> listWarps = new ArrayList<>();
 
     public WarpHandler(Service service){
         this.service = service;
@@ -67,6 +71,22 @@ public class WarpHandler {
 
         operation = true;
 
+    }
+
+    public void listWarps(){
+
+
+        ConfigurationSection configSection = service.getFiles().getWarps().getConfigurationSection("warps");
+
+        for (String key : configSection.getKeys(false)) {
+            listWarps.add(key);
+        }
+
+
+    }
+
+    public ArrayList<String> getListWarps(){
+        return listWarps;
     }
 
 

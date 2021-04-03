@@ -56,7 +56,15 @@ commands:
     description: Delete the warp selected.
   time:
     description: Change the time in a world.
+  day:
+    description: Change to day un a world.
+  night:
+    description: Change to night in a world.
+  midnight:
+    description: Change to midnight in a world.
   sun:
-    description: Change weather cycle
-  invsee:
-    description: test xd
+    description: Change weather cycle to sun
+  rain:
+    description: Change weather cycle to rain
+  thunder:
+    description: Change weather cycle to thunder

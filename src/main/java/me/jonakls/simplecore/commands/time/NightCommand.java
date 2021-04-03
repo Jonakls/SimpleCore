@@ -35,7 +35,7 @@ public class NightCommand implements CommandExecutor {
             return true;
         }
 
-        p.getWorld().setTime(19000);
+        p.getWorld().setTime(13000);
         p.sendMessage(service.getFiles().getLang().getString("time.time-set")
                 .replace("%world%", p.getWorld().getName())
                 .replace("%time%","" + p.getWorld().getTime()));

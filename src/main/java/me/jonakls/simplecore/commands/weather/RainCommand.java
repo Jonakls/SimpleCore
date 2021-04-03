@@ -29,7 +29,7 @@ public class RainCommand implements CommandExecutor {
             return true;
         }
 
-        p.getWorld().setWeatherDuration(3);
+        p.getWorld().setWeatherDuration(9999);
         p.sendMessage(service.getFiles().getLang().getString("weather.weather-set")
                 .replace("%world%", p.getWorld().getName())
                 .replace("%weather%","" + p.getWorld().getWeatherDuration()));

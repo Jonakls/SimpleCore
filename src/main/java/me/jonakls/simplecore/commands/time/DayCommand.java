@@ -35,7 +35,7 @@ public class DayCommand implements CommandExecutor {
             return true;
         }
 
-        p.getWorld().setTime(600);
+        p.getWorld().setTime(0);
         p.sendMessage(service.getFiles().getLang().getString("time.time-set")
                 .replace("%world%", p.getWorld().getName())
                 .replace("%time%","" + p.getWorld().getTime()));

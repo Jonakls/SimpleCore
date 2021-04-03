@@ -54,3 +54,9 @@ commands:
     description: Go to a warp selected.
   delwarp:
     description: Delete the warp selected.
+  time:
+    description: Change the time in a world.
+  sun:
+    description: Change weather cycle
+  invsee:
+    description: test xd

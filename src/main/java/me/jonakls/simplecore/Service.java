@@ -5,9 +5,15 @@ import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
 import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
+import me.jonakls.simplecore.commands.time.DayCommand;
+import me.jonakls.simplecore.commands.time.MidnightCommand;
+import me.jonakls.simplecore.commands.time.NightCommand;
 import me.jonakls.simplecore.commands.warps.DeleteWarpCommand;
 import me.jonakls.simplecore.commands.warps.SetWarpCommand;
 import me.jonakls.simplecore.commands.warps.WarpCommand;
+import me.jonakls.simplecore.commands.weather.RainCommand;
+import me.jonakls.simplecore.commands.weather.SunCommand;
+import me.jonakls.simplecore.commands.weather.ThunderCommand;
 import me.jonakls.simplecore.listeners.ChatListener;
 import me.jonakls.simplecore.listeners.PlayerJoinListener;
 import me.jonakls.simplecore.listeners.PlayerQuitListener;
@@ -42,7 +48,7 @@ public class Service {
         simpleCore.getCommand("gmc").setExecutor(new CreativeCommand(this));
         simpleCore.getCommand("gma").setExecutor(new AdventureCommand(this));
         simpleCore.getCommand("flymode").setExecutor(new FlyCommand(this));
-        simpleCore.getCommand("vanish").setExecutor(new VanishMode(this));
+        simpleCore.getCommand("vanish").setExecutor(new VanishCommand(this));
         simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
         simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
         simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
@@ -52,6 +58,13 @@ public class Service {
         simpleCore.getCommand("setwarp").setExecutor(new SetWarpCommand(this));
         simpleCore.getCommand("warp").setExecutor(new WarpCommand(this));
         simpleCore.getCommand("delwarp").setExecutor(new DeleteWarpCommand(this));
+        simpleCore.getCommand("time").setExecutor(new TimeCommand(this));
+        simpleCore.getCommand("sun").setExecutor(new SunCommand(this));
+        simpleCore.getCommand("rain").setExecutor(new RainCommand(this));
+        simpleCore.getCommand("thunder").setExecutor(new ThunderCommand(this));
+        simpleCore.getCommand("day").setExecutor(new DayCommand(this));
+        simpleCore.getCommand("night").setExecutor(new NightCommand(this));
+        simpleCore.getCommand("midnight").setExecutor(new MidnightCommand(this));
 
     }
 
@@ -61,6 +74,7 @@ public class Service {
 
         fileManager = new FileManager(simpleCore);
         fileManager.setupFiles();
+
     }
 
     public void setupDependencies(){

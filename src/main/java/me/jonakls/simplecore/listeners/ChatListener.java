@@ -24,7 +24,13 @@ public class ChatListener implements Listener {
         chatEvent.setCancelled(true);
 
         ChatFormatHandler chatFormat = new ChatFormatHandler(service);
-        chatFormat.setChatFormat(chatEvent.getPlayer(), message);
+
+
+        chatFormat.setChatFormat(chatEvent.getPlayer(), message,
+                Service.getVaultChat().getPlayerGroups(chatEvent.getPlayer())
+                        [Service.getVaultChat().getPlayerGroups(chatEvent.getPlayer()).length - 1].toLowerCase());
+
+
 
         chatEvent.getRecipients().forEach(allPlayers -> allPlayers.spigot().sendMessage(chatFormat.getChatFormat()));
 

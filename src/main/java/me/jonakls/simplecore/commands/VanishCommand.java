@@ -7,14 +7,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class VanishMode implements CommandExecutor {
+public class VanishCommand implements CommandExecutor {
 
     private final Service service;
 
-    public VanishMode(Service service){
+    public VanishCommand(Service service){
         this.service = service;
     }
-
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

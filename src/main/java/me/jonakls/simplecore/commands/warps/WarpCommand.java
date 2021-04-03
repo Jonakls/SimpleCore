@@ -70,21 +70,26 @@ public class WarpCommand implements CommandExecutor {
             return true;
         }
 
-        CountdownTimer timer = new CountdownTimer(
-                service.getSimpleCore(),
-                service.getFiles().getConfig().getInt("config.teleports.warp-time"),
-                () -> service.getFiles().getLang().getString("warps.pre-teleport"),
-                () -> {
-                    p.teleport(warp.getWarpLocation());
-                    p.sendMessage(service.getFiles().getLang().getString("warps.teleport-warp")
-                            .replace("%warp%", args[0].toLowerCase()));
+        if (!(p.hasPermission("simplecore.command.warp.bypass-time"))){
+            CountdownTimer timer = new CountdownTimer(
+                    service.getSimpleCore(),
+                    service.getFiles().getConfig().getInt("config.teleports.warp-time"),
+                    () -> service.getFiles().getLang().getString("warps.pre-teleport"),
+                    () -> {
+                        p.teleport(warp.getWarpLocation());
+                        p.sendMessage(service.getFiles().getLang().getString("warps.teleport-warp")
+                                .replace("%warp%", args[0].toLowerCase()));
                     },
-                (t) -> p.sendMessage(service.getFiles().getLang().getString("warps.time-teleport")
-                        .replace("%warp%", args[0].toLowerCase())
-                        .replace("%seconds%", ""+t.getSecondsLeft()))
-                );
-        timer.scheduleTimer();
-
+                    (t) -> p.sendMessage(service.getFiles().getLang().getString("warps.time-teleport")
+                            .replace("%warp%", args[0].toLowerCase())
+                            .replace("%seconds%", ""+t.getSecondsLeft()))
+            );
+            timer.scheduleTimer();
+            return true;
+        }
+        p.teleport(warp.getWarpLocation());
+        p.sendMessage(service.getFiles().getLang().getString("warps.teleport-warp")
+                .replace("%warp%", args[0].toLowerCase()));
         return true;
     }
 }

@@ -30,10 +30,6 @@ public class FileCreator extends YamlConfiguration {
         this(plugin, fileName, fileExtension, plugin.getDataFolder());
     }
 
-    public FileCreator(Plugin plugin, String fileName, String fileExtension, String filePath) {
-        this(plugin, fileName, fileExtension, new File(plugin.getDataFolder().getAbsolutePath() + "/" + filePath));
-    }
-
     public void createFile(){
         try {
             if (!file.exists()) {
@@ -57,6 +53,7 @@ public class FileCreator extends YamlConfiguration {
         try {
             load(file);
         } catch (IOException | InvalidConfigurationException e) {
+            System.out.println("[SimpleCore] Error to reload config.");
             e.printStackTrace();
         }
     }

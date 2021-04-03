@@ -17,6 +17,7 @@ public class ServerListListener implements Listener {
     public void customServerList(ServerListPingEvent serverListPingEvent){
 
         if (service.getFiles().getConfig().getBoolean("server-list.enable")){
+
             serverListPingEvent.setMotd(service.getFiles().getConfig().getString("server-list.line1")
                     +"\n"+
                     service.getFiles().getConfig().getString("server-list.line2"));

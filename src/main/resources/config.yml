@@ -15,16 +15,38 @@ config:
   #
   chat-format:
     enable: true
-    # Enable or disable return display name with prefix of permissions plugins or directly vault plugin.
-    displayname-with-prefix: true
-    # Enable or disable return player name with prefix of permissions plugins or directly vault plugin.
-    playername-with-prefix: true
-    format:
-      # You can use placeholders of the PlaceholderAPI plugin.
-      chat-message: '%displayName% &b» &f'
-      hover: '&eBasic hover to the format.'
-      click-event: SUGGEST_COMMAND
-      action: '/msg %player% '
+    default:
+      format:
+        # You can use placeholders of the PlaceholderAPI plugin.
+        chat-message: '%displayName% &b» &f'
+        hover:
+          - '&7This is a format default, please'
+          - '&7don''t delete format.'
+          - '&r'
+          - '&eClick to send private message'
+        click-event: SUGGEST_COMMAND
+        action: '/msg %player% '
+    groups:
+      owner:
+        format:
+          # You can use placeholders of the PlaceholderAPI plugin.
+          chat-message: '%displayName% &b» &c'
+          hover:
+            - '&bFormat to owner users.'
+            - '&r'
+            - '&eClick to send private message'
+          click-event: SUGGEST_COMMAND
+          action: '/msg %player% '
+      vip:
+        format:
+          # You can use placeholders of the PlaceholderAPI plugin.
+          chat-message: '%displayName% &b» &e'
+          hover:
+            - '&eYou''re the donator of this server'
+            - '&r'
+            - '&eClick to send private message'
+          click-event: SUGGEST_COMMAND
+          action: '/msg %player% '
   teleports:
     warp-time: 6
 #

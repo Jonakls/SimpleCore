@@ -1,8 +1,6 @@
 package me.jonakls.simplecore;
 
-import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,8 +14,7 @@ public final class SimpleCore extends JavaPlugin {
     public String namePlugin = pluginFile.getName();
     public List<String> authorPlugin = pluginFile.getAuthors();
     public String versionPlugin = pluginFile.getVersion();
-
-    ConsoleCommandSender console = Bukkit.getConsoleSender();
+    private final Service service = new Service(this);
 
     @Override
     public void onEnable() {
@@ -25,25 +22,25 @@ public final class SimpleCore extends JavaPlugin {
         if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
             || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
 
-            Bukkit.getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
+            getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
 
-            Service service = new Service(this);
             service.setupFiles();
             service.setupCommands();
             service.setupEvents();
             service.setupDependencies();
 
-            console.sendMessage("[SimpleCore] Load all files, events and commands!");
+            getLogger().info("[SimpleCore] Load all files, events and commands!");
             return;
         }
-        Bukkit.getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
+        getLogger().warning(
+                "[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
         Bukkit.getPluginManager().disablePlugin(this);
 
     }
 
     @Override
     public void onDisable() {
-        console.sendMessage("[SimpleCore] Disable all options, good bay ;)");
+        getLogger().info("[SimpleCore] Disable all options, good bay ;)");
 
     }
 

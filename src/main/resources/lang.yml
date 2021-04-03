@@ -51,6 +51,12 @@ usages:
   nick-usages: '%prefix% &7Please use: &b/nickname <off|displayname|player>'
   nick-other-usages: '%prefix% &7Please use: &b/nickname <player> <displayname>'
   set-warp: '%prefix% &7Please use: &b/setwarp <namewarp>'
+  invsee-usage: ''
+  time-usage: '%prefix% &7Please use: &b/time <day/night>'
+time:
+  time-set: '&7The time in a world &b%world% &7has been set in &6%time%'
+weather:
+  weather-set: '&7The weather in a world &b%world% &7has been set in &6%weather%'
 warps:
   warp-exist: '&7The warp &b%warp% &7already exist.'
   no-exist: '&7The warp &b%warp% &7no exist.'
@@ -79,6 +85,7 @@ stop:
   prefix: '&bNoxus Team'
   console-name: '&cConsole'
   no-reason: '&aNo reason'
+  pre-message: '%prefix% &7Server has been closed in a &b%seconds% &7seconds...'
 broadcast:
   prefix: '&8(&bNotices&8) &a'
 type:

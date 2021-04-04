@@ -4,6 +4,7 @@ This is a simple plugin that contains simple functions that will allow you to us
 
 Dependencies:
 * [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
+* [Vault](https://www.spigotmc.org/resources/vault.34315/)
 
 # Features:
 * Custom join and quit message.

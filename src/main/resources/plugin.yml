@@ -68,3 +68,9 @@ commands:
     description: Change weather cycle to rain
   thunder:
     description: Change weather cycle to thunder
+  spawn:
+    description: Go to spawn of server.
+  setspawn:
+    description: Define the spawn.
+  delspawn:
+    description: Delete current spawn.

@@ -5,6 +5,9 @@ import me.jonakls.simplecore.commands.gamemodes.AdventureCommand;
 import me.jonakls.simplecore.commands.gamemodes.CreativeCommand;
 import me.jonakls.simplecore.commands.gamemodes.SpectatorCommand;
 import me.jonakls.simplecore.commands.gamemodes.SurvivalCommand;
+import me.jonakls.simplecore.commands.spawn.DelSpawn;
+import me.jonakls.simplecore.commands.spawn.SetSpawnCommand;
+import me.jonakls.simplecore.commands.spawn.SpawnCommand;
 import me.jonakls.simplecore.commands.time.DayCommand;
 import me.jonakls.simplecore.commands.time.MidnightCommand;
 import me.jonakls.simplecore.commands.time.NightCommand;
@@ -65,6 +68,9 @@ public class Service {
         simpleCore.getCommand("day").setExecutor(new DayCommand(this));
         simpleCore.getCommand("night").setExecutor(new NightCommand(this));
         simpleCore.getCommand("midnight").setExecutor(new MidnightCommand(this));
+        simpleCore.getCommand("spawn").setExecutor(new SpawnCommand(this));
+        simpleCore.getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
+        simpleCore.getCommand("delspawn").setExecutor(new DelSpawn(this));
 
     }
 

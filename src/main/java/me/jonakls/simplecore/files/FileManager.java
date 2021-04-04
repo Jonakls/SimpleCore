@@ -11,6 +11,7 @@ public class FileManager {
     private FileCreator config;
     private FileCreator data;
     private FileCreator warps;
+    private FileCreator spawn;
 
     public FileManager(SimpleCore plugin){
         this.plugin = plugin;
@@ -21,7 +22,7 @@ public class FileManager {
         config = this.fileCreator("config");
         data = this.fileCreator("data");
         warps = this.fileCreator("warps");
-
+        spawn = this.fileCreator("spawn");
 
     }
 
@@ -43,6 +44,10 @@ public class FileManager {
 
     public FileCreator getWarps(){
         return warps;
+    }
+
+    public FileCreator getSpawn(){
+        return spawn;
     }
 
 }

@@ -2,6 +2,8 @@ package me.jonakls.simplecore.listeners;
 
 import me.jonakls.simplecore.Service;
 import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,9 +21,6 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent joinEvent){
 
-        float vol = (float) service.getFiles().getConfig().getDouble("sounds.join-sound.vol");
-        float pitch = (float) service.getFiles().getConfig().getDouble("sounds.join-sound.pitch");
-
         Player p = joinEvent.getPlayer();
         if (!(service.getFiles().getConfig().getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
@@ -32,8 +31,8 @@ public class PlayerJoinListener implements Listener {
         if (service.getFiles().getConfig().getBoolean("sounds.join-sound.enable")){
            p.playSound(p.getLocation(),
                    Sound.valueOf(service.getFiles().getConfig().getString("sounds.join-sound.sound")),
-                   vol,
-                   pitch);
+                   (float) service.getFiles().getConfig().getDouble("sounds.join-sound.vol"),
+                   (float) service.getFiles().getConfig().getDouble("sounds.join-sound.pitch"));
         }
     }
 
@@ -42,6 +41,25 @@ public class PlayerJoinListener implements Listener {
         Player p = joinEvent.getPlayer();
         if (service.getFiles().getData().contains("data." + p.getName())) {
             p.setDisplayName(service.getFiles().getData().getString("data."+p.getName()+".nick-name"));
+        }
+    }
+
+    @EventHandler
+    public void goSpawn(PlayerJoinEvent joinEvent){
+        Player p = joinEvent.getPlayer();
+        Location loc = new Location(
+                Bukkit.getWorld(service.getFiles().getSpawn().getString("spawn.world")),
+                service.getFiles().getSpawn().getDouble("spawn.x"),
+                service.getFiles().getSpawn().getDouble("spawn.y"),
+                service.getFiles().getSpawn().getDouble("spawn.z"),
+                (float) service.getFiles().getSpawn().getDouble("spawn.yaw"),
+                (float) service.getFiles().getSpawn().getDouble("spawn.pitch")
+        );
+        if (service.getFiles().getConfig().getBoolean("config.teleports.spawn.teleport-on-join")){
+            if (service.getFiles().getSpawn().contains("spawn.world")){
+                p.teleport(loc);
+            }
+            p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-no-exist"));
         }
     }
 }

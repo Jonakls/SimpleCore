@@ -57,6 +57,14 @@ time:
   time-set: '&7The time in a world &b%world% &7has been set in &6%time%'
 weather:
   weather-set: '&7The weather in a world &b%world% &7has been set in &6%weather%'
+spawn:
+  spawn-set: '&7The spawn has been set in: &b%world%&7: &a%x%&7: &a%y%&7: &a%z%&7: &6%yaw%&7: &6%pitch%'
+  spawn-exist: '&7The spawn always exist, please delete spawn with &c/delspawn'
+  time-teleport: '&7You will be sent to spawn &7in: &b%seconds% &7seconds...'
+  teleport-spawn: '&7You has been teleported to spawn.'
+  pre-teleport: '&aYou wil be sent, please wait...'
+  spawn-no-exist: '&cThe spawn don''t has been set.'
+  spawn-delete: '&7The spawn has been deleted.'
 warps:
   warp-exist: '&7The warp &b%warp% &7already exist.'
   no-exist: '&7The warp &b%warp% &7no exist.'

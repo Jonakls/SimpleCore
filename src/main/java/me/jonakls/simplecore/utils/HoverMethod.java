@@ -1,4 +1,4 @@
-package me.jonakls.simplecore.handlers;
+package me.jonakls.simplecore.utils;
 
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -7,7 +7,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 
 import java.util.List;
 
-public class HoverHandler {
+public class HoverMethod {
 
     private TextComponent hoverFormat;
 

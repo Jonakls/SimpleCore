@@ -48,6 +48,9 @@ config:
           click-event: SUGGEST_COMMAND
           action: '/msg %player% '
   teleports:
+    spawn:
+      teleport-on-join: true
+      spawn-time: 8
     warp-time: 6
 #
 # Enable or disable option of

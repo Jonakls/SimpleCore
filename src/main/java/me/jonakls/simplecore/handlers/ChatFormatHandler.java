@@ -3,6 +3,7 @@ package me.jonakls.simplecore.handlers;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.jonakls.simplecore.Service;
 import me.jonakls.simplecore.utils.ColorApply;
+import me.jonakls.simplecore.utils.HoverMethod;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
@@ -23,7 +24,7 @@ public class ChatFormatHandler {
 
             if (group.equals(string.toLowerCase())){
 
-                HoverHandler hover = new HoverHandler();
+                HoverMethod hover = new HoverMethod();
 
                 hover.setHoverList(PlaceholderAPI.setPlaceholders(
                         player,service.getFiles().getConfig().getString
@@ -47,7 +48,7 @@ public class ChatFormatHandler {
                 return;
             }
 
-            HoverHandler hover = new HoverHandler();
+            HoverMethod hover = new HoverMethod();
 
             hover.setHoverList(PlaceholderAPI.setPlaceholders(
                     player,service.getFiles().getConfig().getString

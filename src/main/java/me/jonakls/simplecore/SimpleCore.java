@@ -22,14 +22,14 @@ public final class SimpleCore extends JavaPlugin {
         if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
             || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
 
-            getLogger().info("[SimpleCore] The required dependencies were detected correctly, starting normally.");
+            getLogger().info("The required dependencies were detected correctly, starting normally.");
 
             service.setupFiles();
             service.setupCommands();
             service.setupEvents();
             service.setupDependencies();
 
-            getLogger().info("[SimpleCore] Load all files, events and commands!");
+            getLogger().info(" Load all files, events and commands!");
             return;
         }
         getLogger().warning(
@@ -40,7 +40,7 @@ public final class SimpleCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        getLogger().info("[SimpleCore] Disable all options, good bay ;)");
+        getLogger().info("Disable all options, good bay ;)");
 
     }
 

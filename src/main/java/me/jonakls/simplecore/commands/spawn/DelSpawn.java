@@ -31,7 +31,7 @@ public class DelSpawn implements CommandExecutor {
 
         if (!(service.getFiles().getSpawn().contains("spawn.world"))){
 
-            service.getFiles().getSpawn().set("spawn", null);
+            service.getFiles().getSpawn().set("spawn.", null);
             service.getFiles().getSpawn().save();
 
             p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-delete"));

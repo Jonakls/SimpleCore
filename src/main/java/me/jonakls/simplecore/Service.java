@@ -23,8 +23,6 @@ import me.jonakls.simplecore.listeners.PlayerQuitListener;
 import me.jonakls.simplecore.listeners.ServerListListener;
 import me.jonakls.simplecore.files.FileManager;
 import net.milkbowl.vault.chat.Chat;
-import org.bukkit.Bukkit;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
@@ -38,11 +36,9 @@ public class Service {
         this.simpleCore = simpleCore;
     }
 
-    ConsoleCommandSender console = Bukkit.getConsoleSender();
-
     public void setupCommands(){
 
-        console.sendMessage("[SimpleCore] Installing commands and executors...");
+        simpleCore.getLogger().info("Installing commands and executors...");
 
         simpleCore.getCommand("simplecore").setExecutor(new GeneralCommand(this));
         simpleCore.getCommand("gamemode").setExecutor(new GeneralGamemodeCommand(this));
@@ -76,7 +72,7 @@ public class Service {
 
     public void setupFiles(){
 
-        console.sendMessage("[SimpleCore] Installing files of configuration...");
+        simpleCore.getLogger().info("Installing files of configuration...");
 
         fileManager = new FileManager(simpleCore);
         fileManager.setupFiles();
@@ -89,7 +85,7 @@ public class Service {
 
     public void setupEvents(){
 
-        console.sendMessage("[SimpleCore] Installing events and executors...");
+        simpleCore.getLogger().info("Installing events and executors...");
 
         PluginManager pm = simpleCore.getServer().getPluginManager();
         pm.registerEvents(new PlayerJoinListener(this), simpleCore);
@@ -100,6 +96,10 @@ public class Service {
 
     private void setupVaultChat() {
         RegisteredServiceProvider<Chat> rsp = simpleCore.getServer().getServicesManager().getRegistration(Chat.class);
+        if (rsp == null){
+            simpleCore.getLogger().warning("You need a permission manager or permission plugin.");
+            return;
+        }
         chat = rsp.getProvider();
     }
 

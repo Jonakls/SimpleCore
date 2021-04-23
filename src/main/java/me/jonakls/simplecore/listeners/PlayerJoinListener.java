@@ -47,16 +47,16 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void goSpawn(PlayerJoinEvent joinEvent){
         Player p = joinEvent.getPlayer();
-        Location loc = new Location(
-                Bukkit.getWorld(service.getFiles().getSpawn().getString("spawn.world")),
-                service.getFiles().getSpawn().getDouble("spawn.x"),
-                service.getFiles().getSpawn().getDouble("spawn.y"),
-                service.getFiles().getSpawn().getDouble("spawn.z"),
-                (float) service.getFiles().getSpawn().getDouble("spawn.yaw"),
-                (float) service.getFiles().getSpawn().getDouble("spawn.pitch")
-        );
         if (service.getFiles().getConfig().getBoolean("config.teleports.spawn.teleport-on-join")){
             if (service.getFiles().getSpawn().contains("spawn.world")){
+                Location loc = new Location(
+                        Bukkit.getWorld(service.getFiles().getSpawn().getString("spawn.world")),
+                        service.getFiles().getSpawn().getDouble("spawn.x"),
+                        service.getFiles().getSpawn().getDouble("spawn.y"),
+                        service.getFiles().getSpawn().getDouble("spawn.z"),
+                        (float) service.getFiles().getSpawn().getDouble("spawn.yaw"),
+                        (float) service.getFiles().getSpawn().getDouble("spawn.pitch")
+                );
                 p.teleport(loc);
             }
             p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-no-exist"));

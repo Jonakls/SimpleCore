@@ -1,19 +1,10 @@
 package me.jonakls.simplecore;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.List;
 
 public final class SimpleCore extends JavaPlugin {
 
-
-    PluginDescriptionFile pluginFile = getDescription();
-
-    public String namePlugin = pluginFile.getName();
-    public List<String> authorPlugin = pluginFile.getAuthors();
-    public String versionPlugin = pluginFile.getVersion();
     private final Service service = new Service(this);
 
     @Override

@@ -28,7 +28,7 @@ public class GeneralCommand implements CommandExecutor {
             switch (args[0]) {
                 case "help":
                     for (String help : service.getFiles().getLang().getStringList("messages.console.help")) {
-                        sender.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
+                        sender.sendMessage(help.replace("%version%", service.getSimpleCore().getDescription().getVersion()));
                     }
                     return true;
                 case "reload":
@@ -38,9 +38,9 @@ public class GeneralCommand implements CommandExecutor {
                     service.getFiles().getWarps().reload();
                     return true;
                 case "about":
-                    sender.sendMessage("You run "+ service.getSimpleCore().namePlugin+
-                            " in a version: "+ service.getSimpleCore().versionPlugin);
-                    sender.sendMessage("made by: "+ service.getSimpleCore().authorPlugin);
+                    sender.sendMessage("You run "+ service.getSimpleCore().getDescription().getName()+
+                            " in a version: "+ service.getSimpleCore().getDescription().getVersion());
+                    sender.sendMessage("made by: "+ service.getSimpleCore().getDescription().getAuthors());
                     return true;
                 default:
                     sender.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")
@@ -63,12 +63,12 @@ public class GeneralCommand implements CommandExecutor {
         switch (args[0]) {
             case "help":
                 for (String help : service.getFiles().getLang().getStringList("messages.player.help")) {
-                    p.sendMessage(help.replace("%version%", service.getSimpleCore().versionPlugin));
+                    p.sendMessage(help.replace("%version%", service.getSimpleCore().getDescription().getVersion()));
                 }
                 return true;
             case "commands":
                 for (String commands : service.getFiles().getLang().getStringList("messages.commands")) {
-                    p.sendMessage(commands.replace("%version%", service.getSimpleCore().versionPlugin));
+                    p.sendMessage(commands.replace("%version%", service.getSimpleCore().getDescription().getVersion()));
                 }
                 return true;
             case "reload":
@@ -82,9 +82,9 @@ public class GeneralCommand implements CommandExecutor {
                         "&8[&bSimpleCore&8] Config has been reloaded by: "+p.getName()));
                 return true;
             case "about":
-                p.sendMessage(ColorApply.apply("&aYou run &b"+ service.getSimpleCore().namePlugin+
-                        " &ain a version: &f"+ service.getSimpleCore().versionPlugin));
-                p.sendMessage(ColorApply.apply("&aMade by: &b"+ service.getSimpleCore().authorPlugin));
+                p.sendMessage(ColorApply.apply("&aYou run &b"+ service.getSimpleCore().getDescription().getName()+
+                        " &ain a version: &f"+ service.getSimpleCore().getDescription().getVersion()));
+                p.sendMessage(ColorApply.apply("&aMade by: &b"+ service.getSimpleCore().getDescription().getAuthors()));
                 return true;
             default:
                 p.sendMessage(service.getFiles().getLang().getString("messages.error.unknown-command")

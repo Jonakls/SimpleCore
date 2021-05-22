@@ -10,6 +10,12 @@ public final class NoxusCommands extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        getLogger().info(" ");
+        getLogger().info("|\\ | \\/ (`  | NoxusCommands");
+        getLogger().info("| \\| /\\ _)  | Version: " + getDescription().getVersion());
+        getLogger().info(" ");
+        getLogger().info("Plugin by: Jonakls");
+
         if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
             || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
 

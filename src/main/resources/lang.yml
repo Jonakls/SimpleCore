@@ -1,6 +1,10 @@
 #
-# Lang of NoxusCommands
-# Version: 0.1
+#    ██╗      █████╗ ███╗   ██╗ ██████╗
+#    ██║     ██╔══██╗████╗  ██║██╔════╝
+#    ██║     ███████║██╔██╗ ██║██║  ███╗
+#    ██║     ██╔══██║██║╚██╗██║██║   ██║
+#    ███████╗██║  ██║██║ ╚████║╚██████╔╝
+#    ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝
 #
 messages:
   prefix: '&8[&6NoxusCommands&8]'
@@ -13,28 +17,28 @@ messages:
       - 'Use: /noxus about | View info of this plugin.'
   player:
     help:
-      - '&eCommands of plugin &b(NoxusCommands) %version%'
+      - '&eCommands of plugin &6(NoxusCommands) %version%'
       - ' '
-      - '&7Use: &b/noxus help &8| &7View this list.'
-      - '&7Use: &b/noxus reload &8| &7Reload all files of plugin.'
-      - '&7Use: &b/noxus about &8| &7View info of this plugin.'
-      - '&7Use: &b/noxus commands &8| &7View other commands of this plugin.'
+      - '&eUse: &c/noxus help &8| &eView this list.'
+      - '&eUse: &c/noxus reload &8| &eReload all files of plugin.'
+      - '&eUse: &c/noxus about &8| &eView info of this plugin.'
+      - '&eUse: &c/noxus commands &8| &eView other commands of this plugin.'
   commands:
-    - '&eCommands of plugin &b(NoxusCommands) %version%'
+    - '&eCommands of plugin &c(NoxusCommands) %version%'
     - ' '
-    - '&7Use: &b/noxus help &8| &7View help list.'
-    - '&7Use: &b/gamemode &8| &7Gamemode generalized command option change.'
-    - '&7Use: &b/gma|gmc|gms|gmsp &8| &7Change gamemode to spectator mode, creative, survival or adventure.'
-    - '&7Use: &b/flymode &8| &7Enable or disable flight in game.'
-    - '&7Use: &b/vanish &8| &7Enable or disable incognit mode of player.'
-    - '&7Use: &b/fake &8| &7Send false messages of join, leave or custom.'
-    - '&7Use: &b/broadcast &8| &7Send global message.'
-    - '&7Use: &b/stop &8| &7Command for stop the server with reason.'
-    - '&7Use: &b/message &8| &7Send a private messages to players.'
-    - '&7Use: &b/lag &8| &7Observe the performance of your server.'
-    - '&7Use: &b/nickname &8| &7Change your display name.'
+    - '&eUse: &c/noxus help &8| &eView help list.'
+    - '&eUse: &c/gamemode &8| &eGamemode generalized command option change.'
+    - '&eUse: &c/gma|gmc|gms|gmsp &8| &eChange gamemode to spectator mode, creative, survival or adventure.'
+    - '&eUse: &c/flymode &8| &eEnable or disable flight in game.'
+    - '&eUse: &c/vanish &8| &eEnable or disable incognit mode of player.'
+    - '&eUse: &c/fake &8| &eSend false messages of join, leave or custom.'
+    - '&eUse: &c/broadcast &8| &eSend global message.'
+    - '&eUse: &c/stop &8| &eCommand for stop the server with reason.'
+    - '&eUse: &c/message &8| &eSend a private messages to players.'
+    - '&eUse: &c/lag &8| &eObserve the performance of your server.'
+    - '&eUse: &c/nickname &8| &eChange your display name.'
   error:
-    no-player: '%prefix% &cThe player &b(%player%) &cis not connected or does not exist.'
+    no-player: '%prefix% &cThe player &c(%player%) &cis not connected or does not exist.'
     unknown-command: '%prefix% &cUnknown command, please use /noxus help'
     no-permissions: '%prefix% &cNo permissions.'
     no-yourself: '%prefix% &cYou cannot do this action with yourself.'
@@ -42,97 +46,97 @@ messages:
     flaying: '%prefix% &cYou already have your flight mode activated'
     no-flymode-gamemode: '&cYou can''t disable fly mode on this gamemode'
 usages:
-  general-gamemode: '%prefix% &7Please use: &b/gamemode <creative/survival/spectator/adventure> [player]'
-  vanish: '%prefix% &7Please use: &b/vanish <enable/disable> [player]'
-  fake-messages: '%prefix% &7Please use: &b/fake <message/join/leave> [player/message]'
-  broadcast-message: '%prefix% &7Please use: &b/broadcast <message>'
-  stop-message: '%prefix% &7Please use: &b/stop <reason>'
-  private-usages: '%prefix% &7Please use: &b/msg <player> <message>'
-  nick-usages: '%prefix% &7Please use: &b/nickname <off|displayname|player>'
-  nick-other-usages: '%prefix% &7Please use: &b/nickname <player> <displayname>'
-  set-warp: '%prefix% &7Please use: &b/setwarp <namewarp>'
+  general-gamemode: '%prefix% &ePlease use: &c/gamemode <creative/survival/spectator/adventure> [player]'
+  vanish: '%prefix% &ePlease use: &c/vanish <enable/disable> [player]'
+  fake-messages: '%prefix% &ePlease use: &c/fake <message/join/leave> [player/message]'
+  broadcast-message: '%prefix% &ePlease use: &c/broadcast <message>'
+  stop-message: '%prefix% &ePlease use: &c/stop <reason>'
+  private-usages: '%prefix% &ePlease use: &c/msg <player> <message>'
+  nick-usages: '%prefix% &ePlease use: &c/nickname <off|displayname|player>'
+  nick-other-usages: '%prefix% &ePlease use: &c/nickname <player> <displayname>'
+  set-warp: '%prefix% &ePlease use: &c/setwarp <namewarp>'
   invsee-usage: ''
-  time-usage: '%prefix% &7Please use: &b/time <day/night>'
+  time-usage: '%prefix% &ePlease use: &c/time <day/night>'
 time:
-  time-set: '&7The time in a world &b%world% &7has been set in &6%time%'
+  time-set: '&eThe time in a world &c%world% &ehas been set in &6%time%'
 weather:
-  weather-set: '&7The weather in a world &b%world% &7has been set in &6%weather%'
+  weather-set: '&eThe weather in a world &c%world% &ehas been set in &6%weather%'
 spawn:
-  spawn-set: '&7The spawn has been set in: &b%world%&7: &a%x%&7: &a%y%&7: &a%z%&7: &6%yaw%&7: &6%pitch%'
-  spawn-exist: '&7The spawn always exist, please delete spawn with &c/delspawn'
-  time-teleport: '&7You will be sent to spawn &7in: &b%seconds% &7seconds...'
-  teleport-spawn: '&7You has been teleported to spawn.'
+  spawn-set: '&eThe spawn has been set in: &c%world%&e: &a%x%&e: &a%y%&e: &a%z%&e: &6%yaw%&e: &6%pitch%'
+  spawn-exist: '&eThe spawn always exist, please delete spawn with &c/delspawn'
+  time-teleport: '&eYou will be sent to spawn &ein: &c%seconds% &eseconds...'
+  teleport-spawn: '&eYou has been teleported to spawn.'
   pre-teleport: '&aYou wil be sent, please wait...'
   spawn-no-exist: '&cThe spawn don''t has been set.'
-  spawn-delete: '&7The spawn has been deleted.'
+  spawn-delete: '&eThe spawn has been deleted.'
 warps:
-  warp-exist: '&7The warp &b%warp% &7already exist.'
-  no-exist: '&7The warp &b%warp% &7no exist.'
-  teleport-warp: '&7You teleported to warp: &b%warp%'
-  set-warp: '&7You have created a new warp with name: &b%warp%'
-  delete-warp: '&7The warp &b%warp% &7has been deleted.'
-  time-teleport: '&7You will be sent to &b%warp% &7in: &b%seconds% &7seconds...'
+  warp-exist: '&eThe warp &c%warp% &ealready exist.'
+  no-exist: '&eThe warp &c%warp% &eno exist.'
+  teleport-warp: '&eYou teleported to warp: &c%warp%'
+  set-warp: '&eYou have created a new warp with name: &c%warp%'
+  delete-warp: '&eThe warp &c%warp% &ehas been deleted.'
+  time-teleport: '&eYou will be sent to &c%warp% &ein: &c%seconds% &eseconds...'
   pre-teleport: '&aYou wil be sent, please wait...'
-  warp-list: '&bWarps: &a'
+  warp-list: '&cWarps: &a'
 nick-command:
-  change: '&7Your display name has been changed to: %displayName%'
+  change: '&eYour display name has been changed to: %displayName%'
   no-change: '&cA player already has the display name with that value.'
   default: '&aYour display name was successfully restored.'
-  change-other: '&7You changed the display name to &b%target% &7for: %displayName%'
-  target-change: '&7Your display name has been changed by %player%. Display Name: %displayName%'
+  change-other: '&eYou changed the display name to &c%target% &efor: %displayName%'
+  target-change: '&eYour display name has been changed by %player%. Display Name: %displayName%'
 stop:
   message:
     - '%serverName%'
     - '&r'
     - '&c¡Server has been closed!'
-    - '&cClosed by: &b%player%'
+    - '&cClosed by: &c%player%'
     - '&r'
     - '&cReason: &a%reason%'
     - '&r'
-    - '&7More info in: &bYourDiscord'
-  prefix: '&bNoxus Team'
+    - '&eMore info in: &cYourDiscord'
+  prefix: '&cNoxus Team'
   console-name: '&cConsole'
   no-reason: '&aNo reason'
-  pre-message: '%prefix% &7Server has been closed in a &b%seconds% &7seconds...'
+  pre-message: '%prefix% &eServer has been closed in a &c%seconds% &eseconds...'
 broadcast:
-  prefix: '&8(&bNotices&8) &a'
+  prefix: '&8(&cNotices&8) &a'
 type:
   enable: '&aEnable'
   disable: '&cDisable'
 flymode:
-  message: '&7Your flight mode has been %type%'
-  other-message: '&7The flight mode of &b%target% &7has been %type%'
-  target-message: '&b%player% &7has been %type% &7your flight mode.'
+  message: '&eYour flight mode has been %type%'
+  other-message: '&eThe flight mode of &c%target% &ehas been %type%'
+  target-message: '&c%player% &ehas been %type% &eyour flight mode.'
 vanish:
-  message: '&7You vanish mode has been %type%'
-  other-message: '&7The vanish mode of &b%target% &7has been %type%'
-  target-message: '&b%player% &7has been %type% &7your vanish mode.'
+  message: '&eYou vanish mode has been %type%'
+  other-message: '&eThe vanish mode of &c%target% &ehas been %type%'
+  target-message: '&c%player% &ehas been %type% &eyour vanish mode.'
 #
 # You can use Placeholders in these messages.
 #
 events:
   join-player:
-    message: '&8[&a+&8] &b%player% &7has been joined.'
+    message: '&8[&a+&8] &c%player% &ehas been joined.'
   quit-player:
-    message: '&8[&c-&8] &b%player% &7just left the server.'
+    message: '&8[&c-&8] &c%player% &ejust left the server.'
 lag-command:
   message:
     - '&r'
-    - '&e» &bMemory: &c%usedMemory%mb &7/ &a%totalMemory%mb'
+    - '&e» &cMemory: &c%usedMemory%mb &e/ &a%totalMemory%mb'
     - '&r'
-    - '&e» &bFree memory: &c%freeRam%mb'
-    - '&e» &bMax memory: &a%maxMemory%mb'
+    - '&e» &cFree memory: &c%freeRam%mb'
+    - '&e» &cMax memory: &a%maxMemory%mb'
     - '&r'
-    - '&e» &bTicks: &cAnimals: &a%ticksAnimals% &7| &cMonsters: &a%ticksMonsters%'
+    - '&e» &cTicks: &cAnimals: &a%ticksAnimals% &e| &cMonsters: &a%ticksMonsters%'
     - '&r'
     - '&r'
-    - '&e» &bWorld: &a%worldName% &7| &bType: &a%worldType%'
-    - '&e» &bBiome: &a%worldBiome% &7 &bPlayers: &a%worldPlayers%'
+    - '&e» &cWorld: &a%worldName% &e| &cType: &a%worldType%'
+    - '&e» &cBiome: &a%worldBiome% &e &cPlayers: &a%worldPlayers%'
     - '&r'
 gamemode:
-  change: '&7Your game mode has been changed to %type%'
-  change-other: '&7The game mode of &f%target% &7has been changed to %type%'
-  target-change: '&7The player &f%player% &7has been changed your gamemode to %type%'
+  change: '&eYour game mode has been changed to %type%'
+  change-other: '&eThe game mode of &f%target% &ehas been changed to %type%'
+  target-change: '&eThe player &f%player% &ehas been changed your gamemode to %type%'
   type:
     creative: '&aCreative'
     survival: '&cSurvival'
@@ -141,13 +145,13 @@ gamemode:
 private-messages:
   sender:
     format:
-      chat-message: '&8[&e*&8] &aYou to &c%target% &b» &f%message%'
+      chat-message: '&8[&e*&8] &aYou to &c%target% &c» &f%message%'
       hover: '&eClick to send other message.'
       click-event: SUGGEST_COMMAND
       action: '/msg %target% '
   target:
     format:
-      chat-message: '&8[&e*&8] &c%sender% &ato You &b» &f%message%'
+      chat-message: '&8[&e*&8] &c%sender% &ato You &c» &f%message%'
       hover: '&eClick to send other message.'
       click-event: SUGGEST_COMMAND
       action: '/msg %sender% '

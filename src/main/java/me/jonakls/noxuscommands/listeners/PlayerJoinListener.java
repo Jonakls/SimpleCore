@@ -41,8 +41,10 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void goSpawn(PlayerJoinEvent joinEvent){
         Player p = joinEvent.getPlayer();
+
         if (FileManager.getConfig().getBoolean("config.teleports.spawn.teleport-on-join")){
             if (FileManager.getSpawn().contains("spawn.world")){
+
                 Location loc = new Location(
                         Bukkit.getWorld(FileManager.getSpawn().getString("spawn.world")),
                         FileManager.getSpawn().getDouble("spawn.x"),
@@ -51,6 +53,7 @@ public class PlayerJoinListener implements Listener {
                         (float) FileManager.getSpawn().getDouble("spawn.yaw"),
                         (float) FileManager.getSpawn().getDouble("spawn.pitch")
                 );
+
                 p.teleport(loc);
             }
             p.sendMessage(FileManager.getLang().getString("spawn.spawn-no-exist"));

@@ -37,7 +37,7 @@ public class Service {
 
         plugin.getLogger().info("Installing commands and executors...");
 
-        plugin.getCommand("simplecore").setExecutor(new GeneralCommand(this));
+        plugin.getCommand("noxus").setExecutor(new GeneralCommand(this));
         plugin.getCommand("gamemode").setExecutor(new GeneralGamemodeCommand());
         plugin.getCommand("gmsp").setExecutor(new SpectatorCommand());
         plugin.getCommand("gms").setExecutor(new SurvivalCommand());

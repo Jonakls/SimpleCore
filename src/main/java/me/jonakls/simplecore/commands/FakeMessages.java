@@ -18,18 +18,18 @@ public class FakeMessages implements CommandExecutor {
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
+            sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
 
-        Player p = (Player) sender;
+        Player player = (Player) sender;
 
-        if(!(p.hasPermission("simplecore.command.fake"))){
-            p.sendMessage(MessageReplacer.noPermissions());
+        if(!(player.hasPermission("simplecore.command.fake"))){
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+            player.sendMessage(FileManager.getLang().getString("usages.fake-messages")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
@@ -37,7 +37,7 @@ public class FakeMessages implements CommandExecutor {
             case "message":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                    player.sendMessage(FileManager.getLang().getString("usages.fake-messages")
                             .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
@@ -51,24 +51,31 @@ public class FakeMessages implements CommandExecutor {
             case "join":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                    player.sendMessage(FileManager.getLang().getString("usages.fake-messages")
                             .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
-                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, FileManager.getLang().getString("events.join-player.message").replace("%player%", args[1])));
+                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(
+                        player,
+                        FileManager.getLang().getString("events.join-player.message").
+                                replace("%player%", args[1])));
                 return true;
 
             case "leave" :
 
                 if (!(args.length > 1)){
-                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                    player.sendMessage(FileManager.getLang().getString("usages.fake-messages")
                             .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
-                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, FileManager.getLang().getString("events.quit-player.message").replace("%player%", args[1])));
+                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(
+                        player,
+                        FileManager.getLang().getString("events.quit-player.message").
+                                replace("%player%", args[1])));
                 return true;
+
             default:
-                p.sendMessage(FileManager.getLang().getString("usages.fake-messages"
+                player.sendMessage(FileManager.getLang().getString("usages.fake-messages"
                         .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))));
                 return true;
         }

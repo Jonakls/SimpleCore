@@ -1,6 +1,6 @@
-name: SimpleCore
+name: NoxusCommands
 version: ${project.version}
-main: me.jonakls.simplecore.SimpleCore
+main: me.jonakls.simplecore.NoxusCommands
 authors: [Jonakls]
 softdepend:
   - PlaceholderAPI

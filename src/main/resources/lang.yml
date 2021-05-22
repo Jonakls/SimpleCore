@@ -1,26 +1,26 @@
 #
-# Lang of SimpleCore
+# Lang of NoxusCommands
 # Version: 0.1
 #
 messages:
   prefix: '&8[&bSimpleCore&8]'
   console:
     help:
-      - 'Commands of plugin (SimpleCore) %version%'
+      - 'Commands of plugin (NoxusCommands) %version%'
       - ' '
       - 'Use: /simplecore help | View this list.'
       - 'Use: /simplecore reload | Reload all files of plugin.'
       - 'Use: /simplecore about | View info of this plugin.'
   player:
     help:
-      - '&eCommands of plugin &b(SimpleCore) %version%'
+      - '&eCommands of plugin &b(NoxusCommands) %version%'
       - ' '
       - '&7Use: &b/simplecore help &8| &7View this list.'
       - '&7Use: &b/simplecore reload &8| &7Reload all files of plugin.'
       - '&7Use: &b/simplecore about &8| &7View info of this plugin.'
       - '&7Use: &b/simplecore commands &8| &7View other commands of this plugin.'
   commands:
-    - '&eCommands of plugin &b(SimpleCore) %version%'
+    - '&eCommands of plugin &b(NoxusCommands) %version%'
     - ' '
     - '&7Use: &b/simplecore help &8| &7View help list.'
     - '&7Use: &b/gamemode &8| &7Gamemode generalized command option change.'

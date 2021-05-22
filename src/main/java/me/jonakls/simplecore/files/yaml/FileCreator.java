@@ -43,7 +43,6 @@ public class FileCreator extends YamlConfiguration {
             }
             this.load(file);
 
-            this.save(file);
         } catch (InvalidConfigurationException | IOException e) {
             e.printStackTrace();
         }

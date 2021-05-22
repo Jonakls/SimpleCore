@@ -8,10 +8,12 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 
 public class MessageHandler {
+
     private TextComponent senderMessage;
     private TextComponent targetMessage;
 
     public void setFormatSender(Player target, String message){
+
         senderMessage = new TextComponent(
                 FileManager.getLang().getString("private-messages.sender.format.chat-message")
                 .replace("%target%",target.getName())

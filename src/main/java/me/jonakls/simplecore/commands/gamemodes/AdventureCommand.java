@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands.gamemodes;
 
 import me.jonakls.simplecore.files.FileManager;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -15,58 +16,56 @@ public class AdventureCommand implements CommandExecutor {
 
         if (!(sender instanceof Player)){
 
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console").
-                    replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
-            return true;
+            sender.sendMessage(MessageReplacer.noConsole());
 
+            return true;
         }
 
         Player player = (Player) sender;
 
         if (!(player.hasPermission("simplecore.command.gamemode"))){
-            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions").
-                    replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
-            return true;
 
+            player.sendMessage(MessageReplacer.noPermissions());
+
+            return true;
         }
         if (!(args.length > 0)){
-
             if (!(player.hasPermission("simplecore.command.gamemode.adventure"))){
-                player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions").
-                        replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
-                return true;
 
+                player.sendMessage(MessageReplacer.noPermissions());
+
+                return true;
             }
 
             player.setGameMode(GameMode.ADVENTURE);
-            player.sendMessage(FileManager.getLang().getString("gamemode.change").
-                    replace("%type%", FileManager.getLang().getString("gamemode.type.adventure")));
+
+            player.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.change"),
+                    FileManager.getLang().getString("gamemode.type.adventure"),
+                    player));
+
             return true;
-
         }
-
         Player target = Bukkit.getPlayerExact(args[0]);
 
         if (target == null){
 
-            player.sendMessage(FileManager.getLang().getString("messages.error.no-player").
-                    replace("%prefix%", FileManager.getLang().getString("messages.prefix")).
-                    replace("%player%", args[0]));
-            return true;
+            player.sendMessage(MessageReplacer.noPlayer(args[0]));
 
+            return true;
         }
 
-        player.sendMessage(FileManager.getLang().getString("gamemode.change-other").
-                replace("%type%", FileManager.getLang().getString("gamemode.type.adventure")).
-                replace("%target%", target.getName()));
+        player.sendMessage(MessageReplacer.gamemode(
+                FileManager.getLang().getString("gamemode.change-other"),
+                FileManager.getLang().getString("gamemode.type.adventure"),
+                target));
 
-        target.sendMessage(FileManager.getLang().getString("gamemode.target-change").
-                replace("%type%", FileManager.getLang().getString("gamemode.type.adventure")).
-                replace("%player%", player.getName()));
+        target.sendMessage(MessageReplacer.gamemode(
+                FileManager.getLang().getString("gamemode.target-change"),
+                FileManager.getLang().getString("gamemode.type.adventure"),
+                target));
 
         target.setGameMode(GameMode.ADVENTURE);
-
         return true;
-
     }
 }

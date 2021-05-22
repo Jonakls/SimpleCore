@@ -19,56 +19,54 @@ public class NicknameCommand implements CommandExecutor {
             sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
-        Player p = (Player) sender;
-        if (!(p.hasPermission("simplecore.command.nick"))){
-            p.sendMessage(MessageReplacer.noPermissions());
+        Player player = (Player) sender;
+        if (!(player.hasPermission("simplecore.command.nick"))){
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
 
         }
         if (!(args.length > 0)){
-            p.sendMessage(FileManager.getLang().getString("usages.nick-usages")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.nick-usages")));
             return true;
         }
         if (args[0].equalsIgnoreCase("off")){
 
             NicknameHandler newNick = new NicknameHandler();
-            newNick.unsetNickname(p);
+            newNick.unsetNickname(player);
             if(!(newNick.getOption())){
-                p.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
+                player.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("nick-command.default"));
+            player.sendMessage(FileManager.getLang().getString("nick-command.default"));
             return true;
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null){
                 NicknameHandler newNick = new NicknameHandler();
-                newNick.setNickname(p, args[0]);
+                newNick.setNickname(player, args[0]);
                 if(!(newNick.getOption())){
-                    p.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
+                    player.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
                     return true;
                 }
-                p.sendMessage(FileManager.getLang().getString("nick-command.change")
+                player.sendMessage(FileManager.getLang().getString("nick-command.change")
                         .replace("%displayName%", ColorApply.apply(args[0])));
                 return  true;
         }
         if (!(args.length > 1)){
 
-            p.sendMessage(FileManager.getLang().getString("usages.nick-other-usages")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.nick-other-usages")));
             return true;
         }
         NicknameHandler newNick = new NicknameHandler();
         newNick.setNickname(target, args[1]);
         if(!(newNick.getOption())){
-            p.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
+            player.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
             return true;
         }
         target.sendMessage(FileManager.getLang().getString("nick-command.target-change")
                 .replace("%displayName%", ColorApply.apply(args[1]))
-                .replace("%player%", p.getName()));
-        p.sendMessage(FileManager.getLang().getString("nick-command.change-other")
+                .replace("%player%", player.getName()));
+        player.sendMessage(FileManager.getLang().getString("nick-command.change-other")
                 .replace("%displayName%", ColorApply.apply(args[1]))
                 .replace("%target%", target.getName()));
 

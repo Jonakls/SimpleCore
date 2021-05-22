@@ -1,6 +1,7 @@
 package me.jonakls.noxuscommands.commands;
 
 import me.jonakls.noxuscommands.files.FileManager;
+import me.jonakls.noxuscommands.utils.MessageReplacer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,69 +13,62 @@ public class TimeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
-        Player p = (Player) sender;
-        if (!(p.hasPermission("simplecore.command.time"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        Player player = (Player) sender;
+        if (!(player.hasPermission("simplecore.command.time"))){
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(FileManager.getLang().getString("usages.time-usage")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.time-usage")));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("day")){
 
-            if (!(p.hasPermission("simplecore.command.time.day"))){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            if (!(player.hasPermission("simplecore.command.time.day"))){
+                player.sendMessage(MessageReplacer.noPermissions());
                 return true;
             }
 
-            p.getWorld().setTime(600);
-            p.sendMessage(FileManager.getLang().getString("time.time-set")
-                    .replace("%world%", p.getWorld().getName())
-                    .replace("%time%","" + p.getWorld().getTime()));
+            player.getWorld().setTime(600);
+            player.sendMessage(FileManager.getLang().getString("time.time-set").
+                    replace("%world%", player.getWorld().getName()).
+                    replace("%time%","" + player.getWorld().getTime()));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("night")){
 
-            if (!(p.hasPermission("simplecore.command.time.night"))){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            if (!(player.hasPermission("simplecore.command.time.night"))){
+                player.sendMessage(MessageReplacer.noPermissions());
                 return true;
             }
 
-            p.getWorld().setTime(19000);
-            p.sendMessage(FileManager.getLang().getString("time.time-set")
-                    .replace("%world%", p.getWorld().getName())
-                    .replace("%time%","" + p.getWorld().getTime()));
+            player.getWorld().setTime(19000);
+            player.sendMessage(FileManager.getLang().getString("time.time-set").
+                    replace("%world%", player.getWorld().getName()).
+                    replace("%time%","" + player.getWorld().getTime()));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("midnight")){
 
-            if (!(p.hasPermission("simplecore.command.time.midnight"))){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            if (!(player.hasPermission("simplecore.command.time.midnight"))){
+                player.sendMessage(MessageReplacer.noPermissions());
                 return true;
             }
 
-            p.getWorld().setTime(0);
-            p.sendMessage(FileManager.getLang().getString("time.time-set")
-                    .replace("%world%", p.getWorld().getName())
-                    .replace("%time%","" + p.getWorld().getTime()));
+            player.getWorld().setTime(0);
+            player.sendMessage(FileManager.getLang().getString("time.time-set").
+                    replace("%world%", player.getWorld().getName()).
+                    replace("%time%","" + player.getWorld().getTime()));
             return true;
         }
 
-        p.sendMessage(FileManager.getLang().getString("usages.time-usage")
-                .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.time-usage")));
         return true;
     }
 }

@@ -1,6 +1,7 @@
 package me.jonakls.noxuscommands.commands;
 
 import me.jonakls.noxuscommands.files.FileManager;
+import me.jonakls.noxuscommands.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,68 +14,63 @@ public class VanishCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console")
-            .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
-        Player p = (Player) sender;
-        if (!(p.hasPermission("simplecore.command.vanish"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        Player player = (Player) sender;
+        if (!(player.hasPermission("simplecore.command.vanish"))){
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(FileManager.getLang().getString("usages.vanish")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.vanish")));
             return true;
         }
         if (args[0].equalsIgnoreCase("enable") || args[0].equalsIgnoreCase("on")){
             if (!(args.length > 1)){
-                p.sendMessage(FileManager.getLang().getString("vanish.message")
+                player.sendMessage(FileManager.getLang().getString("vanish.message")
                         .replace("%type%", FileManager.getLang().getString("type.enable")));
 
-                for (Player online : Bukkit.getOnlinePlayers()) online.hidePlayer(p);
+                for (Player online : Bukkit.getOnlinePlayers()) online.hidePlayer(player);
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player").replace("%player%", args[1]));
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("vanish.other-message")
+            player.sendMessage(FileManager.getLang().getString("vanish.other-message")
                     .replace("%type%", FileManager.getLang().getString("type.enable"))
                     .replace("%target%", target.getName()));
             target.sendMessage(FileManager.getLang().getString("vanish.target-message")
                     .replace("%type%", FileManager.getLang().getString("type.enable"))
-                    .replace("%player%", p.getName()));
+                    .replace("%player%", player.getName()));
             Bukkit.getOnlinePlayers().forEach(online -> online.hidePlayer(target));
             return true;
         }
         if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("off")){
             if (!(args.length > 1)){
-                p.sendMessage(FileManager.getLang().getString("vanish.message")
+                player.sendMessage(FileManager.getLang().getString("vanish.message")
                     .replace("%type%", FileManager.getLang().getString("type.disable")));
 
-                Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(p));
+                Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(player));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                        .replace("%player%", args[1])
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("vanish.other-message")
+            player.sendMessage(FileManager.getLang().getString("vanish.other-message")
                     .replace("%type%", FileManager.getLang().getString("type.disable"))
                     .replace("%target%", target.getName()));
             target.sendMessage(FileManager.getLang().getString("vanish.target-message")
                     .replace("%type%", FileManager.getLang().getString("type.disable"))
-                    .replace("%player%", p.getName()));
+                    .replace("%player%", player.getName()));
             Bukkit.getOnlinePlayers().forEach(online -> online.showPlayer(target));
         }
-        p.sendMessage(FileManager.getLang().getString("usages.vanish")
-                .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.vanish")));
         return true;
     }
 }

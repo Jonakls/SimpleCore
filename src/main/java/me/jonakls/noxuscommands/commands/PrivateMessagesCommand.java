@@ -31,8 +31,7 @@ public class PrivateMessagesCommand implements CommandExecutor {
 
         if (!(args.length > 1)){
 
-            player.sendMessage(FileManager.getLang().getString("usages.private-usages")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.private-usages")));
             return true;
 
         }

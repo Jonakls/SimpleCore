@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WarpHandler {
 
@@ -73,10 +74,7 @@ public class WarpHandler {
 
         ConfigurationSection configSection = FileManager.getWarps().getConfigurationSection("warps");
 
-        for (String key : configSection.getKeys(false)) {
-            listWarps.add(key);
-        }
-
+        listWarps.addAll(configSection.getKeys(false));
 
     }
 

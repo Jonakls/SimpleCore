@@ -1,6 +1,7 @@
 package me.jonakls.noxuscommands.commands;
 
 import me.jonakls.noxuscommands.files.FileManager;
+import me.jonakls.noxuscommands.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,12 +22,11 @@ public class StopCommand implements CommandExecutor {
                 for (String line: FileManager.getLang().getStringList("stop.message")){
                     stringBuilder1.append(line).append('\n');
                 }
-                String message = stringBuilder1.toString();
 
-                Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
-                        .replace("%player%", FileManager.getLang().getString("stop.console-name"))
-                        .replace("%reason%", FileManager.getLang().getString("stop.no-reason"))
-                        .replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
+                Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(stringBuilder1.toString().
+                        replace("%player%", FileManager.getLang().getString("stop.console-name")).
+                        replace("%reason%", FileManager.getLang().getString("stop.no-reason")).
+                        replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
                 Bukkit.shutdown();
             }
             int i = 0;
@@ -34,27 +34,24 @@ public class StopCommand implements CommandExecutor {
                 stringBuilder.append(args[i]).append(' ');
                 ++i;
             }
-            String reason = stringBuilder.toString();
 
             for (String line: FileManager.getLang().getStringList("stop.message")){
                 stringBuilder1.append(line).append('\n');
             }
-            String message = stringBuilder1.toString();
 
-            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
-                    .replace("%player%", FileManager.getLang().getString("stop.console-name"))
-                    .replace("%reason%", reason)
-                    .replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
+            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(stringBuilder1.toString().
+                    replace("%player%", FileManager.getLang().getString("stop.console-name")).
+                    replace("%reason%", stringBuilder.toString()).
+                    replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
             Bukkit.shutdown();
 
             return true;
         }
 
-        Player p = (Player) sender;
+        Player player = (Player) sender;
 
-        if (!(p.hasPermission("simplecore.command.stop"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        if (!(player.hasPermission("simplecore.command.stop"))){
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){
@@ -62,12 +59,11 @@ public class StopCommand implements CommandExecutor {
             for (String line: FileManager.getLang().getStringList("stop.message")){
                 stringBuilder1.append(line).append('\n');
             }
-            String message = stringBuilder1.toString();
 
-            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
-                    .replace("%player%", p.getName())
-                    .replace("%reason%", FileManager.getLang().getString("stop.no-reason"))
-                    .replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
+            Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(stringBuilder1.toString().
+                    replace("%player%", player.getName()).
+                    replace("%reason%", FileManager.getLang().getString("stop.no-reason")).
+                    replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
             Bukkit.shutdown();
 
             return true;
@@ -78,17 +74,15 @@ public class StopCommand implements CommandExecutor {
             stringBuilder.append(args[i]).append(' ');
             ++i;
         }
-        String reason = stringBuilder.toString();
 
         for (String line: FileManager.getLang().getStringList("stop.message")){
             stringBuilder1.append(line).append('\n');
         }
-        String message = stringBuilder1.toString();
 
-        Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(message
-                .replace("%player%", p.getName())
-                .replace("%reason%", reason)
-                .replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
+        Bukkit.getOnlinePlayers().forEach(online -> online.kickPlayer(stringBuilder1.toString().
+                replace("%player%", player.getName()).
+                replace("%reason%", stringBuilder.toString()).
+                replace("%serverName%", FileManager.getLang().getString("stop.prefix"))));
         Bukkit.shutdown();
         return true;
     }

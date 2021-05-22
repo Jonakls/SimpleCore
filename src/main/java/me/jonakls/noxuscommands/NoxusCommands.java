@@ -20,18 +20,17 @@ public final class NoxusCommands extends JavaPlugin {
             service.setupEvents();
             service.setupDependencies();
 
-            getLogger().info(" Load all files, events and commands!");
+            getLogger().info("Load all files, events and commands!");
             return;
         }
-        getLogger().warning(
-                "[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
+        getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
         Bukkit.getPluginManager().disablePlugin(this);
 
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("Disable all options, good bay ;)");
+        getLogger().info("Disabling, thanks...");
 
     }
 

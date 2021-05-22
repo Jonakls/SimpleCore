@@ -23,8 +23,7 @@ public class GeneralCommand implements CommandExecutor {
 
         if(!(sender instanceof Player)){
             if (!(args.length > 0)){
-                sender.sendMessage(FileManager.getLang().getString("messages.error.unknown-command")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+                sender.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("messages.error.unknown-command")));
                 return true;
             }
             switch (args[0]) {
@@ -38,6 +37,7 @@ public class GeneralCommand implements CommandExecutor {
                     FileManager.getConfig().reload();
                     FileManager.getData().reload();
                     FileManager.getWarps().reload();
+                    sender.sendMessage(MessageReplacer.prefix("%prefix% &aConfig has been reloaded!"));
                     return true;
                 case "about":
                     sender.sendMessage("You run "+ service.getPlugin().getDescription().getName()+
@@ -76,10 +76,9 @@ public class GeneralCommand implements CommandExecutor {
                 FileManager.getConfig().reload();
                 FileManager.getData().reload();
                 FileManager.getWarps().reload();
-                player.sendMessage(ColorApply.apply("&8[&bSimpleCore&8] &aConfig has been reloaded!"));
+                player.sendMessage(MessageReplacer.prefix("%prefix% &aConfig has been reloaded!"));
 
-                Bukkit.getConsoleSender().sendMessage(ColorApply.apply(
-                        "&8[&bSimpleCore&8] Config has been reloaded by: "+player.getName()));
+                Bukkit.getConsoleSender().sendMessage(MessageReplacer.prefix("%prefix% Config has been reloaded by: "+player.getName()));
                 return true;
             case "about":
                 player.sendMessage(ColorApply.apply("&aYou run &b"+ service.getPlugin().getDescription().getName()+

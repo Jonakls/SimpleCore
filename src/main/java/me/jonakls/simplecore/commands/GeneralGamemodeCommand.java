@@ -15,24 +15,22 @@ public class GeneralGamemodeCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
+            sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
         Player player = (Player) sender;
 
         if (!(player.hasPermission("simplecore.command.gamemode"))){
-            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){
-            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(FileManager.getLang().getString("usages.general-gamemode").
+                    replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         if (!(player.hasPermission("simplecore.command.gamemode.creative"))){
-            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
 
@@ -175,8 +173,8 @@ public class GeneralGamemodeCommand implements CommandExecutor {
             target.setGameMode(GameMode.SPECTATOR);
             return true;
         }
-        player.sendMessage(FileManager.getLang().getString("usages.general-gamemode")
-                .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        player.sendMessage(FileManager.getLang().getString("usages.general-gamemode").
+                replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
         return true;
     }
 }

@@ -26,6 +26,7 @@ public class MessageReplacer {
 
         return ChatColor.translateAlternateColorCodes('&',
                 FileManager.getLang().getString("messages.error.no-player")).
+                replace("%prefix%", FileManager.getLang().getString("messages.prefix")).
                 replace("%player%", error);
     }
 
@@ -33,6 +34,6 @@ public class MessageReplacer {
 
         return ChatColor.translateAlternateColorCodes('&',
                 FileManager.getLang().getString("messages.error.no-permissions").
-                        replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+                replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
     }
 }

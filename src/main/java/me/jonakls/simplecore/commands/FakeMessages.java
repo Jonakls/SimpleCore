@@ -3,6 +3,7 @@ package me.jonakls.simplecore.commands;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.ColorApply;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,8 +25,7 @@ public class FakeMessages implements CommandExecutor {
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.fake"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            p.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){

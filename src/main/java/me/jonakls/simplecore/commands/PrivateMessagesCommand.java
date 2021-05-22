@@ -3,6 +3,7 @@ package me.jonakls.simplecore.commands;
 import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.handlers.MessageHandler;
 import me.jonakls.simplecore.utils.ColorApply;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -15,59 +16,59 @@ public class PrivateMessagesCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        StringBuilder stringBuilder = new StringBuilder();
-        float vol = (float) FileManager.getConfig().getDouble("sounds.message-sound.vol");
-        float pitch = (float) FileManager.getConfig().getDouble("sounds.message-sound.pitch");
-
-
         if (!(sender instanceof Player)){
-            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console")
-            .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            sender.sendMessage(MessageReplacer.noConsole());
             return true;
         }
 
-        Player p = (Player) sender;
-        if (!(p.hasPermission("simplecore.command.messages"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+        Player player = (Player) sender;
+
+        if (!(player.hasPermission("simplecore.command.messages"))){
+
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
-        //prefix arg0 arg1
+
         if (!(args.length > 1)){
 
-            p.sendMessage(FileManager.getLang().getString("usages.private-usages")
+            player.sendMessage(FileManager.getLang().getString("usages.private-usages")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
 
         }
 
         Player target = Bukkit.getPlayerExact(args[0]);
+
         if (target == null){
 
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                    .replace("%player%", args[0])
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            player.sendMessage(MessageReplacer.noPlayer(args[0]));
             return true;
 
         }
+
+        StringBuilder stringBuilder = new StringBuilder();
 
         int i = 1;
         while (i < args.length) {
             stringBuilder.append(args[i]).append(' ');
             ++i;
         }
-
-
+        
         MessageHandler module = new MessageHandler();
 
-        module.setFormatSender(target, ColorApply.apply(stringBuilder.toString()));
-        p.spigot().sendMessage(module.getFormatSender());
-        p.playSound(p.getLocation(),Sound.valueOf(FileManager.getConfig().getString("sounds.message-sound.sound")),vol,pitch);
+        player.spigot().sendMessage(module.setFormatSender(target, ColorApply.apply(stringBuilder.toString())));
 
+        player.playSound(player.getLocation(),Sound.valueOf(
+                FileManager.getConfig().getString("sounds.message-sound.sound")),
+                (float) FileManager.getConfig().getDouble("sounds.message-sound.vol"),
+                (float) FileManager.getConfig().getDouble("sounds.message-sound.pitch"));
+        
+        target.spigot().sendMessage(module.setFormatTarget(player, ColorApply.apply(stringBuilder.toString())));
 
-        module.setFormatTarget(p, ColorApply.apply(stringBuilder.toString()));
-        target.spigot().sendMessage(module.getFormatTarget());
-        target.playSound(target.getLocation(),Sound.valueOf(FileManager.getConfig().getString("sounds.message-sound.sound")),vol,pitch);
+        target.playSound(player.getLocation(),Sound.valueOf(
+                FileManager.getConfig().getString("sounds.message-sound.sound")),
+                (float) FileManager.getConfig().getDouble("sounds.message-sound.vol"),
+                (float) FileManager.getConfig().getDouble("sounds.message-sound.pitch"));
 
 
         return true;

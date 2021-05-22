@@ -63,7 +63,7 @@ public class CreativeCommand implements CommandExecutor {
         target.sendMessage(MessageReplacer.gamemode(
                 FileManager.getLang().getString("gamemode.target-change"),
                 FileManager.getLang().getString("gamemode.type.creative"),
-                target));
+                player));
 
         target.setGameMode(GameMode.CREATIVE);
         return true;

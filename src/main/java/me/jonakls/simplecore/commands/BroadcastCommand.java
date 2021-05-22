@@ -2,6 +2,7 @@ package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.ColorApply;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -26,8 +27,7 @@ public class BroadcastCommand implements CommandExecutor {
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.broadcast"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            p.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){

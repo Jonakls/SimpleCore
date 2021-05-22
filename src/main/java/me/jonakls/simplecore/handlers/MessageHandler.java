@@ -9,47 +9,42 @@ import org.bukkit.entity.Player;
 
 public class MessageHandler {
 
-    private TextComponent senderMessage;
-    private TextComponent targetMessage;
+    public TextComponent setFormatSender(Player target, String message){
 
-    public void setFormatSender(Player target, String message){
+        TextComponent senderMessage = new TextComponent(
 
-        senderMessage = new TextComponent(
-                FileManager.getLang().getString("private-messages.sender.format.chat-message")
-                .replace("%target%",target.getName())
-                .replace("%message%", message));
+                FileManager.getLang().getString("private-messages.sender.format.chat-message").
+                        replace("%target%", target.getName()).
+                        replace("%message%", message));
 
-        senderMessage.setClickEvent(new ClickEvent(ClickEvent.Action
-                .valueOf(FileManager.getLang().getString("private-messages.sender.format.click-event"))
-                , FileManager.getLang().getString("private-messages.sender.format.action")
-                .replace("%target%",target.getName())));
+        senderMessage.setClickEvent(new ClickEvent(ClickEvent.Action.valueOf(
+                FileManager.getLang().getString("private-messages.sender.format.click-event")),
+                FileManager.getLang().getString("private-messages.sender.format.action").
+                        replace("%target%",target.getName())));
 
         senderMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
                 FileManager.getLang().getString("private-messages.sender.format.hover")).create()));
 
+        return senderMessage;
+
     }
 
-    public void setFormatTarget(Player sender, String message){
-        targetMessage = new TextComponent(
-                FileManager.getLang().getString("private-messages.target.format.chat-message")
-                .replace("%sender%",sender.getName())
-                .replace("%message%", message));
+    public TextComponent setFormatTarget(Player sender, String message){
 
-        targetMessage.setClickEvent(new ClickEvent(ClickEvent.Action
-                .valueOf(FileManager.getLang().getString("private-messages.target.format.click-event"))
-                , FileManager.getLang().getString("private-messages.target.format.action")
-                .replace("%sender%",sender.getName())));
+        TextComponent targetMessage = new TextComponent(
+                FileManager.getLang().getString("private-messages.target.format.chat-message").
+                        replace("%sender%", sender.getName()).
+                        replace("%message%", message));
+
+        targetMessage.setClickEvent(new ClickEvent(ClickEvent.Action.valueOf(
+                FileManager.getLang().getString("private-messages.target.format.click-event")),
+                FileManager.getLang().getString("private-messages.target.format.action").
+                        replace("%sender%",sender.getName())));
 
         targetMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
                 FileManager.getLang().getString("private-messages.target.format.hover")).create()));
 
-    }
-
-    public TextComponent getFormatSender(){
-        return senderMessage;
-    }
-
-    public TextComponent getFormatTarget(){
         return targetMessage;
+
     }
 }

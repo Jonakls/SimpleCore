@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.files.FileManager;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -20,8 +21,7 @@ public class FlyCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.fly"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            p.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
         if (!(args.length > 0)){

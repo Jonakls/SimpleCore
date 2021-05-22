@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands;
 
 import me.jonakls.simplecore.files.FileManager;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
@@ -17,85 +18,95 @@ public class GeneralGamemodeCommand implements CommandExecutor {
             sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
             return true;
         }
-        Player p = (Player) sender;
-        if (!(p.hasPermission("simplecore.command.gamemode"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+        Player player = (Player) sender;
+
+        if (!(player.hasPermission("simplecore.command.gamemode"))){
+            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
-        if (!(p.hasPermission("simplecore.command.gamemode.creative"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+        if (!(player.hasPermission("simplecore.command.gamemode.creative"))){
+            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
+
         if (args[0].equalsIgnoreCase("creative")
                 || args[0].equalsIgnoreCase("1")
                 || args[0].equalsIgnoreCase("c")){
 
             if(!(args.length > 1)){
-                p.setGameMode(GameMode.CREATIVE);
-                p.sendMessage(FileManager.getLang().getString("gamemode.change").replace("%type%",
-                        FileManager.getLang().getString("gamemode.type.creative")));
+                player.setGameMode(GameMode.CREATIVE);
+                player.sendMessage(MessageReplacer.gamemode(
+                        FileManager.getLang().getString("gamemode.change"),
+                        FileManager.getLang().getString("gamemode.type.creative"),
+                        player));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
+
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))
-                        .replace("%player%", args[1])
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("gamemode.change-other")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.creative"))
-                    .replace("%target%", target.getName()));
+            player.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.change-other"),
+                    FileManager.getLang().getString("gamemode.type.creative"),
+                    target));
 
-            target.sendMessage(FileManager.getLang().getString("gamemode.target-change")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.creative"))
-                    .replace("%player%", p.getName()));
+            target.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.target-change"),
+                    FileManager.getLang().getString("gamemode.type.creative"),
+                    target));
+
             target.setGameMode(GameMode.CREATIVE);
             return true;
         }
-        if (!(p.hasPermission("simplecore.command.gamemode.survival"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+
+        if (!(player.hasPermission("simplecore.command.gamemode.survival"))){
+
+            player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
+
         if (args[0].equalsIgnoreCase("survival")
                 || args[0].equalsIgnoreCase("0")
                 || args[0].equalsIgnoreCase("s")){
 
             if(!(args.length > 1)){
-                p.setGameMode(GameMode.SURVIVAL);
-                p.sendMessage(FileManager.getLang().getString("gamemode.change")
-                        .replace("%type%",
-                                FileManager.getLang().getString("gamemode.type.survival")));
+                player.setGameMode(GameMode.SURVIVAL);
+                player.sendMessage(MessageReplacer.gamemode(
+                        FileManager.getLang().getString("gamemode.change"),
+                        FileManager.getLang().getString("gamemode.type.survival"),
+                        player));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))
-                        .replace("%player%", args[1]));
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("gamemode.change-other")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.survival"))
-                    .replace("%target%", target.getName()));
 
-            target.sendMessage(FileManager.getLang().getString("gamemode.target-change")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.survival"))
-                    .replace("%player%", p.getName()));
+            player.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.change-other"),
+                    FileManager.getLang().getString("gamemode.type.survival"),
+                    target));
+
+            target.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.target-change"),
+                    FileManager.getLang().getString("gamemode.type.survival"),
+                    player));
+
             target.setGameMode(GameMode.SURVIVAL);
             return true;
         }
-        if (!(p.hasPermission("simplecore.command.gamemode.adventure"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions"
+        if (!(player.hasPermission("simplecore.command.gamemode.adventure"))){
+            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions"
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))));
             return true;
         }
@@ -104,31 +115,34 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                 || args[0].equalsIgnoreCase("a")){
 
             if(!(args.length > 1)){
-                p.setGameMode(GameMode.ADVENTURE);
-                p.sendMessage(FileManager.getLang().getString("gamemode.change")
-                        .replace("%type%",
-                                FileManager.getLang().getString("gamemode.type.adventure")));
+                player.setGameMode(GameMode.ADVENTURE);
+                player.sendMessage(MessageReplacer.gamemode(
+                        FileManager.getLang().getString("gamemode.change"),
+                        FileManager.getLang().getString("gamemode.type.adventure"),
+                        player));
+
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))
-                        .replace("%player%", args[1]));
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("gamemode.change-other")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.adventure"))
-                    .replace("%target%", target.getName()));
+            player.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.change-other"),
+                    FileManager.getLang().getString("gamemode.type.adventure"),
+                    target));
 
-            target.sendMessage(FileManager.getLang().getString("gamemode.target-change")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.adventure"))
-                    .replace("%player%", p.getName()));
+            target.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.target-change"),
+                    FileManager.getLang().getString("gamemode.type.adventure"),
+                    player));
+
             target.setGameMode(GameMode.ADVENTURE);
             return true;
         }
-        if (!(p.hasPermission("simplecore.command.gamemode.spectator"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+        if (!(player.hasPermission("simplecore.command.gamemode.spectator"))){
+            player.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
                     .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
@@ -137,30 +151,31 @@ public class GeneralGamemodeCommand implements CommandExecutor {
                 || args[0].equalsIgnoreCase("sp")){
 
             if(!(args.length > 1)){
-                p.setGameMode(GameMode.SPECTATOR);
-                p.sendMessage(FileManager.getLang().getString("gamemode.change")
-                        .replace("%type%",
-                                FileManager.getLang().getString("gamemode.type.spectator")));
+                player.setGameMode(GameMode.SPECTATOR);
+                player.sendMessage(MessageReplacer.gamemode(
+                        FileManager.getLang().getString("gamemode.change"),
+                        FileManager.getLang().getString("gamemode.type.spectator"),
+                        player));
                 return true;
             }
             Player target = Bukkit.getPlayerExact(args[1]);
             if (target == null){
-                p.sendMessage(FileManager.getLang().getString("messages.error.no-player")
-                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))
-                        .replace("%player%", args[1]));
+                player.sendMessage(MessageReplacer.noPlayer(args[1]));
                 return true;
             }
-            p.sendMessage(FileManager.getLang().getString("gamemode.change-other")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.spectator"))
-                    .replace("%target%", target.getName()));
+            player.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.change-other"),
+                    FileManager.getLang().getString("gamemode.type.spectator"),
+                    target));
 
-            target.sendMessage(FileManager.getLang().getString("gamemode.target-change")
-                    .replace("%type%", FileManager.getLang().getString("gamemode.type.spectator"))
-                    .replace("%player%", p.getName()));
+            target.sendMessage(MessageReplacer.gamemode(
+                    FileManager.getLang().getString("gamemode.target-change"),
+                    FileManager.getLang().getString("gamemode.type.spectator"),
+                    player));
             target.setGameMode(GameMode.SPECTATOR);
             return true;
         }
-        p.sendMessage(FileManager.getLang().getString("usages.general-gamemode")
+        player.sendMessage(FileManager.getLang().getString("usages.general-gamemode")
                 .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
         return true;
     }

@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands.weather;
 
 import me.jonakls.simplecore.files.FileManager;
+import me.jonakls.simplecore.utils.MessageReplacer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,8 +19,7 @@ public class ThunderCommand implements CommandExecutor {
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.weather.thunder"))){
-            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
+            p.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
 

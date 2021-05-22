@@ -63,7 +63,7 @@ public class SurvivalCommand implements CommandExecutor {
         target.sendMessage(MessageReplacer.gamemode(
                 FileManager.getLang().getString("gamemode.target-change"),
                 FileManager.getLang().getString("gamemode.type.survival"),
-                target));
+                player));
 
         target.setGameMode(GameMode.SURVIVAL);
         return true;

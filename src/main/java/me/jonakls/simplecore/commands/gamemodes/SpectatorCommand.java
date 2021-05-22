@@ -63,7 +63,7 @@ public class SpectatorCommand implements CommandExecutor {
         target.sendMessage(MessageReplacer.gamemode(
                 FileManager.getLang().getString("gamemode.target-change"),
                 FileManager.getLang().getString("gamemode.type.spectator"),
-                target));
+                player));
 
         target.setGameMode(GameMode.SPECTATOR);
         return true;

@@ -21,22 +21,17 @@ public class ChatFormatHandler {
                 HoverMethod hover = new HoverMethod();
 
                 hover.setHoverList(PlaceholderAPI.setPlaceholders(
-                        player, FileManager.getConfig().getString
-                                ("config.chat-format.groups."+group+".format.chat-message")
-                                .replace("%displayName%", player.getDisplayName())
-                                .replace("%playerName%", player.getName())
-                                + ColorApply.apply(message)),
+                        player,
+                        FileManager.getConfig().getString("config.chat-format.groups."+group+".format.chat-message").
+                                replace("%displayName%", player.getDisplayName()).
+                                replace("%playerName%", player.getName()) +
+                                ColorApply.apply(message)),
+                        FileManager.getConfig().getString("config.chat-format.groups." +group+".format.click-event"),
 
-                        FileManager.getConfig().getString("config.chat-format.groups."
-                                +group+".format.click-event"),
+                        FileManager.getConfig().getString("config.chat-format.groups." +group+".format.action").
+                                replace("%player%",player.getName()),
 
-                        FileManager.getConfig().getString("config.chat-format.groups."
-                                +group+".format.action")
-                                .replace("%player%",player.getName()),
-
-                        PlaceholderAPI.setPlaceholders(player,
-                                FileManager.getConfig().getStringList(
-                                        "config.chat-format.groups."+group+".format.hover")));
+                        FileManager.getConfig().getStringList("config.chat-format.groups."+group+".format.hover"));
 
                 chatFormat = hover.getHoverFormat();
                 return;
@@ -45,19 +40,17 @@ public class ChatFormatHandler {
             HoverMethod hover = new HoverMethod();
 
             hover.setHoverList(PlaceholderAPI.setPlaceholders(
-                    player, FileManager.getConfig().getString
-                            ("config.chat-format.default.format.chat-message")
-                            .replace("%displayName%", player.getDisplayName())
-                            .replace("%playerName%", player.getName())
-                            + ColorApply.apply(message)),
+                    player,
+                    FileManager.getConfig().getString("config.chat-format.default.format.chat-message").
+                            replace("%displayName%", player.getDisplayName()).
+                            replace("%playerName%", player.getName()) +
+                            ColorApply.apply(message)),
 
                     FileManager.getConfig().getString("config.chat-format.default.format.click-event"),
-                    FileManager.getConfig().getString("config.chat-format.default.format.action")
-                            .replace("%player%",player.getName()),
+                    FileManager.getConfig().getString("config.chat-format.default.format.action").
+                            replace("%player%",player.getName()),
 
-                    PlaceholderAPI.setPlaceholders(player,
-                            FileManager.getConfig().getStringList(
-                                    "config.chat-format.default.format.hover")));
+                    FileManager.getConfig().getStringList("config.chat-format.default.format.hover"));
 
             chatFormat = hover.getHoverFormat();
 

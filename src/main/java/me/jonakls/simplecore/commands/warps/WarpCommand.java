@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands.warps;
 
 import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.handlers.WarpHandler;
 import me.jonakls.simplecore.utils.CountdownTimer;
 import org.bukkit.command.Command;
@@ -20,26 +21,26 @@ public class WarpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.warp"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
 
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.set-warp")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("usages.set-warp")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
 
         if (args[0].equalsIgnoreCase("list")){
 
 
-            WarpHandler listWarps = new WarpHandler(service);
+            WarpHandler listWarps = new WarpHandler();
 
             listWarps.listWarps();
 
@@ -49,23 +50,24 @@ public class WarpCommand implements CommandExecutor {
                 stringBuilder.append(listWarps.getListWarps().get(i)).append(' ');
                 i++;
             }
-            p.sendMessage(service.getFiles().getLang().getString("warps.warp-list")+stringBuilder.toString());
+            p.sendMessage(FileManager.getLang().getString("warps.warp-list")+ stringBuilder);
             return true;
         }
 
 
         if (!(p.hasPermission("simplecore.command.warp."+args[0].toLowerCase()))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
 
         }
 
-        WarpHandler warp = new WarpHandler(service);
+        WarpHandler warp = new WarpHandler();
 
         warp.getWarp(args[0].toLowerCase());
+
         if (!(warp.getOperation())){
-            p.sendMessage(service.getFiles().getLang().getString("warps.no-exist")
+            p.sendMessage(FileManager.getLang().getString("warps.no-exist")
                     .replace("%warp%", args[0].toLowerCase()));
             return true;
         }
@@ -73,22 +75,23 @@ public class WarpCommand implements CommandExecutor {
         if (!(p.hasPermission("simplecore.command.warp.bypass-time"))){
             CountdownTimer timer = new CountdownTimer(
                     service.getSimpleCore(),
-                    service.getFiles().getConfig().getInt("config.teleports.warp-time"),
-                    () -> service.getFiles().getLang().getString("warps.pre-teleport"),
+                    FileManager.getConfig().getInt("config.teleports.warp-time"),
+                    () -> FileManager.getLang().getString("warps.pre-teleport"),
                     () -> {
                         p.teleport(warp.getWarpLocation());
-                        p.sendMessage(service.getFiles().getLang().getString("warps.teleport-warp")
+                        p.sendMessage(FileManager.getLang().getString("warps.teleport-warp")
                                 .replace("%warp%", args[0].toLowerCase()));
                     },
-                    (t) -> p.sendMessage(service.getFiles().getLang().getString("warps.time-teleport")
+                    (t) -> p.sendMessage(FileManager.getLang().getString("warps.time-teleport")
                             .replace("%warp%", args[0].toLowerCase())
                             .replace("%seconds%", ""+t.getSecondsLeft()))
             );
             timer.scheduleTimer();
             return true;
         }
+
         p.teleport(warp.getWarpLocation());
-        p.sendMessage(service.getFiles().getLang().getString("warps.teleport-warp")
+        p.sendMessage(FileManager.getLang().getString("warps.teleport-warp")
                 .replace("%warp%", args[0].toLowerCase()));
         return true;
     }

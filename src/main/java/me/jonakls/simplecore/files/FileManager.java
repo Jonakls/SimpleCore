@@ -7,11 +7,11 @@ public class FileManager {
 
     private final SimpleCore plugin;
 
-    private FileCreator lang;
-    private FileCreator config;
-    private FileCreator data;
-    private FileCreator warps;
-    private FileCreator spawn;
+    private static FileCreator lang;
+    private static FileCreator config;
+    private static FileCreator data;
+    private static FileCreator warps;
+    private static FileCreator spawn;
 
     public FileManager(SimpleCore plugin){
         this.plugin = plugin;
@@ -30,23 +30,23 @@ public class FileManager {
         return new FileCreator(plugin, string);
     }
 
-    public FileCreator getLang(){
+    public static FileCreator getLang(){
         return lang;
     }
 
-    public FileCreator getConfig(){
+    public static FileCreator getConfig(){
         return config;
     }
 
-    public FileCreator getData(){
+    public static FileCreator getData(){
         return data;
     }
 
-    public FileCreator getWarps(){
+    public static FileCreator getWarps(){
         return warps;
     }
 
-    public FileCreator getSpawn(){
+    public static FileCreator getSpawn(){
         return spawn;
     }
 

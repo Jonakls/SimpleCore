@@ -1,7 +1,7 @@
 package me.jonakls.simplecore.handlers;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.ColorApply;
 import me.jonakls.simplecore.utils.HoverMethod;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,17 +9,11 @@ import org.bukkit.entity.Player;
 
 public class ChatFormatHandler {
 
-    final private Service service;
     private TextComponent chatFormat;
-
-
-    public ChatFormatHandler(Service service){
-        this.service = service;
-    }
 
     public void setChatFormat(Player player, String message, String group){
 
-        for (String string: service.getFiles().getConfig().getConfigurationSection(
+        for (String string: FileManager.getConfig().getConfigurationSection(
                 "config.chat-format.groups").getKeys(false)){
 
             if (group.equals(string.toLowerCase())){
@@ -27,21 +21,21 @@ public class ChatFormatHandler {
                 HoverMethod hover = new HoverMethod();
 
                 hover.setHoverList(PlaceholderAPI.setPlaceholders(
-                        player,service.getFiles().getConfig().getString
+                        player, FileManager.getConfig().getString
                                 ("config.chat-format.groups."+group+".format.chat-message")
                                 .replace("%displayName%", player.getDisplayName())
                                 .replace("%playerName%", player.getName())
                                 + ColorApply.apply(message)),
 
-                        service.getFiles().getConfig().getString("config.chat-format.groups."
+                        FileManager.getConfig().getString("config.chat-format.groups."
                                 +group+".format.click-event"),
 
-                        service.getFiles().getConfig().getString("config.chat-format.groups."
+                        FileManager.getConfig().getString("config.chat-format.groups."
                                 +group+".format.action")
                                 .replace("%player%",player.getName()),
 
                         PlaceholderAPI.setPlaceholders(player,
-                                service.getFiles().getConfig().getStringList(
+                                FileManager.getConfig().getStringList(
                                         "config.chat-format.groups."+group+".format.hover")));
 
                 chatFormat = hover.getHoverFormat();
@@ -51,18 +45,18 @@ public class ChatFormatHandler {
             HoverMethod hover = new HoverMethod();
 
             hover.setHoverList(PlaceholderAPI.setPlaceholders(
-                    player,service.getFiles().getConfig().getString
+                    player, FileManager.getConfig().getString
                             ("config.chat-format.default.format.chat-message")
                             .replace("%displayName%", player.getDisplayName())
                             .replace("%playerName%", player.getName())
                             + ColorApply.apply(message)),
 
-                    service.getFiles().getConfig().getString("config.chat-format.default.format.click-event"),
-                    service.getFiles().getConfig().getString("config.chat-format.default.format.action")
+                    FileManager.getConfig().getString("config.chat-format.default.format.click-event"),
+                    FileManager.getConfig().getString("config.chat-format.default.format.action")
                             .replace("%player%",player.getName()),
 
                     PlaceholderAPI.setPlaceholders(player,
-                            service.getFiles().getConfig().getStringList(
+                            FileManager.getConfig().getStringList(
                                     "config.chat-format.default.format.hover")));
 
             chatFormat = hover.getHoverFormat();

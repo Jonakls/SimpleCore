@@ -14,13 +14,13 @@ public class CountdownTimer implements Runnable {
     private Integer assignedTaskId;
 
     // Seconds and shiz
-    private int seconds;
+    private final int seconds;
     private int secondsLeft;
 
     // Actions to perform while counting down, before and after
-    private Consumer<CountdownTimer> everySecond;
-    private Runnable beforeTimer;
-    private Runnable afterTimer;
+    private final Consumer<CountdownTimer> everySecond;
+    private final Runnable beforeTimer;
+    private final Runnable afterTimer;
 
     // Construct a timer, you could create multiple so for example if
     // you do not want these "actions"

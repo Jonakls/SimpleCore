@@ -1,7 +1,7 @@
 package me.jonakls.simplecore.commands;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.ColorApply;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,40 +11,34 @@ import org.bukkit.entity.Player;
 
 public class FakeMessages implements CommandExecutor {
 
-    private final Service service;
-
-    public FakeMessages(Service service){
-        this.service = service;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
             return true;
         }
 
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.fake"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         switch (args[0]){
             case "message":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages")
-                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                            .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
                 for (int i = 1; i < args.length; ++i) {
@@ -57,25 +51,25 @@ public class FakeMessages implements CommandExecutor {
             case "join":
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages")
-                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                            .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
-                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.join-player.message").replace("%player%", args[1])));
+                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, FileManager.getLang().getString("events.join-player.message").replace("%player%", args[1])));
                 return true;
 
             case "leave" :
 
                 if (!(args.length > 1)){
-                    p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages")
-                            .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+                    p.sendMessage(FileManager.getLang().getString("usages.fake-messages")
+                            .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
                     return true;
                 }
-                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, service.getFiles().getLang().getString("events.quit-player.message").replace("%player%", args[1])));
+                Bukkit.broadcastMessage(PlaceholderAPI.setPlaceholders(p, FileManager.getLang().getString("events.quit-player.message").replace("%player%", args[1])));
                 return true;
             default:
-                p.sendMessage(service.getFiles().getLang().getString("usages.fake-messages"
-                        .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix"))));
+                p.sendMessage(FileManager.getLang().getString("usages.fake-messages"
+                        .replace("%prefix%", FileManager.getLang().getString("messages.prefix"))));
                 return true;
         }
     }

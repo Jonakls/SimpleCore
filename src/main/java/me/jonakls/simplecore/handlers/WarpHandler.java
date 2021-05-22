@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.handlers;
 
-import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -10,27 +10,22 @@ import java.util.ArrayList;
 
 public class WarpHandler {
 
-    private final Service service;
     private boolean operation;
     private Location warpLocation;
-    private ArrayList<String> listWarps = new ArrayList<>();
-
-    public WarpHandler(Service service){
-        this.service = service;
-    }
+    private final ArrayList<String> listWarps = new ArrayList<>();
 
     public void setWarp(String warp, Location loc){
 
 
-        if(!(service.getFiles().getWarps().contains("warps." + warp))){
+        if(!(FileManager.getWarps().contains("warps." + warp))){
 
-            service.getFiles().getWarps().set("warps."+ warp +".world", loc.getWorld().getName());
-            service.getFiles().getWarps().set("warps."+ warp +".x", loc.getX());
-            service.getFiles().getWarps().set("warps."+ warp +".y", loc.getY());
-            service.getFiles().getWarps().set("warps."+ warp +".z", loc.getZ());
-            service.getFiles().getWarps().set("warps."+ warp +".yaw", loc.getYaw());
-            service.getFiles().getWarps().set("warps."+ warp +".pitch", loc.getPitch());
-            service.getFiles().getWarps().save();
+            FileManager.getWarps().set("warps."+ warp +".world", loc.getWorld().getName());
+            FileManager.getWarps().set("warps."+ warp +".x", loc.getX());
+            FileManager.getWarps().set("warps."+ warp +".y", loc.getY());
+            FileManager.getWarps().set("warps."+ warp +".z", loc.getZ());
+            FileManager.getWarps().set("warps."+ warp +".yaw", loc.getYaw());
+            FileManager.getWarps().set("warps."+ warp +".pitch", loc.getPitch());
+            FileManager.getWarps().save();
             operation = true;
             return;
         }
@@ -40,19 +35,19 @@ public class WarpHandler {
 
     public void getWarp(String warp){
 
-        if(!(service.getFiles().getWarps().contains("warps." + warp))){
+        if(!(FileManager.getWarps().contains("warps." + warp))){
             operation = false;
             return;
         }
 
 
-        World world = Bukkit.getWorld(service.getFiles().getWarps().getString("warps."+ warp +".world"));
+        World world = Bukkit.getWorld(FileManager.getWarps().getString("warps."+ warp +".world"));
 
-        double x = service.getFiles().getWarps().getDouble("warps."+ warp +".x");
-        double y = service.getFiles().getWarps().getDouble("warps."+ warp +".y");
-        double z = service.getFiles().getWarps().getDouble("warps."+ warp +".z");
-        float yaw = (float) service.getFiles().getWarps().getDouble("warps."+ warp +".yaw");
-        float pitch = (float) service.getFiles().getWarps().getDouble("warps."+ warp +".pitch");
+        double x = FileManager.getWarps().getDouble("warps."+ warp +".x");
+        double y = FileManager.getWarps().getDouble("warps."+ warp +".y");
+        double z = FileManager.getWarps().getDouble("warps."+ warp +".z");
+        float yaw = (float) FileManager.getWarps().getDouble("warps."+ warp +".yaw");
+        float pitch = (float) FileManager.getWarps().getDouble("warps."+ warp +".pitch");
 
         warpLocation = new Location(world, x, y , z, yaw , pitch);
 
@@ -61,13 +56,13 @@ public class WarpHandler {
 
     public void deleteWarp(String warp){
 
-        if(!(service.getFiles().getWarps().contains("warps." + warp))){
+        if(!(FileManager.getWarps().contains("warps." + warp))){
             operation = false;
             return;
         }
 
-        service.getFiles().getWarps().set("warps."+warp, null);
-        service.getFiles().getWarps().save();
+        FileManager.getWarps().set("warps."+warp, null);
+        FileManager.getWarps().save();
 
         operation = true;
 
@@ -76,7 +71,7 @@ public class WarpHandler {
     public void listWarps(){
 
 
-        ConfigurationSection configSection = service.getFiles().getWarps().getConfigurationSection("warps");
+        ConfigurationSection configSection = FileManager.getWarps().getConfigurationSection("warps");
 
         for (String key : configSection.getKeys(false)) {
             listWarps.add(key);

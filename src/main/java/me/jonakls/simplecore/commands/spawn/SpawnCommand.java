@@ -1,6 +1,7 @@
 package me.jonakls.simplecore.commands.spawn;
 
 import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.CountdownTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -21,43 +22,43 @@ public class SpawnCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.spawn"))) {
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
 
-        if (!(service.getFiles().getSpawn().contains("spawn.world"))){
+        if (!(FileManager.getSpawn().contains("spawn.world"))){
 
-            p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-no-exist"));
+            p.sendMessage(FileManager.getLang().getString("spawn.spawn-no-exist"));
 
             return true;
         }
         Location loc = new Location(
-                Bukkit.getWorld(service.getFiles().getSpawn().getString("spawn.world")),
-                service.getFiles().getSpawn().getDouble("spawn.x"),
-                service.getFiles().getSpawn().getDouble("spawn.y"),
-                service.getFiles().getSpawn().getDouble("spawn.z"),
-                (float) service.getFiles().getSpawn().getDouble("spawn.yaw"),
-                (float) service.getFiles().getSpawn().getDouble("spawn.pitch")
+                Bukkit.getWorld(FileManager.getSpawn().getString("spawn.world")),
+                FileManager.getSpawn().getDouble("spawn.x"),
+                FileManager.getSpawn().getDouble("spawn.y"),
+                FileManager.getSpawn().getDouble("spawn.z"),
+                (float) FileManager.getSpawn().getDouble("spawn.yaw"),
+                (float) FileManager.getSpawn().getDouble("spawn.pitch")
         );
 
         if (!(p.hasPermission("simplecore.command.spawn.bypass"))){
 
             CountdownTimer timer = new CountdownTimer(
                     service.getSimpleCore(),
-                    service.getFiles().getConfig().getInt("config.teleports.spawn.spawn-time"),
-                    () -> service.getFiles().getLang().getString("spawn.pre-teleport"),
+                    FileManager.getConfig().getInt("config.teleports.spawn.spawn-time"),
+                    () -> FileManager.getLang().getString("spawn.pre-teleport"),
                     () -> {
                         p.teleport(loc);
-                        p.sendMessage(service.getFiles().getLang().getString("spawn.teleport-spawn"));
+                        p.sendMessage(FileManager.getLang().getString("spawn.teleport-spawn"));
                     },
-                    (t) -> p.sendMessage(service.getFiles().getLang().getString("spawn.time-teleport")
+                    (t) -> p.sendMessage(FileManager.getLang().getString("spawn.time-teleport")
                             .replace("%seconds%", ""+t.getSecondsLeft()))
             );
             timer.scheduleTimer();
@@ -66,7 +67,7 @@ public class SpawnCommand implements CommandExecutor {
         }
 
         p.teleport(loc);
-        p.sendMessage(service.getFiles().getLang().getString("spawn.teleport-spawn"));
+        p.sendMessage(FileManager.getLang().getString("spawn.teleport-spawn"));
 
         return true;
     }

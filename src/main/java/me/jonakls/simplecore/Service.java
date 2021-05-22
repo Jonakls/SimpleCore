@@ -41,32 +41,32 @@ public class Service {
         simpleCore.getLogger().info("Installing commands and executors...");
 
         simpleCore.getCommand("simplecore").setExecutor(new GeneralCommand(this));
-        simpleCore.getCommand("gamemode").setExecutor(new GeneralGamemodeCommand(this));
-        simpleCore.getCommand("gmsp").setExecutor(new SpectatorCommand(this));
-        simpleCore.getCommand("gms").setExecutor(new SurvivalCommand(this));
-        simpleCore.getCommand("gmc").setExecutor(new CreativeCommand(this));
-        simpleCore.getCommand("gma").setExecutor(new AdventureCommand(this));
-        simpleCore.getCommand("flymode").setExecutor(new FlyCommand(this));
-        simpleCore.getCommand("vanish").setExecutor(new VanishCommand(this));
-        simpleCore.getCommand("fake").setExecutor(new FakeMessages(this));
-        simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand(this));
-        simpleCore.getCommand("stop").setExecutor(new StopCommand(this));
-        simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand(this));
-        simpleCore.getCommand("lag").setExecutor(new LagCommand(this));
-        simpleCore.getCommand("nickname").setExecutor(new NicknameCommand(this));
-        simpleCore.getCommand("setwarp").setExecutor(new SetWarpCommand(this));
+        simpleCore.getCommand("gamemode").setExecutor(new GeneralGamemodeCommand());
+        simpleCore.getCommand("gmsp").setExecutor(new SpectatorCommand());
+        simpleCore.getCommand("gms").setExecutor(new SurvivalCommand());
+        simpleCore.getCommand("gmc").setExecutor(new CreativeCommand());
+        simpleCore.getCommand("gma").setExecutor(new AdventureCommand());
+        simpleCore.getCommand("flymode").setExecutor(new FlyCommand());
+        simpleCore.getCommand("vanish").setExecutor(new VanishCommand());
+        simpleCore.getCommand("fake").setExecutor(new FakeMessages());
+        simpleCore.getCommand("broadcast").setExecutor(new BroadcastCommand());
+        simpleCore.getCommand("stop").setExecutor(new StopCommand());
+        simpleCore.getCommand("message").setExecutor(new PrivateMessagesCommand());
+        simpleCore.getCommand("lag").setExecutor(new LagCommand());
+        simpleCore.getCommand("nickname").setExecutor(new NicknameCommand());
+        simpleCore.getCommand("setwarp").setExecutor(new SetWarpCommand());
         simpleCore.getCommand("warp").setExecutor(new WarpCommand(this));
-        simpleCore.getCommand("delwarp").setExecutor(new DeleteWarpCommand(this));
-        simpleCore.getCommand("time").setExecutor(new TimeCommand(this));
-        simpleCore.getCommand("sun").setExecutor(new SunCommand(this));
-        simpleCore.getCommand("rain").setExecutor(new RainCommand(this));
-        simpleCore.getCommand("thunder").setExecutor(new ThunderCommand(this));
-        simpleCore.getCommand("day").setExecutor(new DayCommand(this));
-        simpleCore.getCommand("night").setExecutor(new NightCommand(this));
-        simpleCore.getCommand("midnight").setExecutor(new MidnightCommand(this));
+        simpleCore.getCommand("delwarp").setExecutor(new DeleteWarpCommand());
+        simpleCore.getCommand("time").setExecutor(new TimeCommand());
+        simpleCore.getCommand("sun").setExecutor(new SunCommand());
+        simpleCore.getCommand("rain").setExecutor(new RainCommand());
+        simpleCore.getCommand("thunder").setExecutor(new ThunderCommand());
+        simpleCore.getCommand("day").setExecutor(new DayCommand());
+        simpleCore.getCommand("night").setExecutor(new NightCommand());
+        simpleCore.getCommand("midnight").setExecutor(new MidnightCommand());
         simpleCore.getCommand("spawn").setExecutor(new SpawnCommand(this));
-        simpleCore.getCommand("setspawn").setExecutor(new SetSpawnCommand(this));
-        simpleCore.getCommand("delspawn").setExecutor(new DelSpawn(this));
+        simpleCore.getCommand("setspawn").setExecutor(new SetSpawnCommand());
+        simpleCore.getCommand("delspawn").setExecutor(new DelSpawn());
 
     }
 
@@ -88,10 +88,10 @@ public class Service {
         simpleCore.getLogger().info("Installing events and executors...");
 
         PluginManager pm = simpleCore.getServer().getPluginManager();
-        pm.registerEvents(new PlayerJoinListener(this), simpleCore);
-        pm.registerEvents(new PlayerQuitListener(this), simpleCore);
-        pm.registerEvents(new ServerListListener(this), simpleCore);
-        pm.registerEvents(new ChatListener(this), simpleCore);
+        pm.registerEvents(new PlayerJoinListener(), simpleCore);
+        pm.registerEvents(new PlayerQuitListener(), simpleCore);
+        pm.registerEvents(new ServerListListener(), simpleCore);
+        pm.registerEvents(new ChatListener(), simpleCore);
     }
 
     private void setupVaultChat() {

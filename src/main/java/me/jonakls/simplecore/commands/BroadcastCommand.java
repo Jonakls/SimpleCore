@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands;
 
-import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import me.jonakls.simplecore.utils.ColorApply;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
@@ -11,34 +11,28 @@ import org.bukkit.entity.Player;
 
 public class BroadcastCommand implements CommandExecutor {
 
-    private final Service service;
-
-    public BroadcastCommand(Service service){
-        this.service = service;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         StringBuilder stringBuilder = new StringBuilder();
-        float vol = (float) service.getFiles().getConfig().getDouble("sounds.broadcast-sound.vol");
-        float pitch = (float) service.getFiles().getConfig().getDouble("sounds.broadcast-sound.pitch");
+        float vol = (float) FileManager.getConfig().getDouble("sounds.broadcast-sound.vol");
+        float pitch = (float) FileManager.getConfig().getDouble("sounds.broadcast-sound.pitch");
 
         if (!(sender instanceof Player)){
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console"));
+            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console"));
             return true;
         }
 
         Player p = (Player) sender;
 
         if(!(p.hasPermission("simplecore.command.broadcast"))){
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         if (!(args.length > 0)){
-            p.sendMessage(service.getFiles().getLang().getString("usages.broadcast-message")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("usages.broadcast-message")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         int i = 0;
@@ -46,10 +40,10 @@ public class BroadcastCommand implements CommandExecutor {
             stringBuilder.append(' ').append(args[i]);
             ++i;
         }
-        Bukkit.broadcastMessage(ColorApply.apply(service.getFiles().getLang().getString("broadcast.prefix")+stringBuilder.toString()));
+        Bukkit.broadcastMessage(ColorApply.apply(FileManager.getLang().getString("broadcast.prefix")+ stringBuilder));
 
         Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(),
-                Sound.valueOf(service.getFiles().getConfig().getString("sounds.broadcast-sound.sound")),
+                Sound.valueOf(FileManager.getConfig().getString("sounds.broadcast-sound.sound")),
                 vol,
                 pitch));
 

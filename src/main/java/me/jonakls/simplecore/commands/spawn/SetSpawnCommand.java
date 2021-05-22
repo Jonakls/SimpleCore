@@ -1,6 +1,6 @@
 package me.jonakls.simplecore.commands.spawn;
 
-import me.jonakls.simplecore.Service;
+import me.jonakls.simplecore.files.FileManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,38 +8,32 @@ import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor {
 
-    private final Service service;
-
-    public SetSpawnCommand(Service service){
-        this.service = service;
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage(service.getFiles().getLang().getString("messages.error.no-console")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            sender.sendMessage(FileManager.getLang().getString("messages.error.no-console")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
         Player p = (Player) sender;
         if (!(p.hasPermission("simplecore.command.setspawn"))) {
-            p.sendMessage(service.getFiles().getLang().getString("messages.error.no-permissions")
-                    .replace("%prefix%", service.getFiles().getLang().getString("messages.prefix")));
+            p.sendMessage(FileManager.getLang().getString("messages.error.no-permissions")
+                    .replace("%prefix%", FileManager.getLang().getString("messages.prefix")));
             return true;
         }
 
-        if (!(service.getFiles().getSpawn().contains("spawn.world"))){
+        if (!(FileManager.getSpawn().contains("spawn.world"))){
 
-            service.getFiles().getSpawn().set("spawn.world", p.getWorld().getName());
-            service.getFiles().getSpawn().set("spawn.x", p.getLocation().getX());
-            service.getFiles().getSpawn().set("spawn.y", p.getLocation().getY());
-            service.getFiles().getSpawn().set("spawn.z", p.getLocation().getZ());
-            service.getFiles().getSpawn().set("spawn.yaw", p.getLocation().getYaw());
-            service.getFiles().getSpawn().set("spawn.pitch", p.getLocation().getPitch());
-            service.getFiles().getSpawn().save();
+            FileManager.getSpawn().set("spawn.world", p.getWorld().getName());
+            FileManager.getSpawn().set("spawn.x", p.getLocation().getX());
+            FileManager.getSpawn().set("spawn.y", p.getLocation().getY());
+            FileManager.getSpawn().set("spawn.z", p.getLocation().getZ());
+            FileManager.getSpawn().set("spawn.yaw", p.getLocation().getYaw());
+            FileManager.getSpawn().set("spawn.pitch", p.getLocation().getPitch());
+            FileManager.getSpawn().save();
 
-            p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-set")
+            p.sendMessage(FileManager.getLang().getString("spawn.spawn-set")
                     .replace("%world%", p.getWorld().getName())
                     .replace("%x%", ""+p.getLocation().getX())
                     .replace("%y%", ""+p.getLocation().getY())
@@ -50,7 +44,7 @@ public class SetSpawnCommand implements CommandExecutor {
             return true;
         }
 
-        p.sendMessage(service.getFiles().getLang().getString("spawn.spawn-exist"));
+        p.sendMessage(FileManager.getLang().getString("spawn.spawn-exist"));
 
         return true;
     }

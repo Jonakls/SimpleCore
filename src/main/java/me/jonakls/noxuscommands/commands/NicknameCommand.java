@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 
 public class NicknameCommand implements CommandExecutor {
 
+    private final NicknameHandler newNick = new NicknameHandler();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -57,8 +59,10 @@ public class NicknameCommand implements CommandExecutor {
             player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.nick-other-usages")));
             return true;
         }
-        NicknameHandler newNick = new NicknameHandler();
+
+
         newNick.setNickname(target, args[1]);
+
         if(!(newNick.getOption())){
             player.sendMessage(FileManager.getLang().getString("nick-command.no-change"));
             return true;

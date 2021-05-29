@@ -12,14 +12,15 @@ public class PlayerQuitListener implements Listener {
     @EventHandler
     public void onQuitEvent(PlayerQuitEvent quitEvent){
 
-        Player p = quitEvent.getPlayer();
+        Player player = quitEvent.getPlayer();
+
         if (!(FileManager.getConfig().getBoolean("config.quit-message"))){
             quitEvent.setQuitMessage(null);
             return;
         }
         quitEvent.setQuitMessage(PlaceholderAPI.setPlaceholders(
-                p,
+                player,
                 FileManager.getLang().getString("events.quit-player.message").
-                        replace("%player%", p.getName())));
+                        replace("%player%", player.getName())));
     }
 }

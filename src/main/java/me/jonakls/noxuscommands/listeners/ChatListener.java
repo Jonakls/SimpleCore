@@ -9,6 +9,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ChatListener implements Listener {
 
+    private final ChatFormatHandler chatFormat = new ChatFormatHandler();
+
     @EventHandler
     public void onChatListener(AsyncPlayerChatEvent chatEvent){
 
@@ -18,8 +20,6 @@ public class ChatListener implements Listener {
 
         String message = chatEvent.getMessage();
         chatEvent.setCancelled(true);
-
-        ChatFormatHandler chatFormat = new ChatFormatHandler();
 
         chatFormat.setChatFormat(
                 chatEvent.getPlayer(),

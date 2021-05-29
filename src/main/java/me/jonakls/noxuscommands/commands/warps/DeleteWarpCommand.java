@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 
 public class DeleteWarpCommand implements CommandExecutor{
 
+    private final WarpHandler warp = new WarpHandler();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -29,7 +31,6 @@ public class DeleteWarpCommand implements CommandExecutor{
             return true;
         }
 
-        WarpHandler warp = new WarpHandler();
         warp.deleteWarp(args[0].toLowerCase());
 
         if (!(warp.getOperation())){

@@ -32,7 +32,7 @@ public class FakeMessages implements CommandExecutor {
             player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.fake-messages")));
             return true;
         }
-        switch (args[0]){
+        switch (args[0].toLowerCase()){
             case "message":
 
                 if (!(args.length > 1)){

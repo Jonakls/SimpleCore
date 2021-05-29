@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 public class WarpCommand implements CommandExecutor {
 
     private final Service service;
+    private final WarpHandler warp = new WarpHandler();
 
     public WarpCommand(Service service){
         this.service = service;
@@ -60,8 +61,6 @@ public class WarpCommand implements CommandExecutor {
             return true;
 
         }
-
-        WarpHandler warp = new WarpHandler();
 
         warp.getWarp(args[0].toLowerCase());
 

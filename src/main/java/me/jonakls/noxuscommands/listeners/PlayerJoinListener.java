@@ -13,17 +13,24 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoinListener implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent joinEvent){
+    public void onJoinPlayer(PlayerJoinEvent joinEvent){
 
-        Player p = joinEvent.getPlayer();
+        Player player = joinEvent.getPlayer();
+
         if (!(FileManager.getConfig().getBoolean("config.join-message"))){
             joinEvent.setJoinMessage(null);
             return;
         }
-        joinEvent.setJoinMessage(PlaceholderAPI.setPlaceholders(p, FileManager.getLang().getString("events.join-player.message").replace("%player%", p.getName())));
+
+        joinEvent.setJoinMessage(PlaceholderAPI.setPlaceholders(
+                player,
+                FileManager.getLang().getString("events.join-player.message").
+                        replace("%player%", player.getName())));
 
         if (FileManager.getConfig().getBoolean("sounds.join-sound.enable")){
-           p.playSound(p.getLocation(),
+
+           player.playSound(
+                   player.getLocation(),
                    Sound.valueOf(FileManager.getConfig().getString("sounds.join-sound.sound")),
                    (float) FileManager.getConfig().getDouble("sounds.join-sound.vol"),
                    (float) FileManager.getConfig().getDouble("sounds.join-sound.pitch"));
@@ -32,20 +39,26 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void preSetNickname(PlayerJoinEvent joinEvent){
-        Player p = joinEvent.getPlayer();
-        if (FileManager.getData().contains("data." + p.getName())) {
-            p.setDisplayName(FileManager.getData().getString("data."+p.getName()+".nick-name"));
+
+        Player player = joinEvent.getPlayer();
+
+        if (FileManager.getData().contains("data." + player.getName())) {
+
+            player.setDisplayName(FileManager.getData().getString("data."+player.getName()+".nick-name"));
+
         }
     }
 
     @EventHandler
     public void goSpawn(PlayerJoinEvent joinEvent){
-        Player p = joinEvent.getPlayer();
+
+        Player player = joinEvent.getPlayer();
 
         if (FileManager.getConfig().getBoolean("config.teleports.spawn.teleport-on-join")){
+
             if (FileManager.getSpawn().contains("spawn.world")){
 
-                Location loc = new Location(
+                Location location = new Location(
                         Bukkit.getWorld(FileManager.getSpawn().getString("spawn.world")),
                         FileManager.getSpawn().getDouble("spawn.x"),
                         FileManager.getSpawn().getDouble("spawn.y"),
@@ -54,9 +67,9 @@ public class PlayerJoinListener implements Listener {
                         (float) FileManager.getSpawn().getDouble("spawn.pitch")
                 );
 
-                p.teleport(loc);
+                player.teleport(location);
             }
-            p.sendMessage(FileManager.getLang().getString("spawn.spawn-no-exist"));
+            player.sendMessage(FileManager.getLang().getString("spawn.spawn-no-exist"));
         }
     }
 }

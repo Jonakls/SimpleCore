@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 
 public class PrivateMessagesCommand implements CommandExecutor {
 
+    private final MessageHandler module = new MessageHandler();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
@@ -52,8 +54,6 @@ public class PrivateMessagesCommand implements CommandExecutor {
             stringBuilder.append(args[i]).append(' ');
             ++i;
         }
-        
-        MessageHandler module = new MessageHandler();
 
         player.spigot().sendMessage(module.setFormatSender(target, ColorApply.apply(stringBuilder.toString())));
 

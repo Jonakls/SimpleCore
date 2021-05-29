@@ -16,21 +16,22 @@ public final class NoxusCommands extends JavaPlugin {
         getLogger().info(" ");
         getLogger().info("Plugin by: Jonakls");
 
-        if (!(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null)
-            || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
 
-            getLogger().info("The required dependencies were detected correctly, starting normally.");
-
-            service.setupFiles();
-            service.setupCommands();
-            service.setupEvents();
-            service.setupDependencies();
-
-            getLogger().info("Load all files, events and commands!");
+            getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
+            Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
-        getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
-        Bukkit.getPluginManager().disablePlugin(this);
+
+        getLogger().info("The required dependencies were detected correctly, starting normally.");
+
+        service.setupFiles();
+        service.setupCommands();
+        service.setupEvents();
+        service.setupDependencies();
+
+        getLogger().info("Load all files, events and commands!");
+
 
     }
 

@@ -11,14 +11,14 @@ public class ChatFormatHandler {
 
     private TextComponent chatFormat;
 
+    private final HoverMethod hover = new HoverMethod();
+
     public void setChatFormat(Player player, String message, String group){
 
         for (String string: FileManager.getConfig().getConfigurationSection(
                 "config.chat-format.groups").getKeys(false)){
 
             if (group.equals(string.toLowerCase())){
-
-                HoverMethod hover = new HoverMethod();
 
                 hover.setHoverList(PlaceholderAPI.setPlaceholders(
                         player,
@@ -36,8 +36,6 @@ public class ChatFormatHandler {
                 chatFormat = hover.getHoverFormat();
                 return;
             }
-
-            HoverMethod hover = new HoverMethod();
 
             hover.setHoverList(PlaceholderAPI.setPlaceholders(
                     player,

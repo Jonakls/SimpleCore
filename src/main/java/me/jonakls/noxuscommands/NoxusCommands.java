@@ -16,7 +16,7 @@ public final class NoxusCommands extends JavaPlugin {
         getLogger().info(" ");
         getLogger().info("Plugin by: Jonakls");
 
-        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null || (Bukkit.getPluginManager().getPlugin("Vault") == null)){
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") == null || Bukkit.getPluginManager().getPlugin("Vault") == null){
 
             getLogger().warning("[Error] One of the dependencies was not found, please make sure they are all installed on your server.");
             Bukkit.getPluginManager().disablePlugin(this);

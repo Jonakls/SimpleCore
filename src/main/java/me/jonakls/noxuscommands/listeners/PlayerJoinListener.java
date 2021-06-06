@@ -68,6 +68,7 @@ public class PlayerJoinListener implements Listener {
                 );
 
                 player.teleport(location);
+                return;
             }
             player.sendMessage(FileManager.getLang().getString("spawn.spawn-no-exist"));
         }

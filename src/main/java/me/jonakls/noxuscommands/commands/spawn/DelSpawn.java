@@ -22,9 +22,9 @@ public class DelSpawn implements CommandExecutor {
             return true;
         }
 
-        if (!(FileManager.getSpawn().contains("spawn.world"))){
+        if (FileManager.getSpawn().contains("spawn.world")){
 
-            FileManager.getSpawn().set("spawn.", null);
+            FileManager.getSpawn().set("spawn", null);
             FileManager.getSpawn().save();
 
             player.sendMessage(FileManager.getLang().getString("spawn.spawn-delete"));

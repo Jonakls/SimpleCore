@@ -26,7 +26,7 @@ public class GeneralCommand implements CommandExecutor {
                 sender.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("messages.error.unknown-command")));
                 return true;
             }
-            switch (args[0]) {
+            switch (args[0].toLowerCase()) {
                 case "help":
                     for (String help : FileManager.getLang().getStringList("messages.console.help")) {
                         sender.sendMessage(help.replace("%version%", service.getPlugin().getDescription().getVersion()));
@@ -60,7 +60,7 @@ public class GeneralCommand implements CommandExecutor {
             player.sendMessage(MessageReplacer.noPermissions());
             return true;
         }
-        switch (args[0]) {
+        switch (args[0].toLowerCase()) {
             case "help":
                 for (String help : FileManager.getLang().getStringList("messages.player.help")) {
                     player.sendMessage(help.replace("%version%", service.getPlugin().getDescription().getVersion()));

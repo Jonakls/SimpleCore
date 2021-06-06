@@ -1,6 +1,7 @@
 package me.jonakls.noxuscommands.handlers;
 
 import me.jonakls.noxuscommands.files.FileManager;
+import me.jonakls.noxuscommands.utils.HoverMethod;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -9,42 +10,37 @@ import org.bukkit.entity.Player;
 
 public class MessageHandler {
 
+    private final HoverMethod hoverMethod = new HoverMethod();
+
     public TextComponent setFormatSender(Player target, String message){
 
-        TextComponent senderMessage = new TextComponent(
 
-                FileManager.getLang().getString("private-messages.sender.format.chat-message").
+        hoverMethod.setHover(
+                FileManager.getConfig().getString("private-messages.sender.format.chat-message").
                         replace("%target%", target.getName()).
-                        replace("%message%", message));
+                        replace("%message%", message),
+                FileManager.getConfig().getString("private-messages.sender.format.click-event"),
+                FileManager.getConfig().getString("private-messages.sender.format.action").
+                        replace("%target%",target.getName()),
+                FileManager.getConfig().getString("private-messages.sender.format.hover"));
 
-        senderMessage.setClickEvent(new ClickEvent(ClickEvent.Action.valueOf(
-                FileManager.getLang().getString("private-messages.sender.format.click-event")),
-                FileManager.getLang().getString("private-messages.sender.format.action").
-                        replace("%target%",target.getName())));
-
-        senderMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
-                FileManager.getLang().getString("private-messages.sender.format.hover")).create()));
-
-        return senderMessage;
+        return hoverMethod.getHoverFormat();
 
     }
 
     public TextComponent setFormatTarget(Player sender, String message){
 
-        TextComponent targetMessage = new TextComponent(
-                FileManager.getLang().getString("private-messages.target.format.chat-message").
+        hoverMethod.setHover(
+                FileManager.getConfig().getString("private-messages.target.format.chat-message").
                         replace("%sender%", sender.getName()).
-                        replace("%message%", message));
+                        replace("%message%", message),
+                FileManager.getConfig().getString("private-messages.target.format.click-event"),
+                FileManager.getConfig().getString("private-messages.target.format.action").
+                        replace("%sender%",sender.getName()),
+                FileManager.getConfig().getString("private-messages.target.format.hover"));
 
-        targetMessage.setClickEvent(new ClickEvent(ClickEvent.Action.valueOf(
-                FileManager.getLang().getString("private-messages.target.format.click-event")),
-                FileManager.getLang().getString("private-messages.target.format.action").
-                        replace("%sender%",sender.getName())));
 
-        targetMessage.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(
-                FileManager.getLang().getString("private-messages.target.format.hover")).create()));
-
-        return targetMessage;
+        return hoverMethod.getHoverFormat();
 
     }
 }

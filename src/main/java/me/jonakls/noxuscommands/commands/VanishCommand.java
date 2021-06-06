@@ -26,7 +26,7 @@ public class VanishCommand implements CommandExecutor {
             player.sendMessage(MessageReplacer.prefix(FileManager.getLang().getString("usages.vanish")));
             return true;
         }
-        if (args[0].equalsIgnoreCase("enable") || args[0].equalsIgnoreCase("on")){
+        if (args[0].equalsIgnoreCase("on")){
             if (!(args.length > 1)){
                 player.sendMessage(FileManager.getLang().getString("vanish.message")
                         .replace("%type%", FileManager.getLang().getString("type.enable")));
@@ -48,7 +48,7 @@ public class VanishCommand implements CommandExecutor {
             Bukkit.getOnlinePlayers().forEach(online -> online.hidePlayer(target));
             return true;
         }
-        if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("off")){
+        if (args[0].equalsIgnoreCase("off")){
             if (!(args.length > 1)){
                 player.sendMessage(FileManager.getLang().getString("vanish.message")
                     .replace("%type%", FileManager.getLang().getString("type.disable")));

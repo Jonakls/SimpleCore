@@ -142,16 +142,3 @@ gamemode:
     survival: '&cSurvival'
     adventure: '&eAdventure'
     spectator: '&dSpectator'
-private-messages:
-  sender:
-    format:
-      chat-message: '&8[&e*&8] &aYou to &c%target% &c» &f%message%'
-      hover: '&eClick to send other message.'
-      click-event: SUGGEST_COMMAND
-      action: '/msg %target% '
-  target:
-    format:
-      chat-message: '&8[&e*&8] &c%sender% &ato You &c» &f%message%'
-      hover: '&eClick to send other message.'
-      click-event: SUGGEST_COMMAND
-      action: '/msg %sender% '

@@ -67,6 +67,23 @@ server-list:
   line1: '&bNoxus Team &8| &cEditable text'
   line2: '&7You can edit this in the config'
 #
+# Simple and easy system of private messages with
+# hovers actions and hover text.
+#
+private-messages:
+  sender:
+    format:
+      chat-message: '&8[&e*&8] &aYou to &c%target% &c» &f%message%'
+      hover: '&eClick to send other message.'
+      click-event: SUGGEST_COMMAND
+      action: '/msg %target% '
+  target:
+    format:
+      chat-message: '&8[&e*&8] &c%sender% &ato You &c» &f%message%'
+      hover: '&eClick to send other message.'
+      click-event: SUGGEST_COMMAND
+      action: '/msg %sender% '
+#
 # Enable or disable sounds events.
 #
 # Please use sounds of this page:
